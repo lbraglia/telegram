@@ -1,0 +1,11 @@
+Package: telegram
+Title: telegram
+Version: 0.1
+Authors@R: as.person('Luca Braglia <lbraglia@gmail.com> [aut, cre]')
+Description: telegram
+Imports: R6, httr
+Depends:
+    R (>= 3.2.3)
+License: GPL-3
+LazyData: true
+RoxygenNote: 5.0.1
