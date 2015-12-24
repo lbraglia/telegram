@@ -1,8 +1,8 @@
 Package: telegram
-Title: R wrapper around the Telegram Bot API
+Title: R Wrapper Around the Telegram Bot API
 Version: 0.1
-Authors@R: as.person('Luca Braglia <lbraglia@gmail.com> [aut, cre]')
-Description: R rapper around the Telegram Bot API.
+Authors@R: person("Luca", "Braglia", email = "lbraglia@gmail.com", role = c("aut", "cre"))
+Description: R wrapper around the Telegram Bot API.
 Imports: R6, httr
 Depends:
     R (>= 3.2.3)
