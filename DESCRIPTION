@@ -1,8 +1,8 @@
 Package: telegram
-Title: telegram
+Title: R wrapper around the Telegram Bot API
 Version: 0.1
 Authors@R: as.person('Luca Braglia <lbraglia@gmail.com> [aut, cre]')
-Description: telegram
+Description: R rapper around the Telegram Bot API.
 Imports: R6, httr
 Depends:
     R (>= 3.2.3)
