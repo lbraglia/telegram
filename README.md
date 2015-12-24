@@ -42,14 +42,15 @@ bot$set_default_chat_id(123456789)
 bot$sendMessage('This is a test')
 md1 <- "*bold* _italic_ [r-project](http://r-project.org) "
 md2 <- " try `x <- rnorm(100)` at the console ..."
+## below left spaces just for github displaying (not needed in the .R src)
 md3 <- "
 you can have
     ``` 
-x <- runif(100)
-mean(x)
+    x <- runif(100)
+    mean(x)
     ```
 too
-" # spaces before backticks not needed (only for github displaying)
+" 
 bot$sendMessage(md1, parse_mode = 'markdown')
 bot$sendMessage(md2, parse_mode = 'markdown')
 bot$sendMessage(md3, parse_mode = 'markdown')
