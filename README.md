@@ -38,7 +38,7 @@ bot$getMe()
 ## Here, check what you have inserted
 bot$getUpdates()
 
-## You're interested in the chat_id variable: in order to set a
+## You're interested in the message.chat.id variable: in order to set a
 ## default chat_id for the following commands (to ease typing)
 bot$set_default_chat_id(123456789)
 ```
