@@ -2,7 +2,7 @@
 ## UTILS
 ## ------
 
-self <- 'shut up R CMD CHECK'
+self    <- 'shut up R CMD CHECK'
 private <- 'shut up R CMD CHECK'
 
 initialize <- function(token) {
@@ -32,7 +32,8 @@ request <- function(method, body){
 ## TG API
 ## ------
 
-getMe <- function() {
+getMe <- function()
+{
     r <- private$request('getMe')
     status <- httr::status_code(r)
     if (status == 200){
@@ -41,68 +42,113 @@ getMe <- function() {
         bot_username <- c$result$username
         cat(sprintf('Bot name:\t%s\nBot username:\t%s\n',
                     bot_first_name, bot_username))
-        return(r)
-    } else {
-        warning(sprintf('Status code: %d', status))
-        return(NULL)
-    }
-}
-
-
-sendMessage <- function(text, chat_id){
-    if (missing(chat_id)) chat_id <- private$default_chat_id
-    r <- private$request('sendMessage', 
-                         body = list(
-                             'chat_id' = chat_id,
-                             'text' = as.character(text)))
+    } 
     invisible(r)
 }
 
 
-forwardMessage <- function(from_chat_id, message_id, chat_id){
-    if (missing(chat_id)) chat_id <- private$default_chat_id
+sendMessage <- function(text,
+                        parse_mode,
+                        disable_web_page_preview,
+                        reply_to_message_id,
+                        chat_id)
+{
+    if (missing(chat_id)){
+        if (is.null(private$default_chat_id))
+            stop("sendPhoto: chat_id can't be missing")
+        else chat_id <- private$default_chat_id
+    }
+    if (missing(text)) stop("sendMessage: text can't be missing")
+    text <- as.character(text[1])
+    parse_mode <- if(missing(parse_mode)) NULL
+                  else as.character(parse_mode[1])
+    disable_web_page_preview <-
+        if(missing(disable_web_page_preview)) NULL
+        else as.logical(disable_web_page_preview[1])
+    reply_to_message_id <-
+        if(missing(reply_to_message_id)) NULL
+        else as.integer(reply_to_message_id[1])
+    body <- list('chat_id' = chat_id,
+                 'text' = as.character(text),
+                 'parse_mode' = parse_mode,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    r <- private$request('sendMessage', body = body)
+    invisible(r)
+}
+
+
+forwardMessage <- function(from_chat_id,
+                           message_id,
+                           chat_id)
+{
+    if (missing(chat_id)){
+        if (is.null(private$default_chat_id))
+            stop("sendPhoto: chat_id can't be missing")
+        else chat_id <- private$default_chat_id
+    }
     if (missing(from_chat_id) ||  missing(message_id))
         stop("forwardMessage: from_chat_id and message_id can't be missing")
-    
-    r <- private$request('forwardMessage', 
-                         body = list(
-                             'chat_id' = chat_id,
-                             'from_chat_id' = chat_id,
-                             'message_id' = as.character(message_id)))
+    from_chat_id <- as.character(from_chat_id[1])
+    message_id <- as.character(message_id[1])
+    body <- list('chat_id' = chat_id,
+                 'from_chat_id' = chat_id,
+                 'message_id' = message_id)
+    r <- private$request('forwardMessage', body = body)
     invisible(r)
 }
 
-sendPhoto <- function(photo, caption, reply_to_message_id,
-                      reply_markup, chat_id){
-    if (missing(chat_id)) chat_id <- private$default_chat_id
-    if (missing(photo)) stop("sendPhoto: photo can't be missing")
-    if (missing(caption)) caption <- NULL
-    if (missing(reply_to_message_id)) reply_to_message_id <- NULL
-    if (missing(reply_markup)) reply_markup <- NULL
 
-   
-    r <- private$request('forwardMessage', 
-                         body = list(
-                             'chat_id' = chat_id,
-                             'photo' = httr::upload_file(photo)## ,
-                             ## 'caption' = caption,
-                             ## 'reply_to_message_id' = reply_to_message_id,
-                             ## 'reply_markup' = reply_markup
-                         ))
+sendPhoto <- function(photo,
+                      caption,
+                      reply_to_message_id,
+                      reply_markup,
+                      chat_id)
+{
+    ## Param preprocessing
+    if (missing(chat_id)){
+        if (is.null(private$default_chat_id))
+            stop("sendPhoto: chat_id can't be missing")
+        else chat_id <- private$default_chat_id
+    }
+    if (!file.exists(photo))
+        stop('sendPhoto: ', photo, 'is not a valid path.')
+    caption <-
+        if(missing(caption)) NULL
+        else as.character(caption[1])
+    reply_to_message_id <-
+        if(missing(reply_to_message_id)) NULL
+        else as.integer(reply_to_message_id[1])
+    body <- list('chat_id' = chat_id,
+                 'photo' = httr::upload_file(photo),
+                 'caption' = caption,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    r <- private$request('sendPhoto', body = body)
     invisible(r)
-
 }
 
 
-sendDocument <- function(f, chat_id){
-    if (missing(chat_id))
-        chat_id <- private$default_chat_id
-    if (!file.exists(f))
-        stop(f, 'is not a valid path (missing file?)')
-    r <- private$request('sendDocument',
-                         body = list(
-                             'chat_id' = chat_id,
-                             'document' = httr::upload_file(f)))
+sendDocument <- function(document,
+                         reply_to_message_id,
+                         chat_id)
+{
+    if (missing(chat_id)){
+        if (is.null(private$default_chat_id))
+            stop("sendDocument: chat_id can't be missing")
+        else chat_id <- private$default_chat_id
+    }
+    if (!file.exists(document))
+        stop('sendDocument', document,
+             'is not a valid path (missing file?)')
+    reply_to_message_id <-
+        if(missing(reply_to_message_id)) NULL
+        else as.integer(reply_to_message_id[1])
+    body <- list('chat_id' = chat_id,
+                 'document' = httr::upload_file(document),
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    r <- private$request('sendDocument', body = body)
     invisible(r)
 }
 
@@ -141,7 +187,7 @@ TGBot <- R6::R6Class("TGBot",
                          sendDocument = sendDocument                     
                      ),
                      private = list(
-                         token = NA,
-                         default_chat_id = NA,
+                         token = NULL,
+                         default_chat_id = NULL,
                          request = request)
                      )
