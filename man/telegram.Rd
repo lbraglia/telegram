@@ -6,6 +6,9 @@
 \alias{telegram-package}
 \title{telegram.}
 \description{
-telegram.
+R wrapper around the Telegram Bot API
+(http://core.telegram.org/bots/api) to access Telegram's messaging
+facilities with ease (eg you send messages, images, files from R to
+your smartphone)
 }
 

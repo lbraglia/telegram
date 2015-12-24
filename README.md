@@ -2,15 +2,15 @@ telegram [![Build Status](https://travis-ci.org/lbraglia/telegram.svg)](https://
 ========
 
 This package is an R wrapper around the
-[Telegram](https://telegram.org/) [Bot
-API](https://core.telegram.org/bots/api).
+[Telegram](http://telegram.org/) [Bot
+API](http://core.telegram.org/bots/api).
 
 It allows to send messages (text, Markdown, images, files) from R to
 your smartphone.
 
 More infos on telegram's bot api can be found
-[here](https://core.telegram.org/bots) and
-[here](https://core.telegram.org/bots/api).
+[here](http://core.telegram.org/bots) and
+[here](http://core.telegram.org/bots/api).
 
 ## How to install the package?
 ```r
