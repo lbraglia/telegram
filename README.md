@@ -44,6 +44,8 @@ bot$set_default_chat_id(123456789)
 ```
 
 ## Examples of methods currently implemented
+Once you've followed the previous section, run the following commands
+and look at your phone.
 
 ```r
 ## Send some messages..
