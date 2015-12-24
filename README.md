@@ -3,6 +3,13 @@ telegram [![Build Status](https://travis-ci.org/lbraglia/telegram.svg)](https://
 
 This package is an R wrapper around the Telegram Bot API.
 
+
+## How to install?
+
+```
+devtools::install_github('lbraglia/telegram')
+```
+
 ## How to connect R with Telegram?
 
 ```r
