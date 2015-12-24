@@ -28,7 +28,7 @@ bot$getUpdates()
 bot$set_default_chat_id(123456789)
 ```
 
-## Example of methods currently implemented
+## Examples of methods currently implemented
 
 ```r
 ## Send some messages..
@@ -37,10 +37,10 @@ md1 <- "*bold* _italic_ [r-project](http://r-project.org) "
 md2 <- " try `x <- rnorm(100)` at the console ..."
 md3 <- "
 you can have
-```
+\`\`\`
 x <- runif(100)
 mean(x)
-```
+\`\`\`
 too
 "
 bot$sendMessage(md1, parse_mode = 'markdown')
