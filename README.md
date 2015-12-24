@@ -1,14 +1,19 @@
 telegram [![Build Status](https://travis-ci.org/lbraglia/telegram.svg)](https://travis-ci.org/lbraglia/telegram)
 ========
 
-This package is an R wrapper around the Telegram Bot API.
+This package is an R wrapper around the
+[Telegram](https://telegram.org/) [Bot
+API](https://core.telegram.org/bots/api). It allows to send messages
+(text, Markdown, images, files) from R to your smartphone.  More infos
+on telegram's bot api can be found
+[here](https://core.telegram.org/bots) and
+[here](https://core.telegram.org/bots/api).
 
-
-## How to install?
-
+## How to install the package?
 ```r
 devtools::install_github('lbraglia/telegram')
 ```
+The package imports some function from `R6` and `httr`, which are needed.
 
 ## How to connect R with Telegram?
 
@@ -39,7 +44,8 @@ bot$set_default_chat_id(123456789)
 
 ```r
 ## Send some messages..
-bot$sendMessage('This is a test')
+bot$sendMessage('This is text')
+## Markdown support for messages
 md1 <- "*bold* _italic_ [r-project](http://r-project.org) "
 md2 <- " try `x <- rnorm(100)` at the console ..."
 ## below left spaces just for github displaying (not needed in the .R src)
