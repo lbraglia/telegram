@@ -1,5 +1,10 @@
-telegram [![Build Status](https://travis-ci.org/lbraglia/telegram.svg)](https://travis-ci.org/lbraglia/telegram)
-========
+# telegram
+
+[![Linux Build Status](https://travis-ci.org/lbraglia/telegram.svg?branch=master)](https://travis-ci.org/lbraglia/telegram)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/lbraglia/telegram?svg=true)](https://ci.appveyor.com/project/lbraglia/telegram)
+[![](http://www.r-pkg.org/badges/version/telegram)](http://www.r-pkg.org/pkg/telegram)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/telegram)](http://www.r-pkg.org/pkg/telegram)
+
 
 This package is an R wrapper around the
 [Telegram](http://telegram.org/) [Bot
