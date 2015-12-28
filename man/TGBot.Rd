@@ -80,7 +80,7 @@ bot$forwardMessage(from_chat_id = 162174388,
 
 }
 \references{
-\href{https://core.telegram.org/bots}{Bots: An introduction for developers} and \href{https://core.telegram.org/bots/api}{Telegram Bot API}
+\href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 }
 \keyword{datasets}
 

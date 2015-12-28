@@ -315,7 +315,7 @@ setWebhook <- function() not_implemented()
 #'   \item{\code{getUserProfilePhotos}}{Get a list of profile pictures for a user}
 #'   \item{\code{getFile}}{Get basic info about a file and prepare it for downloading}
 #' }
-#' @references \href{https://core.telegram.org/bots}{Bots: An introduction for developers} and \href{https://core.telegram.org/bots/api}{Telegram Bot API}
+#' @references \href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
 #' ## Talk to the botfather and create a new bot following the steps
 #' ## ...
