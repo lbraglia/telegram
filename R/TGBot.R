@@ -430,6 +430,21 @@ setWebhook <- function() not_implemented()
 #'
 #' ## Send a sticker
 #' bot$sendSticker(system.file('r_logo.webp', package = 'telegram'))
+#'
+#' ## Send a video
+#' library(animation)
+#' saveVideo({
+#'     set.seed(1)
+#'     nmax <- 10
+#'     ani.options(interval = 0.5, nmax = nmax)
+#'     x <- c()
+#'     for (i in 1:nmax){
+#'         x <- c(x, rnorm(1))
+#'         plot(cumsum(x), lty = 2, xlim = c(1, nmax), ylim = c(-5,5))
+#'         abline(h = 0, col = 'red')
+#'     }
+#' }, video.name = 'animation.mp4')
+#' bot$sendVideo('animation.mp4')
 #' }
 #'
 #' @export
