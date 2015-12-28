@@ -259,7 +259,33 @@ sendPhoto <- function(photo = NULL,
 
 
 sendSticker <- function() not_implemented()
-sendVideo <- function() not_implemented()
+
+sendVideo <- function(video = NULL,
+                      duration = NULL,
+                      caption = NULL,
+                      reply_to_message_id = NULL,
+                      chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    video <- check_file(video, required = TRUE)
+    duration <- check_param(duration, 'int')
+    caption <- check_param(caption, 'char')
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request body
+    body <- list('chat_id' = chat_id,
+                 'video' = httr::upload_file(video),
+                 'duration' = duration,
+                 'caption' = caption,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    ## request
+    r <- private$request('sendVideo', body = body)
+    ## response handling
+    invisible(r)
+}
+
+
 sendVoice <- function() not_implemented()
 setWebhook <- function() not_implemented()
 
