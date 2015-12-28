@@ -26,7 +26,7 @@ For the development one:
 ```r
 devtools::install_github('lbraglia/telegram')
 ```
-The package imports some function from `R6` and `httr`, which are needed.
+
 
 ## How to connect R with Telegram?
 
