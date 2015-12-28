@@ -5,6 +5,9 @@
 self    <- 'shut up R CMD CHECK'
 private <- 'shut up R CMD CHECK'
 
+not_implemented <- function() stop('Currently not implemented')
+
+
 initialize <- function(token) {
     self$set_token(token)
 }
@@ -105,47 +108,6 @@ check_file <- function(path, required = FALSE){
 ## TG API
 ## ------
 
-getMe <- function()
-{
-    r <- private$request('getMe')
-    status <- httr::status_code(r)
-    if (status == 200){
-        c <- httr::content(r)
-        private$bot_first_name <- c$result$first_name
-        private$bot_username <- c$result$username
-        cat(sprintf('Bot name:\t%s\nBot username:\t%s\n',
-                    private$bot_first_name,
-                    private$bot_username))
-    } 
-    invisible(r)
-}
-
-
-sendMessage <- function(text = NULL,
-                        parse_mode = NULL,
-                        disable_web_page_preview = NULL,
-                        reply_to_message_id = NULL,
-                        chat_id = NULL)
-{
-    ## params
-    chat_id <- private$check_chat_id(chat_id = chat_id)
-    text <- check_param(text, 'char', required = TRUE)
-    parse_mode <- check_param(parse_mode, 'char')
-    disable_web_page_preview <- check_param(disable_web_page_preview, 'log')
-    reply_to_message_id <- check_param(reply_to_message_id, 'int')
-    ## request body
-    body <- list('chat_id' = chat_id,
-                 'text' = as.character(text),
-                 'parse_mode' = parse_mode,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
-    ## request
-    r <- private$request('sendMessage', body = body)
-    ## response handling
-    invisible(r)
-}
-
-
 forwardMessage <- function(from_chat_id = NULL,
                            message_id = NULL,
                            chat_id = NULL)
@@ -164,30 +126,37 @@ forwardMessage <- function(from_chat_id = NULL,
     invisible(r)
 }
 
+getFile <- function() not_implemented()
 
-sendPhoto <- function(photo = NULL,
-                      caption = NULL,
-                      reply_to_message_id = NULL,
-                      reply_markup = NULL,
-                      chat_id = NULL)
+
+getMe <- function()
 {
-    ## params
-    chat_id <- private$check_chat_id(chat_id = chat_id)
-    photo <- check_file(photo, required = TRUE)
-    caption <- check_param(caption, 'char')
-    reply_to_message_id <- check_param(reply_to_message_id, 'int')
-    ## request body
-    body <- list('chat_id' = chat_id,
-                 'photo' = httr::upload_file(photo),
-                 'caption' = caption,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
-    ## request
-    r <- private$request('sendPhoto', body = body)
-    ## response handling
+    r <- private$request('getMe')
+    status <- httr::status_code(r)
+    if (status == 200){
+        c <- httr::content(r)
+        private$bot_first_name <- c$result$first_name
+        private$bot_username <- c$result$username
+        cat(sprintf('Bot name:\t%s\nBot username:\t%s\n',
+                    private$bot_first_name,
+                    private$bot_username))
+    } 
     invisible(r)
 }
 
+
+getUpdates <- function(){
+    r <- private$request('getUpdates')
+    if (r$status == 200){
+        ## parse output (return a data.frame)
+        rval <- httr::content(r)$result
+        do.call(rbind, lapply(rval, as.data.frame))
+    }
+    else
+        invisible(NULL)
+}
+
+getUserProfilePhotos <- function() not_implemented()
 
 sendAudio <- function(audio = NULL,
                       duration = NULL,
@@ -217,6 +186,7 @@ sendAudio <- function(audio = NULL,
     invisible(r)
 }
 
+sendChatAction <- function() not_implemented()
 
 sendDocument <- function(document = NULL,
                          reply_to_message_id = NULL,
@@ -237,17 +207,61 @@ sendDocument <- function(document = NULL,
     invisible(r)
 }
 
+sendLocation <- function() not_implemented()
 
-getUpdates <- function(){
-    r <- private$request('getUpdates')
-    if (r$status == 200){
-        ## parse output (return a data.frame)
-        rval <- httr::content(r)$result
-        do.call(rbind, lapply(rval, as.data.frame))
-    }
-    else
-        invisible(NULL)
+sendMessage <- function(text = NULL,
+                        parse_mode = NULL,
+                        disable_web_page_preview = NULL,
+                        reply_to_message_id = NULL,
+                        chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    text <- check_param(text, 'char', required = TRUE)
+    parse_mode <- check_param(parse_mode, 'char')
+    disable_web_page_preview <- check_param(disable_web_page_preview, 'log')
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request body
+    body <- list('chat_id' = chat_id,
+                 'text' = as.character(text),
+                 'parse_mode' = parse_mode,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    ## request
+    r <- private$request('sendMessage', body = body)
+    ## response handling
+    invisible(r)
 }
+
+
+sendPhoto <- function(photo = NULL,
+                      caption = NULL,
+                      reply_to_message_id = NULL,
+                      reply_markup = NULL,
+                      chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    photo <- check_file(photo, required = TRUE)
+    caption <- check_param(caption, 'char')
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request body
+    body <- list('chat_id' = chat_id,
+                 'photo' = httr::upload_file(photo),
+                 'caption' = caption,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    ## request
+    r <- private$request('sendPhoto', body = body)
+    ## response handling
+    invisible(r)
+}
+
+
+sendSticker <- function() not_implemented()
+sendVideo <- function() not_implemented()
+sendVoice <- function() not_implemented()
+setWebhook <- function() not_implemented()
 
 
 ## ----------
@@ -338,12 +352,21 @@ TGBot <- R6::R6Class("TGBot",
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
                          ## TG api
-                         getMe = getMe,
-                         getUpdates = getUpdates,
-                         sendMessage = sendMessage,
-                         forwardMessage = forwardMessage,
-                         sendPhoto = sendPhoto,
-                         sendDocument = sendDocument
+                         forwardMessage       = forwardMessage,       
+                         getFile              =  getFile,             
+                         getMe                =  getMe,               
+                         getUpdates           =  getUpdates,
+                         getUserProfilePhotos =  getUserProfilePhotos,
+                         sendAudio            =  sendAudio,           
+                         sendChatAction       =  sendChatAction,      
+                         sendDocument         =  sendDocument,        
+                         sendLocation         =  sendLocation,        
+                         sendMessage          =  sendMessage,         
+                         sendPhoto            =  sendPhoto,           
+                         sendSticker          =  sendSticker,         
+                         sendVideo            =  sendVideo,           
+                         sendVoice            =  sendVoice,           
+                         setWebhook           =  setWebhook           
                      ),
                      private = list(
                          token = NULL,
@@ -354,3 +377,20 @@ TGBot <- R6::R6Class("TGBot",
                          check_chat_id = check_chat_id
                          )
                      )
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
