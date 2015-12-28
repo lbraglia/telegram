@@ -27,6 +27,44 @@ request <- function(method, body){
     httr::POST(url = api_url, body = body)
 }
 
+make_methods_string <- function(meth, incipit){
+    wrap_at <- 72
+    meth_string <- paste0(incipit, '\n',  paste(meth, collapse = ", "))
+    paste0(paste(strwrap(meth_string, width = wrap_at),
+                 collapse = '\n'),
+           '\n')
+}
+
+tgprint <- function(){
+    obj <- objects(bot)
+
+    api_methods <- c("getMe",
+                     "sendMessage",
+                     "forwardMessage",
+                     "sendPhoto",
+                     "sendAudio",
+                     "sendDocument",
+                     "sendSticker",
+                     "sendVideo",
+                     "sendVoice",
+                     "sendLocation",
+                     "sendChatAction",
+                     "getUserProfilePhotos",
+                     "getUpdates",
+                     "setWebhook",
+                     "getFile")
+    dont_show <- c("clone", "initialize", "print")
+    avail_methods <- sort(api_methods[api_methods %in% obj])
+    remaining_methods <- sort(obj[! obj %in% avail_methods])
+    remaining_methods <- remaining_methods[!(remaining_methods %in% dont_show)]
+    api_string <- make_methods_string(avail_methods, "API methods: ")
+    remaining_string <- make_methods_string(remaining_methods,
+                                            "Other methods: ")
+    cat("<TGBot>\n\n")
+    cat(api_string, '\n')
+    cat(remaining_string, '\n')
+
+}
 
 check_chat_id <- function(chat_id){
     if (is.null(chat_id)){
@@ -36,9 +74,21 @@ check_chat_id <- function(chat_id){
             return(private$default_chat_id)
     } else
         return(chat_id)
-
-
 }
+
+check_param <- function(param, type, required = FALSE){
+    char_name <- deparse(substitute(char))
+    coerce <- c('char'      = as.character,
+                'int'       = as.integer,
+                'log'       = as.logical)
+    if(is.null(param)){
+        if (required) stop(char_name, " can't be missing.")
+        else NULL
+    }
+    else coerce[[type]](param[1])
+}
+
+
 
 ## ------
 ## TG API
@@ -59,29 +109,27 @@ getMe <- function()
 }
 
 
-sendMessage <- function(text,
-                        parse_mode,
-                        disable_web_page_preview,
-                        reply_to_message_id,
+sendMessage <- function(text = NULL,
+                        parse_mode = NULL,
+                        disable_web_page_preview = NULL,
+                        reply_to_message_id = NULL,
                         chat_id = NULL)
 {
+    ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
-    if (missing(text)) stop("sendMessage: text can't be missing")
-    text <- as.character(text[1])
-    parse_mode <- if(missing(parse_mode)) NULL
-                  else as.character(parse_mode[1])
-    disable_web_page_preview <-
-        if(missing(disable_web_page_preview)) NULL
-        else as.logical(disable_web_page_preview[1])
-    reply_to_message_id <-
-        if(missing(reply_to_message_id)) NULL
-        else as.integer(reply_to_message_id[1])
+    text <- check_param(text, 'char', required = TRUE)
+    parse_mode <- check_param(parse_mode, 'char')
+    disable_web_page_preview <- check_param(disable_web_page_preview, 'log')
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request's body
     body <- list('chat_id' = chat_id,
                  'text' = as.character(text),
                  'parse_mode' = parse_mode,
                  'reply_to_message_id' = reply_to_message_id)
     body <- body[!unlist(lapply(body, is.null))]
+    ## request
     r <- private$request('sendMessage', body = body)
+    ## response handling
     invisible(r)
 }
 
@@ -227,13 +275,14 @@ TGBot <- R6::R6Class("TGBot",
                          initialize = initialize,
                          set_token = set_token,
                          set_default_chat_id = set_default_chat_id,
+                         print = tgprint,
                          ## TG api
                          getMe = getMe,
                          getUpdates = getUpdates,
                          sendMessage = sendMessage,
                          forwardMessage = forwardMessage,
                          sendPhoto = sendPhoto,
-                         sendDocument = sendDocument                     
+                         sendDocument = sendDocument
                      ),
                      private = list(
                          token = NULL,
