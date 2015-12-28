@@ -28,6 +28,18 @@ request <- function(method, body){
 }
 
 
+check_chat_id <- function(chat_id){
+    if (is.null(chat_id)){
+        if (is.null(private$default_chat_id))
+            stop("chat_id can't be missing")
+        else
+            return(private$default_chat_id)
+    } else
+        return(chat_id)
+
+
+}
+
 ## ------
 ## TG API
 ## ------
@@ -51,13 +63,9 @@ sendMessage <- function(text,
                         parse_mode,
                         disable_web_page_preview,
                         reply_to_message_id,
-                        chat_id)
+                        chat_id = NULL)
 {
-    if (missing(chat_id)){
-        if (is.null(private$default_chat_id))
-            stop("sendPhoto: chat_id can't be missing")
-        else chat_id <- private$default_chat_id
-    }
+    chat_id <- private$check_chat_id(chat_id = chat_id)
     if (missing(text)) stop("sendMessage: text can't be missing")
     text <- as.character(text[1])
     parse_mode <- if(missing(parse_mode)) NULL
@@ -78,17 +86,13 @@ sendMessage <- function(text,
 }
 
 
-forwardMessage <- function(from_chat_id,
-                           message_id,
-                           chat_id)
+forwardMessage <- function(from_chat_id = NULL,
+                           message_id = NULL,
+                           chat_id = NULL)
 {
-    if (missing(chat_id)){
-        if (is.null(private$default_chat_id))
-            stop("sendPhoto: chat_id can't be missing")
-        else chat_id <- private$default_chat_id
-    }
-    if (missing(from_chat_id) ||  missing(message_id))
-        stop("forwardMessage: from_chat_id and message_id can't be missing")
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    if (is.null(from_chat_id) ||  is.null(message_id))
+        stop("from_chat_id and message_id can't be missing")
     from_chat_id <- as.character(from_chat_id[1])
     message_id <- as.character(message_id[1])
     body <- list('chat_id' = chat_id,
@@ -103,14 +107,10 @@ sendPhoto <- function(photo,
                       caption,
                       reply_to_message_id,
                       reply_markup,
-                      chat_id)
+                      chat_id = NULL)
 {
     ## Param preprocessing
-    if (missing(chat_id)){
-        if (is.null(private$default_chat_id))
-            stop("sendPhoto: chat_id can't be missing")
-        else chat_id <- private$default_chat_id
-    }
+    chat_id <- private$check_chat_id(chat_id = chat_id)
     if (!file.exists(photo))
         stop('sendPhoto: ', photo, 'is not a valid path.')
     caption <-
@@ -131,13 +131,9 @@ sendPhoto <- function(photo,
 
 sendDocument <- function(document,
                          reply_to_message_id,
-                         chat_id)
+                         chat_id = NULL)
 {
-    if (missing(chat_id)){
-        if (is.null(private$default_chat_id))
-            stop("sendDocument: chat_id can't be missing")
-        else chat_id <- private$default_chat_id
-    }
+    chat_id <- private$check_chat_id(chat_id = chat_id)
     if (!file.exists(document))
         stop('sendDocument', document,
              'is not a valid path (missing file?)')
@@ -242,5 +238,7 @@ TGBot <- R6::R6Class("TGBot",
                      private = list(
                          token = NULL,
                          default_chat_id = NULL,
-                         request = request)
+                         request = request,
+                         check_chat_id = check_chat_id
+                         )
                      )
