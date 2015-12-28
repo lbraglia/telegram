@@ -4,9 +4,7 @@
 
 self    <- 'shut up R CMD CHECK'
 private <- 'shut up R CMD CHECK'
-
 not_implemented <- function() stop('Currently not implemented')
-
 
 initialize <- function(token) {
     self$set_token(token)
@@ -70,7 +68,6 @@ tgprint <- function(){
         cat(sprintf('Bot username:\t%s\n\n', private$bot_username))
     cat(api_string, '\n')
     cat(remaining_string, '\n')
-
 }
 
 check_chat_id <- function(chat_id){
@@ -128,7 +125,6 @@ forwardMessage <- function(from_chat_id = NULL,
 }
 
 getFile <- function() not_implemented()
-
 
 getMe <- function()
 {
@@ -226,7 +222,8 @@ sendLocation <- function(latitude = NULL,
     body <- body[!unlist(lapply(body, is.null))]
     ## request
     r <- private$request('sendLocation', body = body)
-
+    ## response handling
+    invisible(r)
 }
 
 sendMessage <- function(text = NULL,
@@ -253,7 +250,6 @@ sendMessage <- function(text = NULL,
     invisible(r)
 }
 
-
 sendPhoto <- function(photo = NULL,
                       caption = NULL,
                       reply_to_message_id = NULL,
@@ -276,7 +272,6 @@ sendPhoto <- function(photo = NULL,
     ## response handling
     invisible(r)
 }
-
 
 sendSticker <- function(sticker = NULL,
                         reply_to_message_id = NULL,
@@ -321,7 +316,6 @@ sendVideo <- function(video = NULL,
     ## response handling
     invisible(r)
 }
-
 
 sendVoice <- function(voice = NULL,
                       duration = NULL,
@@ -448,7 +442,7 @@ setWebhook <- function() not_implemented()
 #'
 #' ## Send mp3 audio files
 #' bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
-#'               performer = 'espeak (http://espeak.sourceforge.net)')
+#'               performer = 'espeak (http://espeak.sf.net)')
 #' }
 #'
 #' @export
@@ -460,21 +454,21 @@ TGBot <- R6::R6Class("TGBot",
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
                          ## TG api
-                         forwardMessage       = forwardMessage,       
-                         getFile              =  getFile,             
-                         getMe                =  getMe,               
-                         getUpdates           =  getUpdates,
-                         getUserProfilePhotos =  getUserProfilePhotos,
-                         sendAudio            =  sendAudio,           
-                         sendChatAction       =  sendChatAction,      
-                         sendDocument         =  sendDocument,        
-                         sendLocation         =  sendLocation,        
-                         sendMessage          =  sendMessage,         
-                         sendPhoto            =  sendPhoto,           
-                         sendSticker          =  sendSticker,         
-                         sendVideo            =  sendVideo,           
-                         sendVoice            =  sendVoice,           
-                         setWebhook           =  setWebhook           
+                         forwardMessage       = forwardMessage,
+                         getFile              = getFile,
+                         getMe                = getMe,
+                         getUpdates           = getUpdates,
+                         getUserProfilePhotos = getUserProfilePhotos,
+                         sendAudio            = sendAudio,
+                         sendChatAction       = sendChatAction,
+                         sendDocument         = sendDocument,
+                         sendLocation         = sendLocation,
+                         sendMessage          = sendMessage,
+                         sendPhoto            = sendPhoto,
+                         sendSticker          = sendSticker,
+                         sendVideo            = sendVideo,
+                         sendVoice            = sendVoice,
+                         setWebhook           = setWebhook
                      ),
                      private = list(
                          token = NULL,
