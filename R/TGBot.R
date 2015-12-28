@@ -377,20 +377,3 @@ TGBot <- R6::R6Class("TGBot",
                          check_chat_id = check_chat_id
                          )
                      )
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
