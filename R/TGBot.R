@@ -38,7 +38,6 @@ make_methods_string <- function(meth, incipit){
 
 tgprint <- function(){
     obj <- objects(self)
-
     api_methods <- c("getMe",
                      "sendMessage",
                      "forwardMessage",
@@ -62,6 +61,10 @@ tgprint <- function(){
     remaining_string <- make_methods_string(remaining_methods,
                                             "Other methods: ")
     cat("<TGBot>\n\n")
+    if (!is.null(private$bot_first_name))
+        cat(sprintf('Bot name:\t%s\n', private$bot_first_name))
+    if (!is.null(private$bot_first_name))
+        cat(sprintf('Bot username:\t%s\n\n', private$bot_username))
     cat(api_string, '\n')
     cat(remaining_string, '\n')
 
@@ -108,10 +111,11 @@ getMe <- function()
     status <- httr::status_code(r)
     if (status == 200){
         c <- httr::content(r)
-        bot_first_name <- c$result$first_name
-        bot_username <- c$result$username
+        private$bot_first_name <- c$result$first_name
+        private$bot_username <- c$result$username
         cat(sprintf('Bot name:\t%s\nBot username:\t%s\n',
-                    bot_first_name, bot_username))
+                    private$bot_first_name,
+                    private$bot_username))
     } 
     invisible(r)
 }
@@ -295,6 +299,8 @@ TGBot <- R6::R6Class("TGBot",
                      private = list(
                          token = NULL,
                          default_chat_id = NULL,
+                         bot_first_name = NULL,
+                         bot_username = NULL,
                          request = request,
                          check_chat_id = check_chat_id
                          )
