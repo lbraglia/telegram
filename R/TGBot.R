@@ -189,6 +189,35 @@ sendPhoto <- function(photo = NULL,
 }
 
 
+sendAudio <- function(audio = NULL,
+                      duration = NULL,
+                      performer = NULL,
+                      title = NULL,
+                      reply_to_message_id = NULL,
+                      chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    audio <- check_file(audio, required = TRUE)
+    duration <- check_param(duration, 'int')
+    performer <- check_param(performer, 'char')
+    title <- check_param(title, 'char')
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request body
+    body <- list('chat_id' = chat_id,
+                 'audio' = httr::upload_file(audio),
+                 'duration' = duration,
+                 'performer' = performer,
+                 'title' = title,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    ## request
+    r <- private$request('sendAudio', body = body)
+    ## response handling
+    invisible(r)
+}
+
+
 sendDocument <- function(document = NULL,
                          reply_to_message_id = NULL,
                          chat_id = NULL)
