@@ -87,7 +87,8 @@ check_param <- function(param, type, required = FALSE){
     char_name <- deparse(substitute(char))
     coerce <- c('char'      = as.character,
                 'int'       = as.integer,
-                'log'       = as.logical)
+                'log'       = as.logical,
+                'float'     = as.numeric)
     if(is.null(param)){
         if (required) stop(char_name, " can't be missing.")
         else NULL
@@ -207,7 +208,26 @@ sendDocument <- function(document = NULL,
     invisible(r)
 }
 
-sendLocation <- function() not_implemented()
+sendLocation <- function(latitude = NULL,
+                         longitude = NULL,
+                         reply_to_message_id = NULL,
+                         chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    latitude <- check_param(latitude, 'float', required = TRUE)
+    longitude <- check_param(longitude, 'float', required = TRUE)
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request body
+    body <- list('chat_id' = chat_id,
+                 'latitude' = latitude,
+                 'longitude' = longitude,
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    ## request
+    r <- private$request('sendLocation', body = body)
+
+}
 
 sendMessage <- function(text = NULL,
                         parse_mode = NULL,
