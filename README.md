@@ -18,6 +18,11 @@ More infos on telegram's bot api can be found
 [here](http://core.telegram.org/bots/api).
 
 ## How to install the package?
+For the stable version:
+```r
+install.packages('telegram')
+```
+For the development one:
 ```r
 devtools::install_github('lbraglia/telegram')
 ```
