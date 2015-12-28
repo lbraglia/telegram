@@ -443,6 +443,9 @@ setWebhook <- function() not_implemented()
 #' ## Send mp3 audio files
 #' bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
 #'               performer = 'espeak (http://espeak.sf.net)')
+#'
+#' ## Send voice (opus encoded .ogg files)
+#' bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 #' }
 #'
 #' @export
