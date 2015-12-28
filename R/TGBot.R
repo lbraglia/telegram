@@ -156,7 +156,7 @@ forwardMessage <- function(from_chat_id = NULL,
     message_id <- check_param(message_id, 'char', required = TRUE)
     ## request body
     body <- list('chat_id' = chat_id,
-                 'from_chat_id' = chat_id,
+                 'from_chat_id' = from_chat_id,
                  'message_id' = message_id)
     ## request
     r <- private$request('forwardMessage', body = body)
