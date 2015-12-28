@@ -436,7 +436,7 @@ setWebhook <- function() not_implemented()
 #' saveVideo({
 #'     set.seed(1)
 #'     nmax <- 10
-#'     ani.options(interval = 0.5, nmax = nmax)
+#'     ani.options(interval = 0.4, nmax = nmax)
 #'     x <- c()
 #'     for (i in 1:nmax){
 #'         x <- c(x, rnorm(1))
@@ -445,6 +445,10 @@ setWebhook <- function() not_implemented()
 #'     }
 #' }, video.name = 'animation.mp4')
 #' bot$sendVideo('animation.mp4')
+#'
+#' ## Send mp3 audio files
+#' bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
+#'               performer = 'espeak (http://espeak.sourceforge.net)')
 #' }
 #'
 #' @export
