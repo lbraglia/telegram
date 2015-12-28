@@ -227,6 +227,26 @@ getUpdates <- function(){
 
 #' TGBot
 #'
+#' Package main class (implementing the Telegram bot).
+#' 
+#' @docType class
+#' @format An \code{\link{R6Class}} generator object.
+#' @section API Methods:
+#' \describe{
+#'   \item{\code{getMe}}{tests your bot's auth token}
+#'   \item{\code{sendMessage}}{Send text messages}
+#'   \item{\code{forwardMessage}}{Forward messages of any kind}
+#'   \item{\code{sendPhoto}}{Send image files.}
+#'   \item{\code{sendAudio}}{Send \code{mp3} files}
+#'   \item{\code{sendDocument}}{Send general files}
+#'   \item{\code{sendSticker}}{Send \code{.webp} stickers}
+#'   \item{\code{sendVideo}}{Send \code{mp4} videos}
+#'   \item{\code{sendVoice}}{Send ogg files encoded with OPUS}
+#'   \item{\code{sendLocation}}{Send point on the map}
+#'   \item{\code{getUserProfilePhotos}}{Get a list of profile pictures for a user}
+#'   \item{\code{getFile}}{Get basic info about a file and prepare it for downloading}
+#' }
+#' @references \href{https://core.telegram.org/bots}{Bots: An introduction for developers} and \href{https://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
 #' ## Talk to the botfather and create a new bot following the steps
 #' ## ...
