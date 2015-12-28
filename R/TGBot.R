@@ -278,7 +278,24 @@ sendPhoto <- function(photo = NULL,
 }
 
 
-sendSticker <- function() not_implemented()
+sendSticker <- function(sticker = NULL,
+                        reply_to_message_id = NULL,
+                        chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    sticker <- check_file(sticker, required = TRUE)
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
+    ## request body
+    body <- list('chat_id' = chat_id,
+                 'sticker' = httr::upload_file(sticker),
+                 'reply_to_message_id' = reply_to_message_id)
+    body <- body[!unlist(lapply(body, is.null))]
+    ## request
+    r <- private$request('sendSticker', body = body)
+    ## response handling
+    invisible(r)
+}
 
 sendVideo <- function(video = NULL,
                       duration = NULL,
@@ -372,21 +389,26 @@ setWebhook <- function() not_implemented()
 #' bot$sendMessage(md1, parse_mode = 'markdown')
 #' bot$sendMessage(md2, parse_mode = 'markdown')
 #' bot$sendMessage(md3, parse_mode = 'markdown')
-
+#'
 #' ## Send a image/photo
 #' png('test.png')
 #' plot(rnorm(100))
 #' dev.off()
 #' bot$sendPhoto('test.png', caption = 'This is my awesome graph')
-
+#'
 #' ## Send a document (can be any file)
 #' bot$sendDocument('final_analysis.pdf')
-
+#'
 #' ## Forward a message
 #' bot$forwardMessage(from_chat_id = 162174388,
 #'                    chat_id = 162174388,
 #'                    message_id = 35)
-
+#'
+#' ## Send a location
+#' bot$sendLocation('44.699', '10.6297')
+#'
+#' ## Send a sticker
+#' bot$sendSticker(system.file('r_logo.webp', package = 'telegram'))
 #' }
 #'
 #' @export

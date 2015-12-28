@@ -65,17 +65,23 @@ too
 bot$sendMessage(md1, parse_mode = 'markdown')
 bot$sendMessage(md2, parse_mode = 'markdown')
 bot$sendMessage(md3, parse_mode = 'markdown')
+
 ## Send a image/photo
 png('test.png')
 plot(rnorm(100))
 dev.off()
 bot$sendPhoto('test.png', caption = 'This is my awesome graph')
+
 ## Send a document (can be any file)
 bot$sendDocument('final_analysis.pdf')
+
 ## Forward a message
 bot$forwardMessage(from_chat_id = 162174388,
                    chat_id = 162174388,
                    message_id = 35)
+
+## Send a location
+bot$sendLocation('44.699', '10.6297')
 }
 
 }
