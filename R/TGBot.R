@@ -355,7 +355,14 @@ setWebhook <- function() not_implemented()
 #' @examples bot_token('RBot')
 #' @export
 bot_token <- function(botname = NULL){
-    Sys.getenv(paste0('R_TELEGRAM_BOT_', botname))
+    if (is.null(botname) || identical(botname, ''))
+        stop("botname can't be missing.")
+    varname <- paste0('R_TELEGRAM_BOT_', botname)
+    value <- Sys.getenv(varname)
+    if (!identical(value, ''))
+        return(value)
+    else
+        stop(varname, ' environment variable is not available.')
 }
 
 
