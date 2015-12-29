@@ -89,4 +89,32 @@ bot$sendDocument('final_analysis.pdf')
 bot$forwardMessage(from_chat_id = 162174388,
                    chat_id = 162174388,
                    message_id = 35)
+
+## Send a location
+bot$sendLocation('44.699', '10.6297')
+
+## Send a sticker
+bot$sendSticker(system.file('r_logo.webp', package = 'telegram'))
+
+## Send a video
+library(animation)
+saveVideo({
+    set.seed(1)
+    nmax <- 10
+    ani.options(interval = 0.4, nmax = nmax)
+    x <- c()
+    for (i in 1:nmax){
+        x <- c(x, rnorm(1))
+        plot(cumsum(x), lty = 2, xlim = c(1, nmax), ylim = c(-5,5))
+        abline(h = 0, col = 'red')
+    }
+}, video.name = 'animation.mp4')
+bot$sendVideo('animation.mp4')
+
+## Send mp3 audio files
+bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
+              performer = 'espeak (http://espeak.sf.net)')
+
+## Send voice (opus encoded .ogg files)
+bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 ```
