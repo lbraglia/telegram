@@ -10,6 +10,7 @@
 #' @importFrom R6 R6Class
 #' @importFrom httr POST
 #' @importFrom httr content
+#' @importFrom httr warn_for_status
 #' @importFrom httr status_code
 #' @importFrom httr upload_file
 NULL

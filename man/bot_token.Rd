@@ -16,6 +16,8 @@ according to package naming conventions, that is
 answered to the botfather).
 }
 \examples{
+\dontrun{
 bot_token('RBot')
+}
 }
 

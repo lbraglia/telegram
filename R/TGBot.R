@@ -32,7 +32,9 @@ request <- function(method, body){
     api_url <- sprintf('https://api.telegram.org/bot%s/%s',
                        private$token,
                        method)
-    httr::POST(url = api_url, body = body)
+    r <- httr::POST(url = api_url, body = body)
+    httr::warn_for_status(r)
+    r
 }
 
 make_methods_string <- function(meth, incipit){
@@ -352,7 +354,9 @@ setWebhook <- function() not_implemented()
 #' answered to the botfather).
 #'
 #' @param botname character of length 1 with the name of the bot
-#' @examples bot_token('RBot')
+#' @examples \dontrun{
+#' bot_token('RBot')
+#' }
 #' @export
 bot_token <- function(botname = NULL){
     if (is.null(botname) || identical(botname, ''))
