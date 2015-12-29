@@ -86,8 +86,8 @@ bot$sendPhoto('test.png', caption = 'This is my awesome graph')
 bot$sendDocument('final_analysis.pdf')
 
 ## Forward a message
-bot$forwardMessage(from_chat_id = 162174388,
-                   chat_id = 162174388,
+bot$forwardMessage(from_chat_id = 123456,
+                   chat_id = 123456,
                    message_id = 35)
 
 ## Send a location
