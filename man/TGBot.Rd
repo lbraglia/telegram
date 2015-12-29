@@ -31,7 +31,7 @@ Package main class (implementing the Telegram bot).
 \examples{
 \dontrun{
 ## After following the first time package setup, create the bot object with
-bot <- TGBot$new(token = get_tgbot_token('RBot'))
+bot <- TGBot$new(token = bot_token('RBot'))
 
 ## Now check bot connection it should print some of your bot's data
 bot$getMe()

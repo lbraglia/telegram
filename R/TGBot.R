@@ -344,7 +344,7 @@ setWebhook <- function() not_implemented()
 ## Exported
 ## --------
 
-#' get_tg_token
+#' bot_token
 #'
 #' Obtain token from system variables (in \code{Renviron}) set
 #' according to package naming conventions, that is
@@ -352,9 +352,9 @@ setWebhook <- function() not_implemented()
 #' answered to the botfather).
 #'
 #' @param botname character of length 1 with the name of the bot
-#' @examples get_tgbot_token('RBot')
+#' @examples bot_token('RBot')
 #' @export
-get_tgbot_token <- function(botname = NULL){
+bot_token <- function(botname = NULL){
     Sys.getenv(paste0('R_TELEGRAM_BOT_', botname))
 }
 
@@ -383,7 +383,7 @@ get_tgbot_token <- function(botname = NULL){
 #' @references \href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
 #' ## After following the first time package setup, create the bot object with
-#' bot <- TGBot$new(token = get_tgbot_token('RBot'))
+#' bot <- TGBot$new(token = bot_token('RBot'))
 #'
 #' ## Now check bot connection it should print some of your bot's data
 #' bot$getMe()

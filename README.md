@@ -47,7 +47,7 @@ your token in your `Renviron`:
 R_TELEGRAM_BOT_RBot=123123:asdasdasd
 ```
 If you follow the `R_TELEGRAM_BOT_` prefix convention you'll be able
-to use the `get_tgbot_token` function (otherwise you'll have to get
+to use the `bot_token` function (otherwise you'll have to get
 these variable from `Sys.getenv`).
 
 After you've finished **restart R** (in order to get environment
@@ -62,7 +62,7 @@ with these commands:
 library(telegram)
 
 ## Create the bot object
-bot <- TGBot$new(token = get_tgbot_token('RBot'))
+bot <- TGBot$new(token = bot_token('RBot'))
 
 ## Now check bot connection it should print some of your bot's data
 bot$getMe()
