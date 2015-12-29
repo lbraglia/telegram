@@ -38,11 +38,11 @@ secret) that lets you handle your bot. We need this token when
 creating the bot object on the R side; following [Hadley's API
 guidelines](http://github.com/hadley/httr/blob/master/vignettes/api-packages.Rmd#appendix-api-key-best-practices)
 it's unsafe to specify the token in the R script. It's better to use
-enviroment variables set in `Renviron` file.
+enviroment variables set in `.Renviron` file.
 
 So let's say you have named your bot `RBot` (it's the first question
 you've answered to the botfather); then put the following line with
-your token in your `Renviron`:
+your token in your `.Renviron`:
 ```bash
 R_TELEGRAM_BOT_RBot=123123:asdasdasd
 ```
