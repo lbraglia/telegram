@@ -73,7 +73,8 @@ dev.off()
 bot$sendPhoto('test.png', caption = 'This is my awesome graph')
 
 ## Send a document (can be any file)
-bot$sendDocument('final_analysis.pdf')
+help(TGBot, help_type = 'pdf')
+bot$sendDocument('TGBot.pdf')
 
 ## Forward a message
 bot$forwardMessage(from_chat_id = 162174388,
