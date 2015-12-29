@@ -31,7 +31,7 @@ devtools::install_github('lbraglia/telegram')
 ## First time setup
 
 First you have to talk to the botfather to create a new bot; answer few
-question regarding bot's name and you're ready to go.
+questions regarding bot's name and you're ready to go.
 
 After you've done, the botfather returns a token (which has to be kept
 secret) that lets you handle your bot. We need this token when
@@ -40,9 +40,9 @@ guidelines](http://github.com/hadley/httr/blob/master/vignettes/api-packages.Rmd
 it's unsafe to specify the token in the R script. It's better to use
 enviroment variables set in `Renviron` file.
 
-So let's say you have named
-your bot `RBot` (it's the first question you've answered); then put the
-following line with your token in your `Renviron`:
+So let's say you have named your bot `RBot` (it's the first question
+you've answered to the botfather); then put the following line with
+your token in your `Renviron`:
 ```bash
 R_TELEGRAM_BOT_RBot=123123:asdasdasd
 ```
@@ -54,16 +54,15 @@ After you've finished **restart R** (in order to get environment
 variable working).
 
 
-## How to connect R with Telegram on a daily base?
+## How to connect R with Telegram
 
-Once you've done you can obtain a connection to your bot following
-these commands:
+Now you should be able to obtain a connection to your bot 
+with these commands:
 ```r
 library(telegram)
 
-## 
-## ...
-bot <- TGBot$new(token = get_tg_token('RBot'))
+## Create the bot object
+bot <- TGBot$new(token = get_tgbot_token('RBot'))
 
 ## Now check bot connection it should print some of your bot's data
 bot$getMe()

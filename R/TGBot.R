@@ -382,10 +382,7 @@ get_tgbot_token <- function(botname = NULL){
 #' }
 #' @references \href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
-#' ## Talk to the botfather and create a new bot following the steps
-#' ## ...
-#' ## After you've done, put the returned token in the following command
-#' ## to handle the bot
+#' ## After following the first time package setup, create the bot object with
 #' bot <- TGBot$new(token = get_tgbot_token('RBot'))
 #'
 #' ## Now check bot connection it should print some of your bot's data
