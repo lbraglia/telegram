@@ -92,7 +92,7 @@ bot$forwardMessage(from_chat_id = 123456,
                    message_id = 35)
 
 ## Send a location
-bot$sendLocation('44.699', '10.6297')
+bot$sendLocation(44.699, 10.6297)
 
 ## Send a sticker
 bot$sendSticker(system.file('r_logo.webp', package = 'telegram'))
