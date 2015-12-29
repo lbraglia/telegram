@@ -389,83 +389,8 @@ bot_token <- function(botname = NULL){
 #' }
 #' @references \href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
-#' ## After following the first time package setup, create the bot object with
 #' bot <- TGBot$new(token = bot_token('RBot'))
-#'
-#' ## Now check bot connection it should print some of your bot's data
-#' bot$getMe()
-#'
-#' ## Now find and say something to your bot on the phone to start a chat
-#' ## (and obtain a chat id).
-#' ## ...
-#' ## Here, check what you have inserted
-#' bot$getUpdates()
-#'
-#' ## You're interested in the message.chat.id variable: in order to set a
-#' ## default chat_id for the following commands (to ease typing)
-#' bot$set_default_chat_id(123456789)
-#'
-#' ## Send some messages..
-#' bot$sendMessage('This is text')
-#' ## Markdown support for messages
-#' md1 <- "*bold* _italic_ [r-project](http://r-project.org) "
-#' md2 <- " try `x <- rnorm(100)` at the console ..."
-#' md3 <- "
-#' you can have
-#' ```
-#' x <- runif(100)
-#' mean(x)
-#' ```
-#' too
-#' "
-#' bot$sendMessage(md1, parse_mode = 'markdown')
-#' bot$sendMessage(md2, parse_mode = 'markdown')
-#' bot$sendMessage(md3, parse_mode = 'markdown')
-#'
-#' ## Send a image/photo
-#' png('test.png')
-#' plot(rnorm(100))
-#' dev.off()
-#' bot$sendPhoto('test.png', caption = 'This is my awesome graph')
-#'
-#' ## Send a document (can be any file)
-#' help(TGBot, help_type = 'pdf')
-#' bot$sendDocument('TGBot.pdf')
-#'
-#' ## Forward a message
-#' bot$forwardMessage(from_chat_id = 123456,
-#'                    chat_id = 123456,
-#'                    message_id = 35)
-#'
-#' ## Send a location
-#' bot$sendLocation(44.699, 10.6297)
-#'
-#' ## Send a sticker
-#' bot$sendSticker(system.file('r_logo.webp', package = 'telegram'))
-#'
-#' ## Send a video
-#' library(animation)
-#' saveVideo({
-#'     set.seed(1)
-#'     nmax <- 10
-#'     ani.options(interval = 0.4, nmax = nmax)
-#'     x <- c()
-#'     for (i in 1:nmax){
-#'         x <- c(x, rnorm(1))
-#'         plot(cumsum(x), lty = 2, xlim = c(1, nmax), ylim = c(-5,5))
-#'         abline(h = 0, col = 'red')
-#'     }
-#' }, video.name = 'animation.mp4')
-#' bot$sendVideo('animation.mp4')
-#'
-#' ## Send mp3 audio files
-#' bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
-#'               performer = 'espeak (http://espeak.sf.net)')
-#'
-#' ## Send voice (opus encoded .ogg files)
-#' bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 #' }
-#'
 #' @export
 TGBot <- R6::R6Class("TGBot",
                      public = list(

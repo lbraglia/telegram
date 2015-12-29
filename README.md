@@ -30,14 +30,15 @@ devtools::install_github('lbraglia/telegram')
 
 ## First time setup
 
-First you have to talk to the botfather to create a new bot; answer few
-questions regarding bot's name and you're ready to go.
+First you have to talk to the
+[botfather](https://telegram.me/botfather) to create a new bot; answer
+few questions regarding bot's name and you're ready to go.
 
 After you've done, the botfather returns a token (which has to be kept
-secret) that lets you handle your bot. We need this token when
-creating the bot object on the R side; following [Hadley's API
+secret) that lets you handle your bot; we need this token when
+creating the bot object on the R side. Following [Hadley's API
 guidelines](http://github.com/hadley/httr/blob/master/vignettes/api-packages.Rmd#appendix-api-key-best-practices)
-it's unsafe to specify the token in the R script. It's better to use
+it's unsafe to type the token just in the R script. It's better to use
 enviroment variables set in `.Renviron` file.
 
 So let's say you have named your bot `RBot` (it's the first question
@@ -46,12 +47,12 @@ your token in your `.Renviron`:
 ```bash
 R_TELEGRAM_BOT_RBot=123123:asdasdasd
 ```
-If you follow the `R_TELEGRAM_BOT_` prefix convention you'll be able
+If you follow the suggested `R_TELEGRAM_BOT_` prefix convention you'll be able
 to use the `bot_token` function (otherwise you'll have to get
 these variable from `Sys.getenv`).
 
-After you've finished **restart R** (in order to get environment
-variable working).
+After you've finished these steps **restart R** in order to have
+working environment variables.
 
 
 ## How to connect R with Telegram
@@ -67,9 +68,10 @@ bot <- TGBot$new(token = bot_token('RBot'))
 ## Now check bot connection it should print some of your bot's data
 bot$getMe()
 
-## Now find and say something to your bot on the phone to start a chat
+## Now, on the phone, find and say something to your bot to start a chat
 ## (and obtain a chat id).
 ## ...
+
 ## Here, check what you have inserted
 bot$getUpdates()
 
