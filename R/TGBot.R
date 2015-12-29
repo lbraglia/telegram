@@ -20,6 +20,12 @@ set_default_chat_id <- function(chat_id){
         private$default_chat_id <- as.character(chat_id)
 }
 
+make_body <- function(...){
+    body <- list(...)
+    body <- body[!unlist(lapply(body, is.null))]
+    body
+}
+
 request <- function(method, body){
     if (missing(body))
         body <- NULL
@@ -115,9 +121,9 @@ forwardMessage <- function(from_chat_id = NULL,
     from_chat_id <- check_param(from_chat_id, 'char', required = TRUE)
     message_id <- check_param(message_id, 'char', required = TRUE)
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'from_chat_id' = from_chat_id,
-                 'message_id' = message_id)
+    body <- make_body('chat_id' = chat_id,
+                      'from_chat_id' = from_chat_id,
+                      'message_id' = message_id)
     ## request
     r <- private$request('forwardMessage', body = body)
     ## response handling
@@ -170,13 +176,12 @@ sendAudio <- function(audio = NULL,
     title <- check_param(title, 'char')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'audio' = httr::upload_file(audio),
-                 'duration' = duration,
-                 'performer' = performer,
-                 'title' = title,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'audio' = httr::upload_file(audio),
+                      'duration' = duration,
+                      'performer' = performer,
+                      'title' = title,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendAudio', body = body)
     ## response handling
@@ -194,10 +199,9 @@ sendDocument <- function(document = NULL,
     document <- check_file(document, required = TRUE)
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'document' = httr::upload_file(document),
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'document' = httr::upload_file(document),
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendDocument', body = body)
     ## response handling
@@ -215,11 +219,10 @@ sendLocation <- function(latitude = NULL,
     longitude <- check_param(longitude, 'float', required = TRUE)
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'latitude' = latitude,
-                 'longitude' = longitude,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'latitude' = latitude,
+                      'longitude' = longitude,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendLocation', body = body)
     ## response handling
@@ -239,11 +242,10 @@ sendMessage <- function(text = NULL,
     disable_web_page_preview <- check_param(disable_web_page_preview, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'text' = as.character(text),
-                 'parse_mode' = parse_mode,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'text' = as.character(text),
+                      'parse_mode' = parse_mode,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendMessage', body = body)
     ## response handling
@@ -262,11 +264,10 @@ sendPhoto <- function(photo = NULL,
     caption <- check_param(caption, 'char')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'photo' = httr::upload_file(photo),
-                 'caption' = caption,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'photo' = httr::upload_file(photo),
+                      'caption' = caption,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendPhoto', body = body)
     ## response handling
@@ -282,10 +283,9 @@ sendSticker <- function(sticker = NULL,
     sticker <- check_file(sticker, required = TRUE)
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'sticker' = httr::upload_file(sticker),
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'sticker' = httr::upload_file(sticker),
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendSticker', body = body)
     ## response handling
@@ -305,12 +305,11 @@ sendVideo <- function(video = NULL,
     caption <- check_param(caption, 'char')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'video' = httr::upload_file(video),
-                 'duration' = duration,
-                 'caption' = caption,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'video' = httr::upload_file(video),
+                      'duration' = duration,
+                      'caption' = caption,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendVideo', body = body)
     ## response handling
@@ -328,11 +327,10 @@ sendVoice <- function(voice = NULL,
     duration <- check_param(duration, 'int')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
-    body <- list('chat_id' = chat_id,
-                 'voice' = httr::upload_file(voice),
-                 'duration' = duration,
-                 'reply_to_message_id' = reply_to_message_id)
-    body <- body[!unlist(lapply(body, is.null))]
+    body <- make_body('chat_id' = chat_id,
+                      'voice' = httr::upload_file(voice),
+                      'duration' = duration,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendVoice', body = body)
     ## response handling
