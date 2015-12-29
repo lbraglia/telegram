@@ -340,9 +340,24 @@ sendVoice <- function(voice = NULL,
 setWebhook <- function() not_implemented()
 
 
-## ----------
-## Main Class
-## ----------
+## --------
+## Exported
+## --------
+
+#' get_tg_token
+#'
+#' Obtain token from system variables (in \code{Renviron}) set
+#' according to package naming conventions, that is
+#' \code{R_TELEGRAM_X} where \code{X} is bot's name (first question
+#' answered to the botfather).
+#'
+#' @param botname character of length 1 with the name of the bot
+#' @examples get_tgbot_token('RBot')
+#' @export
+get_tgbot_token <- function(botname = NULL){
+    Sys.getenv(paste0('R_TELEGRAM_BOT_', botname))
+}
+
 
 #' TGBot
 #'
@@ -371,7 +386,7 @@ setWebhook <- function() not_implemented()
 #' ## ...
 #' ## After you've done, put the returned token in the following command
 #' ## to handle the bot
-#' bot <- TGBot$new(token = '123132132:asdasdasdasdasdasdasd')
+#' bot <- TGBot$new(token = get_tgbot_token('RBot'))
 #'
 #' ## Now check bot connection it should print some of your bot's data
 #' bot$getMe()
@@ -481,3 +496,5 @@ TGBot <- R6::R6Class("TGBot",
                          check_chat_id = check_chat_id
                          )
                      )
+
+

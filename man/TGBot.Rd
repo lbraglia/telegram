@@ -34,7 +34,7 @@ Package main class (implementing the Telegram bot).
 ## ...
 ## After you've done, put the returned token in the following command
 ## to handle the bot
-bot <- TGBot$new(token = '123132132:asdasdasdasdasdasdasd')
+bot <- TGBot$new(token = get_tgbot_token('RBot'))
 
 ## Now check bot connection it should print some of your bot's data
 bot$getMe()
