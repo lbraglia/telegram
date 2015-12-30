@@ -119,6 +119,13 @@ check_file <- function(path, required = FALSE){
     }
 }
 
+parsed_content <- function(x){
+    tx <- httr::content(x, as = 'text')
+    rval <- jsonlite::fromJSON(tx)$result
+    rval
+}
+
+
 ## ------
 ## TG API
 ## ------
@@ -149,8 +156,7 @@ getFile <- function(file_id, destfile = NULL) {
     r <- private$request('getFile', body = body)
     ## response handling
     if (r$status == 200){
-        tr <- httr::content(r, as = 'text')
-        path <- jsonlite::fromJSON(tr)$result$file_path
+        path <- parsed_content(r)$file_path
         dl_url <- sprintf('https://api.telegram.org/file/bot%s/%s',
                           private$token,
                           path)
@@ -164,11 +170,10 @@ getFile <- function(file_id, destfile = NULL) {
 getMe <- function()
 {
     r <- private$request('getMe')
-    status <- httr::status_code(r)
-    if (status == 200){
-        c <- httr::content(r)
-        private$bot_first_name <- c$result$first_name
-        private$bot_username <- c$result$username
+    if (r$status == 200){
+        pc <- parsed_content(r)
+        private$bot_first_name <- pc$first_name
+        private$bot_username <- pc$username
         cat(sprintf('Bot name:\t%s\nBot username:\t%s\n',
                     private$bot_first_name,
                     private$bot_username))
@@ -180,16 +185,30 @@ getMe <- function()
 getUpdates <- function(){
     r <- private$request('getUpdates')
     if (r$status == 200){
-        ## parse output (return a data.frame)
-        c <- httr::content(r, as = 'text')
-        rval <- jsonlite::fromJSON(c)$result
+        rval <- parsed_content(r)
         return(rval)
     }
     else
         invisible(NULL)
 }
 
-getUserProfilePhotos <- function() not_implemented()
+getUserProfilePhotos <- function(user_id = NULL,
+                                 offset = NULL,
+                                 limit = NULL)
+{
+    ## params
+    user_id <- check_param(user_id, 'int', required = TRUE)
+    offset <- check_param(offset, 'int')
+    limit <- check_param(limit, 'int')
+    ## request body
+    body <- make_body('user_id' = user_id,
+                      'offset' = offset,
+                      'limit' = limit)
+    ## request
+    r <- private$request('getUserProfilePhotos', body = body)
+    ## response handling
+    invisible(r)
+}
 
 sendAudio <- function(audio = NULL,
                       duration = NULL,
@@ -426,13 +445,18 @@ bot_token <- function(botname = NULL){
 #' @export
 TGBot <- R6::R6Class("TGBot",
                      public = list(
+                         ## ---------------------
                          ## methods - class utils
+                         ## ---------------------
                          initialize = initialize,
                          set_token = set_token,
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
-                         last_request = last_request,
+                         last_request = last_request, ## for debug only!
+
+                         ## ---------------------
                          ## methods - TG api
+                         ## ---------------------
                          forwardMessage       = forwardMessage,
                          getFile              = getFile,
                          getMe                = getMe,
@@ -450,7 +474,9 @@ TGBot <- R6::R6Class("TGBot",
                          setWebhook           = setWebhook
                      ),
                      private = list(
+                         ## ---------------------
                          ## members
+                         ## ---------------------
                          token = NULL,
                          default_chat_id = NULL,
                          bot_first_name = NULL,
@@ -458,10 +484,10 @@ TGBot <- R6::R6Class("TGBot",
                          lr_method = NULL,    ## last requested method
                          lr_body = NULL,      ## last request's body
                          lr_response = NULL,  ## last request's response
+                         ## ---------------------
                          ## methods
+                         ## ---------------------
                          request = request,   ## make the request
                          check_chat_id = check_chat_id
                          )
                      )
-
-
