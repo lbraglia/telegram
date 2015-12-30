@@ -452,7 +452,8 @@ TGBot <- R6::R6Class("TGBot",
                          set_token = set_token,
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
-                         last_request = last_request, ## for debug only!
+                         last_request = last_request, ## for debug only,
+                                                      ## comment on release!
 
                          ## ---------------------
                          ## methods - TG api
