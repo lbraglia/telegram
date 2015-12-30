@@ -13,4 +13,5 @@
 #' @importFrom httr warn_for_status
 #' @importFrom httr status_code
 #' @importFrom httr upload_file
+#' @importFrom jsonlite fromJSON
 NULL

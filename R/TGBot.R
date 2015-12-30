@@ -26,15 +26,24 @@ make_body <- function(...){
     body
 }
 
-request <- function(method, body){
-    if (missing(body))
-        body <- NULL
+request <- function(method = NULL, body = NULL){
+    if (is.null(method)) stop("method can't be null")
     api_url <- sprintf('https://api.telegram.org/bot%s/%s',
                        private$token,
                        method)
-    r <- httr::POST(url = api_url, body = body)
+    private$lr_method <- method
+    private$lr_body <- body
+    private$lr_response <- r <- httr::POST(url = api_url, body = body)
     httr::warn_for_status(r)
     r
+}
+
+last_request <- function(){
+
+    list('method'   = private$lr_method,
+         'body'     = private$lr_body,
+         'response' = private$lr_response)
+
 }
 
 make_methods_string <- function(meth, incipit){
@@ -154,8 +163,9 @@ getUpdates <- function(){
     r <- private$request('getUpdates')
     if (r$status == 200){
         ## parse output (return a data.frame)
-        rval <- httr::content(r)$result
-        do.call(rbind, lapply(rval, as.data.frame))
+        c <- httr::content(r, as = 'text')
+        rval <- jsonlite::fromJSON(c)$result
+        return(rval)
     }
     else
         invisible(NULL)
@@ -398,12 +408,13 @@ bot_token <- function(botname = NULL){
 #' @export
 TGBot <- R6::R6Class("TGBot",
                      public = list(
-                         ## class utils
+                         ## methods - class utils
                          initialize = initialize,
                          set_token = set_token,
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
-                         ## TG api
+                         last_request = last_request,
+                         ## methods - TG api
                          forwardMessage       = forwardMessage,
                          getFile              = getFile,
                          getMe                = getMe,
@@ -421,11 +432,16 @@ TGBot <- R6::R6Class("TGBot",
                          setWebhook           = setWebhook
                      ),
                      private = list(
+                         ## members
                          token = NULL,
                          default_chat_id = NULL,
                          bot_first_name = NULL,
                          bot_username = NULL,
-                         request = request,
+                         lr_method = NULL,    ## last requested method
+                         lr_body = NULL,      ## last request's body
+                         lr_response = NULL,  ## last request's response
+                         ## methods
+                         request = request,   ## make the request
                          check_chat_id = check_chat_id
                          )
                      )
