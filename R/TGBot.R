@@ -207,7 +207,11 @@ getUserProfilePhotos <- function(user_id = NULL,
     ## request
     r <- private$request('getUserProfilePhotos', body = body)
     ## response handling
-    invisible(r)
+    if (r$status == 200){
+        file_id <- parsed_content(r)$photos
+        do.call(rbind, file_id)
+    } else
+        invisible(NULL)
 }
 
 sendAudio <- function(audio = NULL,
