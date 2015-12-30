@@ -141,7 +141,7 @@ forwardMessage <- function(from_chat_id = NULL,
     invisible(r)
 }
 
-getFile <- function(file_id, download_path = NULL) {
+getFile <- function(file_id, destfile = NULL) {
     file_id <- check_param(file_id, 'char', required = TRUE)
     ## request body
     body <- make_body('file_id' = file_id)
@@ -154,8 +154,8 @@ getFile <- function(file_id, download_path = NULL) {
         dl_url <- sprintf('https://api.telegram.org/file/bot%s/%s',
                           private$token,
                           path)
-        if (!is.null(download_path))
-            curl::curl_download(dl_url, destfile = download_path)
+        if (!is.null(destfile))
+            curl::curl_download(dl_url, destfile = destfile)
         invisible(dl_url)
     } else
         invisible(NULL)
