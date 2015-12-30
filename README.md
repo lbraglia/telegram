@@ -145,4 +145,10 @@ bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
 
 ## Send voice (opus encoded .ogg files)
 bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
+
+## getFile
+## first parameter is file_id. it's a unique id of a file on the
+## Telegram servers. i found this id forwarding a voice message to the
+## bot and then checking with getUpdates
+bot$getFile('AwADBAADJwADIoS9B1BCEzKysyIoAg', 'voice_test.oga')
 ```

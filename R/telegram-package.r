@@ -14,4 +14,5 @@
 #' @importFrom httr status_code
 #' @importFrom httr upload_file
 #' @importFrom jsonlite fromJSON
+#' @importFrom curl curl_download
 NULL

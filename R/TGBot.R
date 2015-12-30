@@ -141,7 +141,25 @@ forwardMessage <- function(from_chat_id = NULL,
     invisible(r)
 }
 
-getFile <- function() not_implemented()
+getFile <- function(file_id, download_path = NULL) {
+    file_id <- check_param(file_id, 'char', required = TRUE)
+    ## request body
+    body <- make_body('file_id' = file_id)
+    ## request
+    r <- private$request('getFile', body = body)
+    ## response handling
+    if (r$status == 200){
+        tr <- httr::content(r, as = 'text')
+        path <- jsonlite::fromJSON(tr)$result$file_path
+        dl_url <- sprintf('https://api.telegram.org/file/bot%s/%s',
+                          private$token,
+                          path)
+        if (!is.null(download_path))
+            curl::curl_download(dl_url, destfile = download_path)
+        invisible(dl_url)
+    } else
+        invisible(NULL)
+}
 
 getMe <- function()
 {
