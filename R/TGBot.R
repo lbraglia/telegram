@@ -167,6 +167,9 @@ getFile <- function(file_id, destfile = NULL) {
         invisible(NULL)
 }
 
+#' getMe
+#'
+#' Obtain information on the bot availability
 getMe <- function()
 {
     r <- private$request('getMe')
@@ -429,7 +432,7 @@ bot_token <- function(botname = NULL){
 #' @format An \code{\link{R6Class}} generator object.
 #' @section API Methods:
 #' \describe{
-#'   \item{\code{getMe}}{tests your bot's auth token}
+#'   \item{\code{\link{getMe}}}{tests your bot's auth token}
 #'   \item{\code{sendMessage}}{Send text messages}
 #'   \item{\code{forwardMessage}}{Forward messages of any kind}
 #'   \item{\code{sendPhoto}}{Send image files.}

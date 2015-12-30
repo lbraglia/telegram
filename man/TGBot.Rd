@@ -14,7 +14,7 @@ Package main class (implementing the Telegram bot).
 \section{API Methods}{
 
 \describe{
-  \item{\code{getMe}}{tests your bot's auth token}
+  \item{\code{\link{getMe}}}{tests your bot's auth token}
   \item{\code{sendMessage}}{Send text messages}
   \item{\code{forwardMessage}}{Forward messages of any kind}
   \item{\code{sendPhoto}}{Send image files.}
