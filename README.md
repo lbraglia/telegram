@@ -146,9 +146,12 @@ bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
 ## Send voice (opus encoded .ogg files)
 bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 
-## getFile
-## first parameter is file_id. it's a unique id of a file on the
-## Telegram servers. i found this id forwarding a voice message to the
-## bot and then checking with getUpdates
-bot$getFile('AwADBAADJwADIoS9B1BCEzKysyIoAg', 'voice_test.oga')
+## getUserProfilePhotos
+bot$getUserProfilePhotos(162174388) #<- message.from.id variable in getUpdates
+bot$getUserProfilePhotos(162174388, destfile = 'me.png')
+
+# getFile
+bot$getFile('AgADBAADqacxG7SVqgnMb9t6Szxd4SpKpjAABBuyfWqwtle-UdYAAgI',
+            'me_small.png')
+
 ```

@@ -219,9 +219,12 @@ getUpdates <- function(){
 #'     returned. By default, all photos are returned
 #' @param limit Limits the number of photos to be retrieved. Values
 #'     between 1-100 are accepted. Defaults to 100
+#' @param destfile if a path is specified save the image (by default
+#'     the bigger) in a local file
 getUserProfilePhotos <- function(user_id = NULL,
                                  offset = NULL,
-                                 limit = NULL)
+                                 limit = NULL,
+                                 destfile = NULL)
 {
     ## params
     user_id <- check_param(user_id, 'int', required = TRUE)
@@ -236,7 +239,17 @@ getUserProfilePhotos <- function(user_id = NULL,
     ## response handling
     if (r$status == 200){
         file_id <- parsed_content(r)$photos
-        do.call(rbind, file_id)
+        rval <- do.call(rbind, file_id)
+        if (!is.null(destfile)){
+            path <- rval$file_path
+            path <- path[!is.na(path)]
+            dl_url <- sprintf('https://api.telegram.org/file/bot%s/%s',
+                              private$token,
+                              path)
+            curl::curl_download(dl_url, destfile = destfile)
+            invisible(rval)
+        } else
+            return(rval)
     } else
         invisible(NULL)
 }
