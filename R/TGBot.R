@@ -134,10 +134,10 @@ parsed_content <- function(x){
 #'
 #' Forward messages of any kind
 #' @param from_chat_id Unique identifier for the chat where the
-#'     original message was sent
-#' @param message_id Unique message identifier
+#'     original message was sent (required)
+#' @param message_id Unique message identifier (required)
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 forwardMessage <- function(from_chat_id = NULL,
                            message_id = NULL,
                            chat_id = NULL)
@@ -159,7 +159,7 @@ forwardMessage <- function(from_chat_id = NULL,
 #' getFile
 #'
 #' Get info about a file and download it
-#' @param file_id File identifier
+#' @param file_id File identifier (required)
 #' @param destfile Destination path; if specified the file will be
 #'     downloaded
 getFile <- function(file_id, destfile = NULL) {
@@ -214,7 +214,7 @@ getUpdates <- function(){
 #' getUserProfilePhotos
 #'
 #' Get a list of profile pictures for a user
-#' @param user_id Unique identifier of the target user
+#' @param user_id Unique identifier of the target user (required)
 #' @param offset Sequential number of the first photo to be
 #'     returned. By default, all photos are returned
 #' @param limit Limits the number of photos to be retrieved. Values
@@ -244,14 +244,14 @@ getUserProfilePhotos <- function(user_id = NULL,
 #' sendAudio
 #'
 #' Send \code{mp3} files
-#' @param audio path to audio file to send
+#' @param audio path to audio file to send (required)
 #' @param duration duration of the audio in seconds
 #' @param performer performer
 #' @param title track name
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendAudio <- function(audio = NULL,
                       duration = NULL,
                       performer = NULL,
@@ -284,11 +284,11 @@ sendChatAction <- function() not_implemented()
 #' sendDocument
 #'
 #' Send general files
-#' @param document path to the file to send
+#' @param document path to the file to send (required)
 #' @param reply_to_message_id if the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendDocument <- function(document = NULL,
                          reply_to_message_id = NULL,
                          chat_id = NULL)
@@ -310,12 +310,12 @@ sendDocument <- function(document = NULL,
 #' sendLocation
 #'
 #' Send point on the map
-#' @param latitude Latitude of location
-#' @param longitude Longitude of location
+#' @param latitude Latitude of location (required)
+#' @param longitude Longitude of location (required)
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendLocation <- function(latitude = NULL,
                          longitude = NULL,
                          reply_to_message_id = NULL,
@@ -340,7 +340,7 @@ sendLocation <- function(latitude = NULL,
 #' sendMessage
 #'
 #' Send text messages
-#' @param text Text of the message to be sent
+#' @param text Text of the message to be sent (required)
 #' @param parse_mode send 'Markdown' if you want Telegram apps to show
 #'     bold, italic and inline URLs in your bot's message
 #' @param disable_web_page_preview Disables link previews for links in
@@ -348,7 +348,7 @@ sendLocation <- function(latitude = NULL,
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendMessage <- function(text = NULL,
                         parse_mode = NULL,
                         disable_web_page_preview = NULL,
@@ -375,12 +375,12 @@ sendMessage <- function(text = NULL,
 #' sendPhoto
 #'
 #' Send image files
-#' @param photo photo to send
+#' @param photo photo to send (required)
 #' @param caption photo caption
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendPhoto <- function(photo = NULL,
                       caption = NULL,
                       reply_to_message_id = NULL,
@@ -405,11 +405,11 @@ sendPhoto <- function(photo = NULL,
 #' sendSticker
 #'
 #' Send \code{.webp} stickers
-#' @param sticker sticker to send
+#' @param sticker sticker to send (required)
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendSticker <- function(sticker = NULL,
                         reply_to_message_id = NULL,
                         chat_id = NULL)
@@ -431,13 +431,13 @@ sendSticker <- function(sticker = NULL,
 #' sendVideo
 #'
 #' Send \code{mp4} videos
-#' @param video Video to send
+#' @param video Video to send (required)
 #' @param duration Duration of sent video in seconds
 #' @param caption Video caption
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendVideo <- function(video = NULL,
                       duration = NULL,
                       caption = NULL,
@@ -465,12 +465,12 @@ sendVideo <- function(video = NULL,
 #' sendVoice
 #'
 #' Send \code{.ogg} files encoded with OPUS
-#' @param voice Audio file to send
+#' @param voice Audio file to send (required)
 #' @param duration Duration of sent audio in seconds
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
-#'     the target channel
+#'     the target channel (required)
 sendVoice <- function(voice = NULL,
                       duration = NULL,
                       reply_to_message_id = NULL,
@@ -506,20 +506,31 @@ setWebhook <- function() not_implemented()
 #' \code{R_TELEGRAM_X} where \code{X} is bot's name (first question
 #' answered to the botfather).
 #'
-#' @param botname character of length 1 with the name of the bot
-#' @examples \dontrun{
-#' bot_token('RBot')
-#' }
+#' @param botname character of length 1 with the name of the bot; if
+#'     \code{NULL} a menu to choose between bot is displayed and the
+#'     proper token returned
+#' @examples \dontrun{ bot_token('RBot') }
 #' @export
 bot_token <- function(botname = NULL){
-    if (is.null(botname) || identical(botname, ''))
-        stop("botname can't be missing.")
-    varname <- paste0('R_TELEGRAM_BOT_', botname)
-    value <- Sys.getenv(varname)
-    if (!identical(value, ''))
-        return(value)
-    else
-        stop(varname, ' environment variable is not available.')
+    prefix <- 'R_TELEGRAM_BOT_'
+    if (is.null(botname)){
+        envs <- as.list(Sys.getenv())
+        envs <- envs[grep(paste0("^", prefix) , names(envs))]
+        if (length(envs) > 0L) {
+            choices <- gsub(prefix, '', names(envs))
+            choice <- utils::menu(choices = choices, title = 'Choose a bot')
+            return(envs[[choice]])
+        } else
+            stop("I didn't found any system variable starting with ", prefix)
+    } else if (is.character(botname) && length(botname) == 1L) {
+        varname <- paste0(prefix, botname)
+        value <- Sys.getenv(varname)
+        if (!identical(value, ''))
+            return(value)
+        else
+            stop(varname, ' environment variable is not available.')
+    } else
+        stop('botname must be a length 1 char or NULL')
 }
 
 
@@ -529,23 +540,25 @@ bot_token <- function(botname = NULL){
 #' 
 #' @docType class
 #' @format An \code{\link{R6Class}} generator object.
-#' @section API Methods:
-#' \describe{
-#'   \item{\code{\link{forwardMessage}}}{forward messages of any kind}
-#'   \item{\code{\link{getFile}}}{get info about a file and download it}
-#'   \item{\code{\link{getMe}}}{test your bot's auth token}
-#'   \item{\code{\link{getUpdates}}}{receive incoming updates}
-#'   \item{\code{\link{getUserProfilePhotos}}}{get a list of profile pictures for a user}
-#'   \item{\code{\link{sendAudio}}}{send \code{mp3} files}
-#'   \item{\code{\link{sendDocument}}}{send general files}
-#'   \item{\code{\link{sendLocation}}}{send point on the map}
-#'   \item{\code{\link{sendMessage}}}{send text messages}
-#'   \item{\code{\link{sendPhoto}}}{send image files}
-#'   \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
-#'   \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
-#'   \item{\code{\link{sendVoice}}}{send ogg files encoded with OPUS}
-#' }
-#' @references \href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
+#' @section API Methods: \describe{
+#'     \item{\code{\link{forwardMessage}}}{forward messages of any
+#'     kind} \item{\code{\link{getFile}}}{get info about a file and
+#'     download it} \item{\code{\link{getMe}}}{test your bot's auth
+#'     token} \item{\code{\link{getUpdates}}}{receive incoming
+#'     updates} \item{\code{\link{getUserProfilePhotos}}}{get a list
+#'     of profile pictures for a user}
+#'     \item{\code{\link{sendAudio}}}{send \code{mp3} files}
+#'     \item{\code{\link{sendDocument}}}{send general files}
+#'     \item{\code{\link{sendLocation}}}{send point on the map}
+#'     \item{\code{\link{sendMessage}}}{send text messages}
+#'     \item{\code{\link{sendPhoto}}}{send image files}
+#'     \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
+#'     \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
+#'     \item{\code{\link{sendVoice}}}{send ogg files encoded with
+#'     OPUS} }
+#' @references \href{http://core.telegram.org/bots}{Bots: An
+#'     introduction for developers} and
+#'     \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
 #' bot <- TGBot$new(token = bot_token('RBot'))
 #' }

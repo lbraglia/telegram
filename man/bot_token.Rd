@@ -7,7 +7,9 @@
 bot_token(botname = NULL)
 }
 \arguments{
-\item{botname}{character of length 1 with the name of the bot}
+\item{botname}{character of length 1 with the name of the bot; if
+\code{NULL} a menu to choose between bot is displayed and the
+proper token returned}
 }
 \description{
 Obtain token from system variables (in \code{Renviron}) set
@@ -16,8 +18,6 @@ according to package naming conventions, that is
 answered to the botfather).
 }
 \examples{
-\dontrun{
-bot_token('RBot')
-}
+\dontrun{ bot_token('RBot') }
 }
 

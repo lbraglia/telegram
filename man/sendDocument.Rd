@@ -7,13 +7,13 @@
 sendDocument(document = NULL, reply_to_message_id = NULL, chat_id = NULL)
 }
 \arguments{
-\item{document}{path to the file to send}
+\item{document}{path to the file to send (required)}
 
 \item{reply_to_message_id}{if the message is a reply, ID of the
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send general files

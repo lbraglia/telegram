@@ -8,7 +8,7 @@ sendAudio(audio = NULL, duration = NULL, performer = NULL, title = NULL,
   reply_to_message_id = NULL, chat_id = NULL)
 }
 \arguments{
-\item{audio}{path to audio file to send}
+\item{audio}{path to audio file to send (required)}
 
 \item{duration}{duration of the audio in seconds}
 
@@ -20,7 +20,7 @@ sendAudio(audio = NULL, duration = NULL, performer = NULL, title = NULL,
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send \code{mp3} files

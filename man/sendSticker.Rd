@@ -7,13 +7,13 @@
 sendSticker(sticker = NULL, reply_to_message_id = NULL, chat_id = NULL)
 }
 \arguments{
-\item{sticker}{sticker to send}
+\item{sticker}{sticker to send (required)}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send \code{.webp} stickers

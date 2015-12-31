@@ -7,7 +7,7 @@
 getUserProfilePhotos(user_id = NULL, offset = NULL, limit = NULL)
 }
 \arguments{
-\item{user_id}{Unique identifier of the target user}
+\item{user_id}{Unique identifier of the target user (required)}
 
 \item{offset}{Sequential number of the first photo to be
 returned. By default, all photos are returned}

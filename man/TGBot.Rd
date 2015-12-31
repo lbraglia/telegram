@@ -12,22 +12,22 @@ TGBot
 Package main class (implementing the Telegram bot).
 }
 \section{API Methods}{
-
-\describe{
-  \item{\code{\link{forwardMessage}}}{forward messages of any kind}
-  \item{\code{\link{getFile}}}{get info about a file and download it}
-  \item{\code{\link{getMe}}}{test your bot's auth token}
-  \item{\code{\link{getUpdates}}}{receive incoming updates}
-  \item{\code{\link{getUserProfilePhotos}}}{get a list of profile pictures for a user}
-  \item{\code{\link{sendAudio}}}{send \code{mp3} files}
-  \item{\code{\link{sendDocument}}}{send general files}
-  \item{\code{\link{sendLocation}}}{send point on the map}
-  \item{\code{\link{sendMessage}}}{send text messages}
-  \item{\code{\link{sendPhoto}}}{send image files}
-  \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
-  \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
-  \item{\code{\link{sendVoice}}}{send ogg files encoded with OPUS}
-}
+ \describe{
+    \item{\code{\link{forwardMessage}}}{forward messages of any
+    kind} \item{\code{\link{getFile}}}{get info about a file and
+    download it} \item{\code{\link{getMe}}}{test your bot's auth
+    token} \item{\code{\link{getUpdates}}}{receive incoming
+    updates} \item{\code{\link{getUserProfilePhotos}}}{get a list
+    of profile pictures for a user}
+    \item{\code{\link{sendAudio}}}{send \code{mp3} files}
+    \item{\code{\link{sendDocument}}}{send general files}
+    \item{\code{\link{sendLocation}}}{send point on the map}
+    \item{\code{\link{sendMessage}}}{send text messages}
+    \item{\code{\link{sendPhoto}}}{send image files}
+    \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
+    \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
+    \item{\code{\link{sendVoice}}}{send ogg files encoded with
+    OPUS} }
 }
 \examples{
 \dontrun{
@@ -35,7 +35,9 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 }
 \references{
-\href{http://core.telegram.org/bots}{Bots: An introduction for developers} and \href{http://core.telegram.org/bots/api}{Telegram Bot API}
+\href{http://core.telegram.org/bots}{Bots: An
+    introduction for developers} and
+    \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 }
 \keyword{datasets}
 

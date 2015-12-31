@@ -9,7 +9,7 @@ sendMessage(text = NULL, parse_mode = NULL,
   chat_id = NULL)
 }
 \arguments{
-\item{text}{Text of the message to be sent}
+\item{text}{Text of the message to be sent (required)}
 
 \item{parse_mode}{send 'Markdown' if you want Telegram apps to show
 bold, italic and inline URLs in your bot's message}
@@ -21,7 +21,7 @@ this message}
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send text messages

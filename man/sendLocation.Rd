@@ -8,15 +8,15 @@ sendLocation(latitude = NULL, longitude = NULL,
   reply_to_message_id = NULL, chat_id = NULL)
 }
 \arguments{
-\item{latitude}{Latitude of location}
+\item{latitude}{Latitude of location (required)}
 
-\item{longitude}{Longitude of location}
+\item{longitude}{Longitude of location (required)}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send point on the map

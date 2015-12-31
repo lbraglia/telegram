@@ -8,7 +8,7 @@ sendPhoto(photo = NULL, caption = NULL, reply_to_message_id = NULL,
   chat_id = NULL)
 }
 \arguments{
-\item{photo}{photo to send}
+\item{photo}{photo to send (required)}
 
 \item{caption}{photo caption}
 
@@ -16,7 +16,7 @@ sendPhoto(photo = NULL, caption = NULL, reply_to_message_id = NULL,
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send image files

@@ -7,7 +7,7 @@
 getFile(file_id, destfile = NULL)
 }
 \arguments{
-\item{file_id}{File identifier}
+\item{file_id}{File identifier (required)}
 
 \item{destfile}{Destination path; if specified the file will be
 downloaded}

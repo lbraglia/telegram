@@ -8,7 +8,7 @@ sendVoice(voice = NULL, duration = NULL, reply_to_message_id = NULL,
   chat_id = NULL)
 }
 \arguments{
-\item{voice}{Audio file to send}
+\item{voice}{Audio file to send (required)}
 
 \item{duration}{Duration of sent audio in seconds}
 
@@ -16,7 +16,7 @@ sendVoice(voice = NULL, duration = NULL, reply_to_message_id = NULL,
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send \code{.ogg} files encoded with OPUS

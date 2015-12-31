@@ -8,7 +8,7 @@ sendVideo(video = NULL, duration = NULL, caption = NULL,
   reply_to_message_id = NULL, chat_id = NULL)
 }
 \arguments{
-\item{video}{Video to send}
+\item{video}{Video to send (required)}
 
 \item{duration}{Duration of sent video in seconds}
 
@@ -18,7 +18,7 @@ sendVideo(video = NULL, duration = NULL, caption = NULL,
 original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
-the target channel}
+the target channel (required)}
 }
 \description{
 Send \code{mp4} videos
