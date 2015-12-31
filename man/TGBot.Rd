@@ -14,18 +14,19 @@ Package main class (implementing the Telegram bot).
 \section{API Methods}{
 
 \describe{
-  \item{\code{\link{getMe}}}{tests your bot's auth token}
-  \item{\code{sendMessage}}{Send text messages}
-  \item{\code{forwardMessage}}{Forward messages of any kind}
-  \item{\code{sendPhoto}}{Send image files.}
-  \item{\code{sendAudio}}{Send \code{mp3} files}
-  \item{\code{sendDocument}}{Send general files}
-  \item{\code{sendSticker}}{Send \code{.webp} stickers}
-  \item{\code{sendVideo}}{Send \code{mp4} videos}
-  \item{\code{sendVoice}}{Send ogg files encoded with OPUS}
-  \item{\code{sendLocation}}{Send point on the map}
-  \item{\code{getUserProfilePhotos}}{Get a list of profile pictures for a user}
-  \item{\code{getFile}}{Get basic info about a file and prepare it for downloading}
+  \item{\code{\link{forwardMessage}}}{forward messages of any kind}
+  \item{\code{\link{getFile}}}{get info about a file and download it}
+  \item{\code{\link{getMe}}}{test your bot's auth token}
+  \item{\code{\link{getUpdates}}}{receive incoming updates}
+  \item{\code{\link{getUserProfilePhotos}}}{get a list of profile pictures for a user}
+  \item{\code{\link{sendAudio}}}{send \code{mp3} files}
+  \item{\code{\link{sendDocument}}}{send general files}
+  \item{\code{\link{sendLocation}}}{send point on the map}
+  \item{\code{\link{sendMessage}}}{send text messages}
+  \item{\code{\link{sendPhoto}}}{send image files}
+  \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
+  \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
+  \item{\code{\link{sendVoice}}}{send ogg files encoded with OPUS}
 }
 }
 \examples{
