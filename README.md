@@ -133,7 +133,7 @@ saveVideo({
     x <- c()
     for (i in 1:nmax){
         x <- c(x, rnorm(1))
-        plot(cumsum(x), lty = 2, xlim = c(1, nmax), ylim = c(-5,5))
+        plot(cumsum(x), lty = 2, xlim = c(1, nmax), ylim = c(-5, 5))
         abline(h = 0, col = 'red')
     }
 }, video.name = 'animation.mp4')
