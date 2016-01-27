@@ -158,8 +158,8 @@ bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
 bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 
 ## getUserProfilePhotos
-bot$getUserProfilePhotos(162174388) #<- message.from.id variable in getUpdates
-bot$getUserProfilePhotos(162174388, destfile = 'me.png')
+bot$getUserProfilePhotos(user_id('me')) # <- alternatively, message.from.id variable in getUpdates
+bot$getUserProfilePhotos(user_id('me'), destfile = 'me.png')
 
 # getFile
 bot$getFile('AgADBAADqacxG7SVqgnMb9t6Szxd4SpKpjAABBuyfWqwtle-UdYAAgI',
