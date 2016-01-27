@@ -162,7 +162,8 @@ bot$getUserProfilePhotos(user_id('me')) # <- alternatively, message.from.id vari
 bot$getUserProfilePhotos(user_id('me'), destfile = 'me.png')
 
 # getFile
-bot$getFile('AgADBAADqacxG7SVqgnMb9t6Szxd4SpKpjAABBuyfWqwtle-UdYAAgI',
+bot$getFile('asdasdasdqweqweqwe-UdYAAgI', # <- file_id from getUserProfilePhotos
             'me_small.png')
+
 
 ```
