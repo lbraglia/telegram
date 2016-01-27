@@ -87,7 +87,7 @@ addressbook to store users' ids). If you put this in your `.Renviron`:
 R_TELEGRAM_USER_me=123456789
 ```
 you'll be able to use the `user_id` function, eg like this:
-```
+```r
 bot$set_default_chat_id(user_id('me'))
 ```
 
