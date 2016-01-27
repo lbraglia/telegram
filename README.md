@@ -80,6 +80,17 @@ bot$getUpdates()
 bot$set_default_chat_id(123456789)
 ```
 
+After a bit using the package, you'll probably want to set the
+`chat_id` to your user id (or more generally, have something like an
+addressbook to store users' ids). If you put this in your `.Renviron`:
+```bash
+R_TELEGRAM_USER_me=123456789
+```
+you'll be able to use the `user_id` function, eg like this:
+```
+bot$set_default_chat_id(user_id('me'))
+```
+
 ## Examples of methods currently implemented
 Once you've followed the previous section, run the following commands
 and look at your phone.

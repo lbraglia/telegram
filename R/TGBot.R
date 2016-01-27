@@ -508,45 +508,6 @@ sendVoice <- function(voice = NULL,
 setWebhook <- function() not_implemented()
 
 
-## --------
-## Exported
-## --------
-
-#' bot_token
-#'
-#' Obtain token from system variables (in \code{Renviron}) set
-#' according to package naming conventions, that is
-#' \code{R_TELEGRAM_X} where \code{X} is bot's name (first question
-#' answered to the botfather).
-#'
-#' @param botname character of length 1 with the name of the bot; if
-#'     \code{NULL} a menu to choose between bot is displayed and the
-#'     proper token returned
-#' @examples \dontrun{ bot_token('RBot') }
-#' @export
-bot_token <- function(botname = NULL){
-    prefix <- 'R_TELEGRAM_BOT_'
-    if (is.null(botname)){
-        envs <- as.list(Sys.getenv())
-        envs <- envs[grep(paste0("^", prefix) , names(envs))]
-        if (length(envs) > 0L) {
-            choices <- gsub(prefix, '', names(envs))
-            choice <- utils::menu(choices = choices, title = 'Choose a bot')
-            return(envs[[choice]])
-        } else
-            stop("I didn't found any system variable starting with ", prefix)
-    } else if (is.character(botname) && length(botname) == 1L) {
-        varname <- paste0(prefix, botname)
-        value <- Sys.getenv(varname)
-        if (!identical(value, ''))
-            return(value)
-        else
-            stop(varname, ' environment variable is not available.')
-    } else
-        stop('botname must be a length 1 char or NULL')
-}
-
-
 #' TGBot
 #'
 #' Package main class (implementing the Telegram bot).

@@ -2,6 +2,7 @@
 
 export(TGBot)
 export(bot_token)
+export(user_id)
 importFrom(R6,R6Class)
 importFrom(curl,curl_download)
 importFrom(httr,POST)
