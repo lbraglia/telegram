@@ -186,7 +186,11 @@ getFile <- function(file_id, destfile = NULL) {
 #' Test your bot's auth token
 getMe <- function()
 {
-    r <- private$request('getMe')
+    # params
+    offset <- check_param(offset, 'int')
+    ## request body
+    body <- make_body('offset' = offset)
+    r <- private$request('getMe', body = body)
     if (r$status == 200){
         pc <- parsed_content(r)
         private$bot_first_name <- pc$first_name
