@@ -206,7 +206,7 @@ getUpdates <- function()
 {
   # params
   offset <- check_param(offset, 'int')
-  ## request body
+  ## request body - I just add offset
   body <- make_body('offset' = offset)
   
   r <- private$request('getUpdates', body = body)
