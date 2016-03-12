@@ -202,7 +202,7 @@ getMe <- function()
 #' getUpdates
 #'
 #' Receive incoming updates
-getUpdates <- function()
+getUpdates <- function(offset = NULL)
 {
   # params
   offset <- check_param(offset, 'int')
