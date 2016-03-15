@@ -202,6 +202,8 @@ getMe <- function()
 #' getUpdates
 #'
 #' Receive incoming updates
+#' @param offset Sequential number of the first update to be
+#'     returned. By default, first 100 updates are returned
 getUpdates <- function(offset = NULL)
 {
   # params
