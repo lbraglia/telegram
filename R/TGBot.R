@@ -201,6 +201,10 @@ getMe <- function()
 #' getUpdates
 #'
 #' Receive incoming updates
+#' @param offset Identifier of the first update to be returned
+#'     returned.
+#' @param limit Limits the number of updates to be retrieved. Values
+#'     between 1-100 are accepted. Defaults to 100
 getUpdates <- function(offset = NULL,
                        limit = NULL)
 {
