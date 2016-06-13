@@ -201,8 +201,16 @@ getMe <- function()
 #' getUpdates
 #'
 #' Receive incoming updates
-getUpdates <- function(){
-    r <- private$request('getUpdates')
+getUpdates <- function(offset = NULL,
+                       limit = NULL)
+{
+    ## params
+    offset <- check_param(offset, 'int')
+    limit <- check_param(limit, 'int')
+    ## request body
+    body <- make_body('offset' = offset,
+                      'limit' = limit)
+    r <- private$request('getUpdates', body = body)
     if (r$status == 200){
         rval <- parsed_content(r)
         return(rval)
