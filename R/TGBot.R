@@ -120,7 +120,7 @@ check_file <- function(path, required = FALSE){
 }
 
 parsed_content <- function(x){
-    tx <- httr::content(x, as = 'text')
+    tx <- httr::content(x, as = 'text', encoding = 'UTF-8')
     rval <- jsonlite::fromJSON(tx)$result
     rval
 }
