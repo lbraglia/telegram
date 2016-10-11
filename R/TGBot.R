@@ -381,6 +381,7 @@ sendMessage <- function(text = NULL,
                         parse_mode = NULL,
                         disable_web_page_preview = NULL,
                         reply_to_message_id = NULL,
+                        disable_notification = NULL,
                         chat_id = NULL)
 {
     ## params
