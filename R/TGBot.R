@@ -390,7 +390,8 @@ sendMessage <- function(text = NULL,
     body <- make_body('chat_id' = chat_id,
                       'text' = as.character(text),
                       'parse_mode' = parse_mode,
-                      'reply_to_message_id' = reply_to_message_id)
+                      'reply_to_message_id' = reply_to_message_id,
+                      'disable_web_page_preview' = disable_web_page_preview)
     ## request
     r <- private$request('sendMessage', body = body)
     ## response handling
