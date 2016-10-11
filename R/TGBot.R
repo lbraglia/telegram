@@ -370,6 +370,9 @@ sendLocation <- function(latitude = NULL,
 #'     bold, italic and inline URLs in your bot's message
 #' @param disable_web_page_preview Disables link previews for links in
 #'     this message
+#' @param disable_notification Sends the message silently. 
+#'     iOS users will not receive a notification, 
+#'     Android users will receive a notification with no sound.
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
@@ -385,13 +388,15 @@ sendMessage <- function(text = NULL,
     text <- check_param(text, 'char', required = TRUE)
     parse_mode <- check_param(parse_mode, 'char')
     disable_web_page_preview <- check_param(disable_web_page_preview, 'log')
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'text' = as.character(text),
                       'parse_mode' = parse_mode,
                       'reply_to_message_id' = reply_to_message_id,
-                      'disable_web_page_preview' = disable_web_page_preview)
+                      'disable_web_page_preview' = disable_web_page_preview,
+                      'disable_notification' = disable_notification)
     ## request
     r <- private$request('sendMessage', body = body)
     ## response handling
