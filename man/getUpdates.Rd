@@ -14,7 +14,7 @@ returned.}
 between 1-100 are accepted. Defaults to 100}
 }
 
-\item{limit}{Time limit for Long Polling use. Recommended
+\item{timeout}{Time limit for Long Polling use. Recommended
 for active bots}
 }
 \description{
