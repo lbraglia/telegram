@@ -12,7 +12,6 @@ returned.}
 
 \item{limit}{Limits the number of updates to be retrieved. Values
 between 1-100 are accepted. Defaults to 100}
-}
 
 \item{timeout}{Time limit for Long Polling use. Recommended
 for active bots}
