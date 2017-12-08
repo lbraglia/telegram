@@ -4,7 +4,7 @@
 \alias{getUpdates}
 \title{getUpdates}
 \usage{
-getUpdates(offset = NULL, limit = NULL)
+getUpdates(offset = NULL, limit = NULL, timeout = NULL)
 }
 \arguments{
 \item{offset}{Identifier of the first update to be returned
@@ -12,6 +12,10 @@ returned.}
 
 \item{limit}{Limits the number of updates to be retrieved. Values
 between 1-100 are accepted. Defaults to 100}
+}
+
+\item{limit}{Time limit for Long Polling use. Recommended
+for active bots}
 }
 \description{
 Receive incoming updates

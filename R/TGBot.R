@@ -201,10 +201,11 @@ getMe <- function()
 #' getUpdates
 #'
 #' Receive incoming updates
-#' @param offset Identifier of the first update to be returned.
+#' @param offset Identifier of the first update to be returned
+#'     returned
 #' @param limit Limits the number of updates to be retrieved. Values
 #'     between 1-100 are accepted. Defaults to 100
-#' @param timeout Sets timeout for Long Polling use. Recommended
+#' @param timeout Time limit for Long Polling use. Recommended
 #'     for active bots
 
 getUpdates <- function(offset = NULL,
