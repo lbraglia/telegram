@@ -23,7 +23,7 @@ install.packages('telegram')
 ```
 For the development one:
 ```r
-devtools::install_github('lbraglia/telegram')
+devtools::install_github('ebeneditos/telegram')
 ```
 
 
