@@ -6,7 +6,7 @@
 \usage{
 sendMessage(text = NULL, parse_mode = NULL,
   disable_web_page_preview = NULL, reply_to_message_id = NULL,
-  chat_id = NULL)
+  reply_markup = NULL, chat_id = NULL)
 }
 \arguments{
 \item{text}{Text of the message to be sent (required)}
@@ -19,6 +19,12 @@ this message}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}
+
+\item{reply_markup}{A Keyboard object, it can be ehter:
+\itemize{
+ \item{\code{\link{ReplyKeyboardMarkup}}}
+ \item{\code{\link{InlineKeyboardMarkup}}}
+}}
 
 \item{chat_id}{Unique identifier for the target chat or username of
 the target channel (required)}

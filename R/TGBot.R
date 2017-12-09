@@ -67,6 +67,7 @@ tgprint <- function(){
                      "sendVoice",
                      "sendLocation",
                      "sendChatAction",
+                     "answerCallbackQuery",
                      "getUserProfilePhotos",
                      "getUpdates",
                      "setWebhook",
@@ -102,7 +103,8 @@ check_param <- function(param, type, required = FALSE){
     coerce <- c('char'      = as.character,
                 'int'       = as.integer,
                 'log'       = as.logical,
-                'float'     = as.numeric)
+                'float'     = as.numeric,
+                'list'      = as.list)
     if(is.null(param)){
         if (required) stop(char_name, " can't be missing.")
         else NULL
@@ -129,6 +131,47 @@ parsed_content <- function(x){
 ## ------
 ## TG API
 ## ------
+
+#' answerCallbackQuery
+#'
+#' Use this method to send answers to callback queries sent from 
+#' \href{https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating}{inline keyboard}
+#' The answer will be displayed to the user as a notification at
+#' the top of the chat screen or as an alert. On success, \code{TRUE}
+#' is returned.
+#' 
+#' @param callback_query_id Unique identifier for the query to be answered (required)
+#' @param text Text of the notification. If not specified, nothing will be
+#'     shown to the user, 0-200 characters
+#' @param show_alert If \code{TRUE}, an alert will be shown by the client instead
+#'     of a notification at the top of the chat screen. Defaults to \code{FALSE}.
+#' @param url URL that will be opened by the user's client.
+#' @param cache_time The maximum amount of time in seconds that the result of the
+#'     callback query may be cached client-side. Telegram apps will support caching
+#'     starting in version 3.14. Defaults to 0.
+answerCallbackQuery <- function(callback_query_id = NULL,
+                                text = NULL,
+                                show_alert = NULL,
+                                url = NULL,
+                                cache_time = NULL)
+{
+  ## params
+  callback_query_id <- check_param(callback_query_id, 'char', required = TRUE)
+  text <- check_param(text, 'char')
+  show_alert <- check_param(show_alert, 'log')
+  url <- check_param(url, 'char')
+  cache_time <- check_param(cache_time, 'int')
+  ## request body
+  body <- make_body('callback_query_id' = callback_query_id,
+                    'text' = text,
+                    'show_alert' = show_alert,
+                    'url' = url,
+                    'cache_time' = cache_time)
+  ## request
+  r <- private$request('answerCallbackQuery', body = body)
+  ## response handling
+  invisible(r)
+}
 
 #' forwardMessage
 #'
@@ -311,8 +354,6 @@ sendAudio <- function(audio = NULL,
     invisible(r)
 }
 
-
-
 #' sendChatAction
 #'
 #' Use this method when you need to tell the user that something is
@@ -322,20 +363,19 @@ sendAudio <- function(audio = NULL,
 #' @param action Type of action to broadcast. Choose one, depending on
 #' what the user is about to receive:
 #' \itemize{
-#'  \item{"\code{typing}"}{ for text messages}
-#'  \item{"\code{upload_photo}"}{ for photos}
-#'  \item{"\code{upload_video}"}{ for videos}
-#'  \item{"\code{record_video}"}{ for video recording}
-#'  \item{"\code{upload_audio}"}{ for audio files}
-#'  \item{"\code{record_audio}"}{ for audio file recording}
-#'  \item{"\code{upload_document}"}{ for general files}
-#'  \item{"\code{find_location}"}{ for location data}
-#'  \item{"\code{upload_video_note}"}{ for video notes}
-#'  \item{"\code{record_video_note}"}{ for video note recording}
+#'  \item{\code{typing}}{ for text messages}
+#'  \item{\code{upload_photo}}{ for photos}
+#'  \item{\code{upload_video}}{ for videos}
+#'  \item{\code{record_video}}{ for video recording}
+#'  \item{\code{upload_audio}}{ for audio files}
+#'  \item{\code{record_audio}}{ for audio file recording}
+#'  \item{\code{upload_document}}{ for general files}
+#'  \item{\code{find_location}}{ for location data}
+#'  \item{\code{upload_video_note}}{ for video notes}
+#'  \item{\code{record_video_note}}{ for video note recording}
 #' }
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
-#'     
 sendChatAction <- function(action = NULL,
                            chat_id = NULL)
 {
@@ -417,12 +457,18 @@ sendLocation <- function(latitude = NULL,
 #'     this message
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
+#' @param reply_markup A Keyboard object, it can be ehter:
+#'     \itemize{
+#'      \item{\code{\link{ReplyKeyboardMarkup}}}
+#'      \item{\code{\link{InlineKeyboardMarkup}}}
+#'     }
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendMessage <- function(text = NULL,
                         parse_mode = NULL,
                         disable_web_page_preview = NULL,
                         reply_to_message_id = NULL,
+                        reply_markup = NULL,
                         chat_id = NULL)
 {
     ## params
@@ -430,12 +476,14 @@ sendMessage <- function(text = NULL,
     text <- check_param(text, 'char', required = TRUE)
     parse_mode <- check_param(parse_mode, 'char')
     disable_web_page_preview <- check_param(disable_web_page_preview, 'log')
+    reply_markup <- KBtoJSON(reply_markup)
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'text' = as.character(text),
                       'parse_mode' = parse_mode,
-                      'reply_to_message_id' = reply_to_message_id)
+                      'reply_to_message_id' = reply_to_message_id,
+                      'reply_markup' = reply_markup)
     ## request
     r <- private$request('sendMessage', body = body)
     ## response handling
@@ -609,6 +657,7 @@ TGBot <- R6::R6Class("TGBot",
                          ## ---------------------
                          ## methods - TG api
                          ## ---------------------
+                         answerCallbackQuery  = answerCallbackQuery,
                          forwardMessage       = forwardMessage,
                          getFile              = getFile,
                          getMe                = getMe,

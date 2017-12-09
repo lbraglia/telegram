@@ -14,7 +14,7 @@ proper token returned}
 \description{
 Obtain token from system variables (in \code{Renviron}) set
 according to package naming conventions, that is
-\code{R_TELEGRAM_BOT_} where \code{X} is bot's name (first question
+\code{R_TELEGRAM_BOT_X} where \code{X} is bot's name (first question
 answered to the botfather).
 }
 \examples{
