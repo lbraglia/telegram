@@ -20,4 +20,3 @@ answered to the botfather).
 \examples{
 \dontrun{ bot_token('RBot') }
 }
-

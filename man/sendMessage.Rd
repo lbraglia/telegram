@@ -26,4 +26,3 @@ the target channel (required)}
 \description{
 Send text messages
 }
-

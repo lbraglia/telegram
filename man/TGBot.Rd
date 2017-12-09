@@ -40,4 +40,3 @@ bot <- TGBot$new(token = bot_token('RBot'))
     \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 }
 \keyword{datasets}
-

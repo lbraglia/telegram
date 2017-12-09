@@ -8,16 +8,15 @@ getUpdates(offset = NULL, limit = NULL, timeout = NULL)
 }
 \arguments{
 \item{offset}{Identifier of the first update to be returned
-returned.}
+returned}
 
 \item{limit}{Limits the number of updates to be retrieved. Values
 between 1-100 are accepted. Defaults to 100}
 
-\item{timeout}{Timeout in seconds for long polling. Defaults to
-0, i.e. usual short polling. Should be positive, short polling
-should be used for testing purposes only.}
+\item{timeout}{Timeout in seconds for long polling. Defaults to 0,
+i.e. usual short polling. Should be positive, short polling should
+be used for testing purposes only.}
 }
 \description{
 Receive incoming updates
 }
-
