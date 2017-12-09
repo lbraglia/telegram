@@ -322,7 +322,7 @@ sendAudio <- function(audio = NULL,
 #' @param action Type of action to broadcast. Choose one, depending on
 #' what the user is about to receive:
 #' \itemize{
-#'  \item{\emph{typing}{for text messages}
+#'  \item{\emph{typing}}{for text messages}
 #'  \item{\emph{upload_photo}}{ for photos}
 #'  \item{\emph{upload_video}}{ for videos}
 #'  \item{\emph{record_video}}{ for video recording}
