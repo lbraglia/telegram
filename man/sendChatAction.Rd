@@ -10,16 +10,16 @@ sendChatAction(action = NULL, chat_id = NULL)
 \item{action}{Type of action to broadcast. Choose one, depending on
 what the user is about to receive:
 \itemize{
- \item{\emph{typing}}{for text messages}
- \item{\emph{upload_photo}}{ for photos}
- \item{\emph{upload_video}}{ for videos}
- \item{\emph{record_video}}{ for video recording}
- \item{\emph{upload_audio}}{ for audio files}
- \item{\emph{record_audio}}{ for audio file recording}
- \item{\emph{upload_document}}{ for general files}
- \item{\emph{find_location}}{ for location data}
- \item{\emph{upload_video_note}}{ for video notes}
- \item{\emph{record_video_note}}{ for video note recording}
+ \item{'\emph{typing}'}{ for text messages}
+ \item{'\emph{upload_photo}'}{ for photos}
+ \item{'\emph{upload_video}'}{ for videos}
+ \item{'\emph{record_video}'}{ for video recording}
+ \item{'\emph{upload_audio}'}{ for audio files}
+ \item{'\emph{record_audio}'}{ for audio file recording}
+ \item{'\emph{upload_document}'}{ for general files}
+ \item{'\emph{find_location}'}{ for location data}
+ \item{'\emph{upload_video_note}'}{ for video notes}
+ \item{'\emph{record_video_note}'}{ for video note recording}
 }}
 
 \item{chat_id}{Unique identifier for the target chat or username of
