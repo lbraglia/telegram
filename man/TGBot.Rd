@@ -13,11 +13,17 @@ Package main class (implementing the Telegram bot).
 }
 \section{API Methods}{
  \describe{
+    \item{\code{\link{answerCallbackQuery}}}{Use this method to send
+    answers to callback queries sent from inline keyboard}
     \item{\code{\link{forwardMessage}}}{forward messages of any
-    kind} \item{\code{\link{getFile}}}{get info about a file and
-    download it} \item{\code{\link{getMe}}}{test your bot's auth
-    token} \item{\code{\link{getUpdates}}}{receive incoming
-    updates} \item{\code{\link{getUserProfilePhotos}}}{get a list
+    kind}
+    \item{\code{\link{getFile}}}{get info about a file and
+    download it}
+    \item{\code{\link{getMe}}}{test your bot's auth
+    token}
+    \item{\code{\link{getUpdates}}}{receive incoming
+    updates}
+    \item{\code{\link{getUserProfilePhotos}}}{get a list
     of profile pictures for a user}
     \item{\code{\link{sendAudio}}}{send \code{mp3} files}
     \item{\code{\link{sendDocument}}}{send general files}

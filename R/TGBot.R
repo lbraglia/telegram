@@ -109,6 +109,9 @@ check_param <- function(param, type, required = FALSE){
         if (required) stop(char_name, " can't be missing.")
         else NULL
     }
+    else if (type == 'list'){
+      coerce[[type]](param)
+    }
     else coerce[[type]](param[1])
 }
 
@@ -457,10 +460,12 @@ sendLocation <- function(latitude = NULL,
 #'     this message
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
-#' @param reply_markup A Keyboard object, it can be ehter:
+#' @param reply_markup A keyboard parameter object, it can be either:
 #'     \itemize{
 #'      \item{\code{\link{ReplyKeyboardMarkup}}}
 #'      \item{\code{\link{InlineKeyboardMarkup}}}
+#'      \item{\code{\link{ReplyKeyboardRemove}}}
+#'      \item{\code{\link{ForceReply}}}
 #'     }
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
@@ -620,11 +625,17 @@ setWebhook <- function() not_implemented()
 #' @docType class
 #' @format An \code{\link{R6Class}} generator object.
 #' @section API Methods: \describe{
+#'     \item{\code{\link{answerCallbackQuery}}}{Use this method to send
+#'     answers to callback queries sent from inline keyboard}
 #'     \item{\code{\link{forwardMessage}}}{forward messages of any
-#'     kind} \item{\code{\link{getFile}}}{get info about a file and
-#'     download it} \item{\code{\link{getMe}}}{test your bot's auth
-#'     token} \item{\code{\link{getUpdates}}}{receive incoming
-#'     updates} \item{\code{\link{getUserProfilePhotos}}}{get a list
+#'     kind}
+#'     \item{\code{\link{getFile}}}{get info about a file and
+#'     download it}
+#'     \item{\code{\link{getMe}}}{test your bot's auth
+#'     token}
+#'     \item{\code{\link{getUpdates}}}{receive incoming
+#'     updates}
+#'     \item{\code{\link{getUserProfilePhotos}}}{get a list
 #'     of profile pictures for a user}
 #'     \item{\code{\link{sendAudio}}}{send \code{mp3} files}
 #'     \item{\code{\link{sendDocument}}}{send general files}

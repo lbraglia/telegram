@@ -55,16 +55,36 @@ KeyboardButton <- function(
 #' @param keyboard List of button rows, each represented by an list of
 #'     \code{\link{KeyboardButton}} objects
 #' @param resize_keyboard Requests clients to resize the keyboard vertically
-#'     for optimal fit. Defaults to If \code{FALSE}, in which case the
-#'     customkeyboard is always of the same height as the app's standard
+#'     for optimal fit. Defaults to \code{FALSE}, in which case the
+#'     custom keyboard is always of the same height as the app's standard
 #'     keyboard.
 #' @param one_time_keyboard Requests clients to hide the keyboard as soon
 #'     as it's been used. The keyboard will still be available, but clients
-#'     will automatically display the usual letter-keyboard in the chat –
+#'     will automatically display the usual letter-keyboard in the chat -
 #'     the user can press a special button in the input field to see the
 #'     custom keyboard again. Defaults to \code{FALSE}
 #' @param selective Use this parameter if you want to show the keyboard
-#'     to specific users only. 
+#'     to specific users only.
+#'     
+#' @examples \dontrun{
+#' # Initialize bot
+#' bot <- TGBot$new(token = bot_token('RBot'))
+#' bot$set_default_chat_id(user_id('me'))
+#' 
+#' # Create Custom Keyboard
+#' text <- "Aren't those custom keyboards cool?"
+#' RKM <- ReplyKeyboardMarkup(
+#'   keyboard = list(
+#'     list(KeyboardButton("Yes, they certainly are!")),
+#'     list(KeyboardButton("I'm not quite sure")),
+#'     list(KeyboardButton('No...'))),
+#'   resize_keyboard = FALSE,
+#'   one_time_keyboard = TRUE
+#' )
+#' 
+#' # Send Custom Keyboard
+#' bot$sendMessage(text, reply_markup = RKM)
+#' }
 #' @export
 
 #' @export
@@ -80,8 +100,7 @@ ReplyKeyboardMarkup <- function(
   one_time_keyboard <- check_param(one_time_keyboard, 'log')
   selective <- check_param(selective, 'log')
   ## check dimensions and class
-  if(!(length(keyboard) %in% 1:2) |
-     !all(unlist(lapply(keyboard, is.list))) |
+  if(!all(unlist(lapply(keyboard, is.list))) |
      !all(unlist(lapply(keyboard, function(x){lapply(x, function(x){inherits(x, "KeyboardButton")})})))) {
     stop("keyboard parameter must be a list of button rows, each represented by a list of KeyboardButton objects")
   }
@@ -110,16 +129,16 @@ ReplyKeyboardMarkup <- function(
 #' 
 #' @param text Label text on the button
 #' @param url HTTP url to be opened when button is pressed
-#' @param request_location Data to be sent in a
+#' @param callback_data Data to be sent in a
 #'     \href{https://core.telegram.org/bots/api#callbackquery}{callback query}
 #'     to the bot when button is pressed, 1-64 bytes
 #' @param switch_inline_query If set, pressing the button will prompt the
 #'     user to select one of their chats, open that chat and insert the
-#'     bot‘s username and the specified inline query in the input field.
-#'     Can be empty, in which case just the bot’s username will be inserted.
+#'     bot's username and the specified inline query in the input field.
+#'     Can be empty, in which case just the bot's username will be inserted.
 #' @param switch_inline_query_current_chat If set, pressing the button will
-#'     insert the bot‘s username and the specified inline query in the current
-#'     chat's input field. Can be empty, in which case only the bot’s username
+#'     insert the bot's username and the specified inline query in the current
+#'     chat's input field. Can be empty, in which case only the bot's username
 #'     will be inserted.
 #' @export
 
@@ -169,6 +188,34 @@ InlineKeyboardButton <- function(
 #' 
 #' @param inline_keyboard List of button rows, each represented by a list of
 #'     \code{\link{InlineKeyboardButton}} objects
+#'     
+#' @examples \dontrun{
+#' # Initialize bot
+#' bot <- TGBot$new(token = bot_token('RBot'))
+#' bot$set_default_chat_id(user_id('me'))
+#' 
+#' # Create Inline Keyboard
+#' text <- "Could you type their phone number, please?"
+#' IKM <- InlineKeyboardMarkup(
+#'   inline_keyboard = list(
+#'     list(InlineKeyboardButton(1, callback_data = 1),
+#'          InlineKeyboardButton(2, callback_data = 2),
+#'          InlineKeyboardButton(3, callback_data = 3)),
+#'     list(InlineKeyboardButton(4, callback_data = 4),
+#'          InlineKeyboardButton(5, callback_data = 5),
+#'          InlineKeyboardButton(6, callback_data = 6)),
+#'     list(InlineKeyboardButton(7, callback_data = 7),
+#'          InlineKeyboardButton(8, callback_data = 8),
+#'          InlineKeyboardButton(9, callback_data = 9)),
+#'     list(InlineKeyboardButton("*", callback_data = "*"),
+#'          InlineKeyboardButton(0, callback_data = 0),
+#'          InlineKeyboardButton("#", callback_data = "#"))
+#'     )
+#'   )
+#' 
+#' # Send Inline Keyboard
+#' bot$sendMessage(text, reply_markup = IKM)
+#' }
 #' @export
 
 #' @export
@@ -178,8 +225,7 @@ InlineKeyboardMarkup <- function(
   ## params
   inline_keyboard <- check_param(inline_keyboard, 'list', required = TRUE)
   ## check dimensions and class
-  if(!(length(inline_keyboard) %in% 1:2) |
-     !all(unlist(lapply(inline_keyboard, is.list))) |
+  if(!all(unlist(lapply(inline_keyboard, is.list))) |
      !all(unlist(lapply(inline_keyboard, function(x){lapply(x, function(x){inherits(x, "InlineKeyboardButton")})})))) {
     stop("keyboard parameter must be a list of button rows, each represented by a list of InlineKeyboardButton objects")
   }
@@ -189,4 +235,104 @@ InlineKeyboardMarkup <- function(
   class(InlineKeyboardMarkup) <- c("InlineKeyboardMarkup", "TGKeyboard")
   ## return object
   return(InlineKeyboardMarkup)
+}
+
+#' ReplyKeyboardRemove
+#'
+#' Upon receiving a message with this object, Telegram clients will
+#' remove the current custom keyboard and display the default
+#' letter-keyboard. By default, custom keyboards are displayed until
+#' a new keyboard is sent by a bot. An exception is made for one-time
+#' keyboards that are hidden immediately after the user presses a
+#' button (see \code{\link{ReplyKeyboardMarkup}}).
+#' 
+#' @param remove_keyboard Requests clients to remove the custom keyboard.
+#'     (user will not be able to summon this keyboard; if you want to hide
+#'     the keyboard from sight but keep it accessible, use
+#'     \code{one_time_keyboard} in \code{\link{ReplyKeyboardMarkup}}).
+#'     Defaults to \code{TRUE}.
+#' @param selective Use this parameter if you want to show the keyboard
+#'     to specific users only.
+#'     
+#' @examples \dontrun{
+#' # Initialize bot
+#' bot <- TGBot$new(token = bot_token('RBot'))
+#' bot$set_default_chat_id(user_id('me'))
+#' 
+#' # Create Custom Keyboard
+#' text <- "Don't forget to send me the answer!"
+#' RKM <- ReplyKeyboardMarkup(
+#'   keyboard = list(
+#'     list(KeyboardButton("Yes, they certainly are!")),
+#'     list(KeyboardButton("I'm not quite sure")),
+#'     list(KeyboardButton('No...'))),
+#'   resize_keyboard = FALSE,
+#'   one_time_keyboard = FALSE
+#' )
+#' 
+#' # Send Custom Keyboard
+#' bot$sendMessage(text, reply_markup = RKM)
+#' 
+#' # Remove Keyboard
+#' bot$sendMessage("Okay, thanks!", reply_markup = ReplyKeyboardRemove())
+#' }
+#' @export
+
+#' @export
+ReplyKeyboardRemove <- function(
+  remove_keyboard = TRUE,
+  selective = NULL)
+{
+  ## params
+  remove_keyboard <- check_param(remove_keyboard, 'log', required = TRUE)
+  selective <- check_param(selective, 'log')
+  ## build object
+  ReplyKeyboardRemove <- list(remove_keyboard = remove_keyboard,
+                               selective = selective)
+  ReplyKeyboardRemove <- ReplyKeyboardRemove[!unlist(lapply(ReplyKeyboardRemove, is.null))]
+  class(ReplyKeyboardRemove) <- c("ReplyKeyboardRemove", "TGKeyboard")
+  ## return object
+  return(ReplyKeyboardRemove)
+}
+
+
+#' ForceReply
+#'
+#' Upon receiving a message with this object, Telegram clients will display
+#' a reply interface to the user (act as if the user has selected the bot's
+#' message and tapped 'Reply').
+#' 
+#' @param force_reply Shows reply interface to the user, as if they manually
+#'     selected the bot's message and tapped 'Reply'. Defaults to \code{TRUE}.
+#' @param selective Use this parameter if you want to show the keyboard
+#'     to specific users only.
+#'     
+#' @examples \dontrun{
+#' # Initialize bot
+#' bot <- TGBot$new(token = bot_token('RBot'))
+#' bot$set_default_chat_id(user_id('me'))
+#' 
+#' # Set input parameters
+#' text <- "Don't forget to send me the answer!"
+#' 
+#' # Send reply message
+#' bot$sendMessage(text, reply_markup = ForceReply())
+#' }
+#' @export
+
+#' @export
+ForceReply <- function(
+  force_reply = TRUE,
+  selective = NULL)
+{
+  ## params
+  force_reply <- check_param(force_reply, 'log', required = TRUE)
+  selective <- check_param(selective, 'log')
+  ## build object
+  ForceReply <- list(force_reply = force_reply,
+                              selective = selective)
+  ForceReply <- ForceReply[!unlist(lapply(ForceReply, is.null))]
+  class(ForceReply) <- c("ForceReply", "TGKeyboard")
+  ## return object
+  return(ForceReply)
 }

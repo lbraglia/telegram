@@ -12,13 +12,13 @@ ReplyKeyboardMarkup(keyboard = NULL, resize_keyboard = NULL,
 \code{\link{KeyboardButton}} objects}
 
 \item{resize_keyboard}{Requests clients to resize the keyboard vertically
-for optimal fit. Defaults to If \code{FALSE}, in which case the
-customkeyboard is always of the same height as the app's standard
+for optimal fit. Defaults to \code{FALSE}, in which case the
+custom keyboard is always of the same height as the app's standard
 keyboard.}
 
 \item{one_time_keyboard}{Requests clients to hide the keyboard as soon
 as it's been used. The keyboard will still be available, but clients
-will automatically display the usual letter-keyboard in the chat –
+will automatically display the usual letter-keyboard in the chat -
 the user can press a special button in the input field to see the
 custom keyboard again. Defaults to \code{FALSE}}
 
@@ -28,4 +28,25 @@ to specific users only.}
 \description{
 This object represents a \href{https://core.telegram.org/bots#keyboards}{custom keyboard}
 with reply options.
+}
+\examples{
+\dontrun{
+# Initialize bot
+bot <- TGBot$new(token = bot_token('RBot'))
+bot$set_default_chat_id(user_id('me'))
+
+# Create Custom Keyboard
+text <- "Aren't those custom keyboards cool?"
+RKM <- ReplyKeyboardMarkup(
+  keyboard = list(
+    list(KeyboardButton("Yes, they certainly are!")),
+    list(KeyboardButton("I'm not quite sure")),
+    list(KeyboardButton('No...'))),
+  resize_keyboard = FALSE,
+  one_time_keyboard = TRUE
+)
+
+# Send Custom Keyboard
+bot$sendMessage(text, reply_markup = RKM)
+}
 }

@@ -12,19 +12,19 @@ InlineKeyboardButton(text = NULL, url = NULL, callback_data = NULL,
 
 \item{url}{HTTP url to be opened when button is pressed}
 
-\item{switch_inline_query}{If set, pressing the button will prompt the
-user to select one of their chats, open that chat and insert the
-bot‘s username and the specified inline query in the input field.
-Can be empty, in which case just the bot’s username will be inserted.}
-
-\item{switch_inline_query_current_chat}{If set, pressing the button will
-insert the bot‘s username and the specified inline query in the current
-chat's input field. Can be empty, in which case only the bot’s username
-will be inserted.}
-
-\item{request_location}{Data to be sent in a
+\item{callback_data}{Data to be sent in a
 \href{https://core.telegram.org/bots/api#callbackquery}{callback query}
 to the bot when button is pressed, 1-64 bytes}
+
+\item{switch_inline_query}{If set, pressing the button will prompt the
+user to select one of their chats, open that chat and insert the
+bot's username and the specified inline query in the input field.
+Can be empty, in which case just the bot's username will be inserted.}
+
+\item{switch_inline_query_current_chat}{If set, pressing the button will
+insert the bot's username and the specified inline query in the current
+chat's input field. Can be empty, in which case only the bot's username
+will be inserted.}
 }
 \description{
 This object represents one button of an inline keyboard. You

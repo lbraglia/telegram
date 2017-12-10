@@ -22,3 +22,32 @@ react by calling \code{\link{answerCallbackQuery}} even if no notification
 to the user is needed (e.g., without specifying any of the
 optional parameters).
 }
+\examples{
+\dontrun{
+# Initialize bot
+bot <- TGBot$new(token = bot_token('RBot'))
+bot$set_default_chat_id(user_id('me'))
+
+# Create Inline Keyboard
+text <- "Could you type their phone number, please?"
+IKM <- InlineKeyboardMarkup(
+  inline_keyboard = list(
+    list(InlineKeyboardButton(1, callback_data = 1),
+         InlineKeyboardButton(2, callback_data = 2),
+         InlineKeyboardButton(3, callback_data = 3)),
+    list(InlineKeyboardButton(4, callback_data = 4),
+         InlineKeyboardButton(5, callback_data = 5),
+         InlineKeyboardButton(6, callback_data = 6)),
+    list(InlineKeyboardButton(7, callback_data = 7),
+         InlineKeyboardButton(8, callback_data = 8),
+         InlineKeyboardButton(9, callback_data = 9)),
+    list(InlineKeyboardButton("*", callback_data = "*"),
+         InlineKeyboardButton(0, callback_data = 0),
+         InlineKeyboardButton("#", callback_data = "#"))
+    )
+  )
+
+# Send Inline Keyboard
+bot$sendMessage(text, reply_markup = IKM)
+}
+}
