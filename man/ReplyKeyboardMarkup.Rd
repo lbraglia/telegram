@@ -8,7 +8,7 @@ ReplyKeyboardMarkup(keyboard = NULL, resize_keyboard = NULL,
   one_time_keyboard = NULL, selective = NULL)
 }
 \arguments{
-\item{keyboard}{List of button rows, each represented by an list of
+\item{keyboard}{List of button rows, each represented by a list of
 \code{\link{KeyboardButton}} objects}
 
 \item{resize_keyboard}{Requests clients to resize the keyboard vertically

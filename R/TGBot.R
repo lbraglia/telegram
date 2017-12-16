@@ -460,7 +460,7 @@ sendLocation <- function(latitude = NULL,
 #'     this message
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
-#' @param reply_markup A keyboard parameter object, it can be either:
+#' @param reply_markup A Reply Markup parameter object, it can be either:
 #'     \itemize{
 #'      \item{\code{\link{ReplyKeyboardMarkup}}}
 #'      \item{\code{\link{InlineKeyboardMarkup}}}

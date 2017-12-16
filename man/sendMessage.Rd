@@ -20,7 +20,7 @@ this message}
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}
 
-\item{reply_markup}{A keyboard parameter object, it can be either:
+\item{reply_markup}{A Reply Markup parameter object, it can be either:
 \itemize{
  \item{\code{\link{ReplyKeyboardMarkup}}}
  \item{\code{\link{InlineKeyboardMarkup}}}

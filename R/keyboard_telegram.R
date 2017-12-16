@@ -1,9 +1,9 @@
 
-KBtoJSON <- function(TGKeyboard = NULL){
-  if(is.null(TGKeyboard)) NULL
+KBtoJSON <- function(ReplyMarkup = NULL){
+  if(is.null(ReplyMarkup)) NULL
   else{
-    if(!inherits(TGKeyboard, "TGKeyboard")) stop("Incorrect Keyboard type.")
-    jsonlite::toJSON(TGKeyboard, auto_unbox = T, force = T)
+    if(!inherits(ReplyMarkup, "ReplyMarkup")) stop("Incorrect Keyboard type.")
+    jsonlite::toJSON(ReplyMarkup, auto_unbox = T, force = T)
   }
 }
 
@@ -52,7 +52,7 @@ KeyboardButton <- function(
 #' This object represents a \href{https://core.telegram.org/bots#keyboards}{custom keyboard}
 #' with reply options.
 #' 
-#' @param keyboard List of button rows, each represented by an list of
+#' @param keyboard List of button rows, each represented by a list of
 #'     \code{\link{KeyboardButton}} objects
 #' @param resize_keyboard Requests clients to resize the keyboard vertically
 #'     for optimal fit. Defaults to \code{FALSE}, in which case the
@@ -110,7 +110,7 @@ ReplyKeyboardMarkup <- function(
                               one_time_keyboard = one_time_keyboard,
                               selective = selective)
   ReplyKeyboardMarkup <- ReplyKeyboardMarkup[!unlist(lapply(ReplyKeyboardMarkup, is.null))]
-  class(ReplyKeyboardMarkup) <- c("ReplyKeyboardMarkup", "TGKeyboard")
+  class(ReplyKeyboardMarkup) <- c("ReplyKeyboardMarkup", "ReplyMarkup")
   ## return object
   return(ReplyKeyboardMarkup)
 }
@@ -118,7 +118,9 @@ ReplyKeyboardMarkup <- function(
 #' InlineKeyboardButton
 #'
 #' This object represents one button of an inline keyboard. You
-#' \strong{must} use exactly one of the optional fields.
+#' \strong{must} use exactly one of the optional fields. If all optional fields
+#' are NULL, by defect it will generate \code{callback_data} with same data as
+#' in \code{text}. 
 #' 
 #' \strong{Note:} After the user presses a callback button,
 #' Telegram clients will display a progress bar until you call
@@ -127,7 +129,7 @@ ReplyKeyboardMarkup <- function(
 #' to the user is needed (e.g., without specifying any of the
 #' optional parameters).
 #' 
-#' @param text Label text on the button
+#' @param text Label text on the button (Required).
 #' @param url HTTP url to be opened when button is pressed
 #' @param callback_data Data to be sent in a
 #'     \href{https://core.telegram.org/bots/api#callbackquery}{callback query}
@@ -156,12 +158,20 @@ InlineKeyboardButton <- function(
   callback_data <- check_param(callback_data, 'char')
   switch_inline_query <- check_param(switch_inline_query, 'char')
   switch_inline_query_current_chat <- check_param(switch_inline_query_current_chat, 'char')
-  ## check that 1 and only 1 optional parameter is not NULL
-  if (sum(sapply(list(url,
+  ## check if all optional parameters ar null
+  if (all(sapply(list(url,
                       callback_data,
                       switch_inline_query,
                       switch_inline_query_current_chat),
-                 function(x)!is.null(x))) != 1) stop("You must use exactly one of the optional fields.")
+                 is.null)))
+    callback_data <- text
+  ## check that 1 and only 1 optional parameter is not NULL
+  else if (sum(sapply(list(url,
+                      callback_data,
+                      switch_inline_query,
+                      switch_inline_query_current_chat),
+                 function(x) !is.null(x))) != 1)
+    stop("You must use exactly one of the optional fields.")
   ## build object
   InlineKeyboardButton <- list(text = text,
                                url = url,
@@ -198,18 +208,18 @@ InlineKeyboardButton <- function(
 #' text <- "Could you type their phone number, please?"
 #' IKM <- InlineKeyboardMarkup(
 #'   inline_keyboard = list(
-#'     list(InlineKeyboardButton(1, callback_data = 1),
-#'          InlineKeyboardButton(2, callback_data = 2),
-#'          InlineKeyboardButton(3, callback_data = 3)),
-#'     list(InlineKeyboardButton(4, callback_data = 4),
-#'          InlineKeyboardButton(5, callback_data = 5),
-#'          InlineKeyboardButton(6, callback_data = 6)),
-#'     list(InlineKeyboardButton(7, callback_data = 7),
-#'          InlineKeyboardButton(8, callback_data = 8),
-#'          InlineKeyboardButton(9, callback_data = 9)),
-#'     list(InlineKeyboardButton("*", callback_data = "*"),
-#'          InlineKeyboardButton(0, callback_data = 0),
-#'          InlineKeyboardButton("#", callback_data = "#"))
+#'     list(InlineKeyboardButton(1),
+#'          InlineKeyboardButton(2),
+#'          InlineKeyboardButton(3)),
+#'     list(InlineKeyboardButton(4),
+#'          InlineKeyboardButton(5),
+#'          InlineKeyboardButton(6)),
+#'     list(InlineKeyboardButton(7),
+#'          InlineKeyboardButton(8),
+#'          InlineKeyboardButton(9)),
+#'     list(InlineKeyboardButton("*"),
+#'          InlineKeyboardButton(0),
+#'          InlineKeyboardButton("#"))
 #'     )
 #'   )
 #' 
@@ -232,7 +242,7 @@ InlineKeyboardMarkup <- function(
   ## build object
   InlineKeyboardMarkup <- list(inline_keyboard = inline_keyboard)
   InlineKeyboardMarkup <- InlineKeyboardMarkup[!unlist(lapply(InlineKeyboardMarkup, is.null))]
-  class(InlineKeyboardMarkup) <- c("InlineKeyboardMarkup", "TGKeyboard")
+  class(InlineKeyboardMarkup) <- c("InlineKeyboardMarkup", "ReplyMarkup")
   ## return object
   return(InlineKeyboardMarkup)
 }
@@ -290,7 +300,7 @@ ReplyKeyboardRemove <- function(
   ReplyKeyboardRemove <- list(remove_keyboard = remove_keyboard,
                                selective = selective)
   ReplyKeyboardRemove <- ReplyKeyboardRemove[!unlist(lapply(ReplyKeyboardRemove, is.null))]
-  class(ReplyKeyboardRemove) <- c("ReplyKeyboardRemove", "TGKeyboard")
+  class(ReplyKeyboardRemove) <- c("ReplyKeyboardRemove", "ReplyMarkup")
   ## return object
   return(ReplyKeyboardRemove)
 }
@@ -332,7 +342,7 @@ ForceReply <- function(
   ForceReply <- list(force_reply = force_reply,
                               selective = selective)
   ForceReply <- ForceReply[!unlist(lapply(ForceReply, is.null))]
-  class(ForceReply) <- c("ForceReply", "TGKeyboard")
+  class(ForceReply) <- c("ForceReply", "ReplyMarkup")
   ## return object
   return(ForceReply)
 }

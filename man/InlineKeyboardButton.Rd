@@ -8,7 +8,7 @@ InlineKeyboardButton(text = NULL, url = NULL, callback_data = NULL,
   switch_inline_query = NULL, switch_inline_query_current_chat = NULL)
 }
 \arguments{
-\item{text}{Label text on the button}
+\item{text}{Label text on the button (Required).}
 
 \item{url}{HTTP url to be opened when button is pressed}
 
@@ -28,7 +28,9 @@ will be inserted.}
 }
 \description{
 This object represents one button of an inline keyboard. You
-\strong{must} use exactly one of the optional fields.
+\strong{must} use exactly one of the optional fields. If all optional fields
+are NULL, by defect it will generate \code{callback_data} with same data as
+in \code{text}.
 }
 \details{
 \strong{Note:} After the user presses a callback button,
