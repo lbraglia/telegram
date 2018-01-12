@@ -13,7 +13,7 @@ This updates the [`telegram` package](https://github.com/lbraglia/telegram) by:
     - ReplyKeyboardRemove
     - ForceReply
     
-- **Method `answerCallbackQuery`** available, so to answer to callback queries from inline keyboards.
+- **Adding `answerCallbackQuery` method**.
 
 - **Adding `sendChatAction` method**.
 
