@@ -31,7 +31,7 @@ get_telegram_envvar <- function(envvar_prefix){
 #'
 #' Obtain token from system variables (in \code{Renviron}) set
 #' according to package naming conventions, that is
-#' \code{R_TELEGRAM_BOT_} where \code{X} is bot's name (first question
+#' \code{R_TELEGRAM_BOT_X} where \code{X} is bot's name (first question
 #' answered to the botfather).
 #'
 #' @param x character of length 1 with the name of the bot; if

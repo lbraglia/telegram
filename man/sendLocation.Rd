@@ -21,4 +21,3 @@ the target channel (required)}
 \description{
 Send point on the map
 }
-
