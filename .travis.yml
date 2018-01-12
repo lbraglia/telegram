@@ -1,4 +1,4 @@
-# Sample .travis.yml for R projects
+# Sample .travis.yml file for R projects
 
 language: r
 sudo: required
