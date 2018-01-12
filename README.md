@@ -1,5 +1,6 @@
 # telegram
 
+[![Version]https://img.shields.io/badge/version-v0.6.2--dev-green.svg]()
 [![Travis CI Status](https://travis-ci.org/ebeneditos/telegram.svg?branch=master)](https://travis-ci.org/ebeneditos/telegram)
 
 This package is an R wrapper around the
