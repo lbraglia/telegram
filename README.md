@@ -17,7 +17,7 @@ This updates the [`telegram`](https://github.com/lbraglia/telegram) package by:
 
 - **Adding `sendChatAction` method**.
 
-This version is being reviewed so to update the stable version, so for the moment you can download its developers version with:
+This version is being reviewed so to update the stable version, for now you can download its developers one with:
 
 ```r
 devtools::install_github('ebeneditos/telegram')
