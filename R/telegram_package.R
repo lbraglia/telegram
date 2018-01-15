@@ -13,6 +13,7 @@
 #' @importFrom httr warn_for_status
 #' @importFrom httr upload_file
 #' @importFrom jsonlite fromJSON
+#' @importFrom jsonlite toJSON
 #' @importFrom curl curl_download
 #' @importFrom utils menu
 NULL
