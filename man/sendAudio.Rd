@@ -25,4 +25,3 @@ the target channel (required)}
 \description{
 Send \code{mp3} files
 }
-

@@ -22,4 +22,3 @@ the bigger) in a local file}
 \description{
 Get a list of profile pictures for a user
 }
-

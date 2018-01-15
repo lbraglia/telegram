@@ -18,4 +18,3 @@ the target channel (required)}
 \description{
 Send \code{.webp} stickers
 }
-

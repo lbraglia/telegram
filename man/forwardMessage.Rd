@@ -18,4 +18,3 @@ the target channel (required)}
 \description{
 Forward messages of any kind
 }
-
