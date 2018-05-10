@@ -26,9 +26,11 @@ Package main class (implementing the Telegram bot).
     \item{\code{\link{sendPhoto}}}{send image files}
     \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
     \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
+    \item{\code{\link{setProxy}}}{set proxy settings, see ?httr::use_proxy}
     \item{\code{\link{sendVoice}}}{send ogg files encoded with
     OPUS} }
 }
+
 \examples{
 \dontrun{
 bot <- TGBot$new(token = bot_token('RBot'))
@@ -40,4 +42,3 @@ bot <- TGBot$new(token = bot_token('RBot'))
     \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 }
 \keyword{datasets}
-

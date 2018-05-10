@@ -26,6 +26,14 @@ make_body <- function(...){
     body
 }
 
+#' setProxy
+#'
+#' Set proxy settings
+#' @param settings set proxy settings, see ?httr::use_proxy
+setProxy <- function(settings){
+  private$proxy <- settings
+}
+
 request <- function(method = NULL, body = NULL){
     if (is.null(method)) stop("method can't be null")
     api_url <- sprintf('https://api.telegram.org/bot%s/%s',
@@ -33,7 +41,9 @@ request <- function(method = NULL, body = NULL){
                        method)
     private$lr_method <- method
     private$lr_body <- body
-    private$lr_response <- r <- httr::POST(url = api_url, body = body)
+    
+    private$lr_response <- r <- httr::POST(url = api_url, body = body, config = if( !is.null( private$proxy ) ) do.call( httr::use_proxy, private$proxy ) )
+    
     httr::warn_for_status(r)
     r
 }
@@ -540,6 +550,7 @@ setWebhook <- function() not_implemented()
 #'     \item{\code{\link{sendPhoto}}}{send image files}
 #'     \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
 #'     \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
+#'     \item{\code{\link{setProxy}}}{set proxy settings, see ?httr::use_proxy}
 #'     \item{\code{\link{sendVoice}}}{send ogg files encoded with
 #'     OPUS} }
 #' @references \href{http://core.telegram.org/bots}{Bots: An
@@ -578,12 +589,14 @@ TGBot <- R6::R6Class("TGBot",
                          sendSticker          = sendSticker,
                          sendVideo            = sendVideo,
                          sendVoice            = sendVoice,
-                         setWebhook           = setWebhook
+                         setWebhook           = setWebhook,
+                         setProxy             = setProxy
                      ),
                      private = list(
                          ## ---------------------
                          ## members
                          ## ---------------------
+                         proxy = NULL,
                          token = NULL,
                          default_chat_id = NULL,
                          bot_first_name = NULL,
