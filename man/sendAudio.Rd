@@ -4,11 +4,14 @@
 \alias{sendAudio}
 \title{sendAudio}
 \usage{
-sendAudio(audio = NULL, duration = NULL, performer = NULL, title = NULL,
-  reply_to_message_id = NULL, chat_id = NULL)
+sendAudio(audio = NULL, caption = NULL, duration = NULL,
+  performer = NULL, title = NULL, reply_to_message_id = NULL,
+  chat_id = NULL)
 }
 \arguments{
 \item{audio}{path to audio file to send (required)}
+
+\item{caption}{audio caption}
 
 \item{duration}{duration of the audio in seconds}
 
@@ -25,4 +28,3 @@ the target channel (required)}
 \description{
 Send \code{mp3} files
 }
-

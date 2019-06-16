@@ -29,6 +29,7 @@ Package main class (implementing the Telegram bot).
     \item{\code{\link{sendVoice}}}{send ogg files encoded with
     OPUS} }
 }
+
 \examples{
 \dontrun{
 bot <- TGBot$new(token = bot_token('RBot'))
@@ -40,4 +41,3 @@ bot <- TGBot$new(token = bot_token('RBot'))
     \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 }
 \keyword{datasets}
-

@@ -11,4 +11,3 @@ R wrapper around the Telegram Bot API
 facilities with ease (eg you send messages, images, files from R to
 your smartphone)
 }
-

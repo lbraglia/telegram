@@ -9,4 +9,3 @@ getMe()
 \description{
 Test your bot's auth token
 }
-

@@ -16,4 +16,3 @@ between 1-100 are accepted. Defaults to 100}
 \description{
 Receive incoming updates
 }
-
