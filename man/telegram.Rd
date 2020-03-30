@@ -3,7 +3,6 @@
 \docType{package}
 \name{telegram}
 \alias{telegram}
-\alias{telegram-package}
 \title{telegram.}
 \description{
 R wrapper around the Telegram Bot API

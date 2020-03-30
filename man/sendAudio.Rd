@@ -4,9 +4,15 @@
 \alias{sendAudio}
 \title{sendAudio}
 \usage{
-sendAudio(audio = NULL, caption = NULL, duration = NULL,
-  performer = NULL, title = NULL, reply_to_message_id = NULL,
-  chat_id = NULL)
+sendAudio(
+  audio = NULL,
+  caption = NULL,
+  duration = NULL,
+  performer = NULL,
+  title = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{audio}{path to audio file to send (required)}

@@ -158,7 +158,6 @@ bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 
 ## getUserProfilePhotos
 bot$getUserProfilePhotos(user_id('me')) # <- alternatively, message.from.id variable in getUpdates
-bot$getUserProfilePhotos(user_id('me'), destfile = 'me.png')
 
 # getFile
 bot$getFile('asdasdasdqweqweqwe-UdYAAgI', # <- file_id from getUserProfilePhotos

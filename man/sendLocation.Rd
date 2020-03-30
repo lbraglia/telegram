@@ -4,8 +4,12 @@
 \alias{sendLocation}
 \title{sendLocation}
 \usage{
-sendLocation(latitude = NULL, longitude = NULL,
-  reply_to_message_id = NULL, chat_id = NULL)
+sendLocation(
+  latitude = NULL,
+  longitude = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{latitude}{Latitude of location (required)}

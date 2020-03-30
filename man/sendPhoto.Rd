@@ -4,8 +4,12 @@
 \alias{sendPhoto}
 \title{sendPhoto}
 \usage{
-sendPhoto(photo = NULL, caption = NULL, reply_to_message_id = NULL,
-  chat_id = NULL)
+sendPhoto(
+  photo = NULL,
+  caption = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{photo}{photo to send (required)}

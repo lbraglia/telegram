@@ -4,9 +4,13 @@
 \alias{sendMessage}
 \title{sendMessage}
 \usage{
-sendMessage(text = NULL, parse_mode = NULL,
-  disable_web_page_preview = NULL, reply_to_message_id = NULL,
-  chat_id = NULL)
+sendMessage(
+  text = NULL,
+  parse_mode = NULL,
+  disable_web_page_preview = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{text}{Text of the message to be sent (required)}

@@ -4,8 +4,13 @@
 \alias{sendVideo}
 \title{sendVideo}
 \usage{
-sendVideo(video = NULL, duration = NULL, caption = NULL,
-  reply_to_message_id = NULL, chat_id = NULL)
+sendVideo(
+  video = NULL,
+  duration = NULL,
+  caption = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{video}{Video to send (required)}

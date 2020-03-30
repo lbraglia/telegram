@@ -4,8 +4,12 @@
 \alias{getUserProfilePhotos}
 \title{getUserProfilePhotos}
 \usage{
-getUserProfilePhotos(user_id = NULL, offset = NULL, limit = NULL,
-  destfile = NULL)
+getUserProfilePhotos(
+  user_id = NULL,
+  offset = NULL,
+  limit = NULL,
+  destfile = NULL
+)
 }
 \arguments{
 \item{user_id}{Unique identifier of the target user (required)}

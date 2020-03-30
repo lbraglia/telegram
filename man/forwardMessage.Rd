@@ -4,8 +4,7 @@
 \alias{forwardMessage}
 \title{forwardMessage}
 \usage{
-forwardMessage(from_chat_id = NULL, message_id = NULL,
-  chat_id = NULL)
+forwardMessage(from_chat_id = NULL, message_id = NULL, chat_id = NULL)
 }
 \arguments{
 \item{from_chat_id}{Unique identifier for the chat where the

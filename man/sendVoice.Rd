@@ -4,8 +4,12 @@
 \alias{sendVoice}
 \title{sendVoice}
 \usage{
-sendVoice(voice = NULL, duration = NULL, reply_to_message_id = NULL,
-  chat_id = NULL)
+sendVoice(
+  voice = NULL,
+  duration = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{voice}{Audio file to send (required)}
