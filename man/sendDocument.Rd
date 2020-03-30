@@ -4,7 +4,8 @@
 \alias{sendDocument}
 \title{sendDocument}
 \usage{
-sendDocument(document = NULL, reply_to_message_id = NULL, chat_id = NULL)
+sendDocument(document = NULL, reply_to_message_id = NULL,
+  chat_id = NULL)
 }
 \arguments{
 \item{document}{path to the file to send (required)}
@@ -18,4 +19,3 @@ the target channel (required)}
 \description{
 Send general files
 }
-

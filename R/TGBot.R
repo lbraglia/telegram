@@ -273,11 +273,13 @@ getUserProfilePhotos <- function(user_id = NULL,
 #' @param duration duration of the audio in seconds
 #' @param performer performer
 #' @param title track name
+#' @param caption audio caption
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendAudio <- function(audio = NULL,
+                      caption = NULL,
                       duration = NULL,
                       performer = NULL,
                       title = NULL,
@@ -286,6 +288,7 @@ sendAudio <- function(audio = NULL,
 {
     ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
+    caption <- check_param(caption, 'char')
     audio <- check_file(audio, required = TRUE)
     duration <- check_param(duration, 'int')
     performer <- check_param(performer, 'char')
@@ -294,6 +297,7 @@ sendAudio <- function(audio = NULL,
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'audio' = httr::upload_file(audio),
+                      'caption' = caption,
                       'duration' = duration,
                       'performer' = performer,
                       'title' = title,

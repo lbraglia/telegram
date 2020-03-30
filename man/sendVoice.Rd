@@ -21,4 +21,3 @@ the target channel (required)}
 \description{
 Send \code{.ogg} files encoded with OPUS
 }
-

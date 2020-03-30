@@ -4,7 +4,8 @@
 \alias{sendSticker}
 \title{sendSticker}
 \usage{
-sendSticker(sticker = NULL, reply_to_message_id = NULL, chat_id = NULL)
+sendSticker(sticker = NULL, reply_to_message_id = NULL,
+  chat_id = NULL)
 }
 \arguments{
 \item{sticker}{sticker to send (required)}
@@ -18,4 +19,3 @@ the target channel (required)}
 \description{
 Send \code{.webp} stickers
 }
-

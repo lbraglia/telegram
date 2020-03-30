@@ -19,4 +19,3 @@ according to package naming conventions, that is
 \examples{
 \dontrun{ user_id('me') }
 }
-
