@@ -65,6 +65,7 @@ tgprint <- function(){
                      "sendSticker",
                      "sendVideo",
                      "sendVoice",
+                     'sendPoll',
                      "sendLocation",
                      "sendChatAction",
                      "getUserProfilePhotos",
@@ -97,7 +98,7 @@ check_chat_id <- function(chat_id){
         return(chat_id)
 }
 
-check_param <- function(param, type, required = FALSE){
+check_param <- function(param, type, required = FALSE, scalar = TRUE){
     char_name <- deparse(substitute(char))
     coerce <- c('char'      = as.character,
                 'int'       = as.integer,
@@ -106,8 +107,13 @@ check_param <- function(param, type, required = FALSE){
     if(is.null(param)){
         if (required) stop(char_name, " can't be missing.")
         else NULL
+    } else {
+        ## scalar by default (but if set to false leave a vector of
+        ## parameters (eg used in sendPoll for answers)
+        rval <- coerce[[type]](param)
+        if (scalar) rval <- rval[1]
+        rval
     }
-    else coerce[[type]](param[1])
 }
 
 check_file <- function(path, required = FALSE){
@@ -510,6 +516,72 @@ sendVoice <- function(voice = NULL,
     invisible(r)
 }
 
+
+
+#' sendPoll
+#'
+#' @param question Poll question, 1-255 characters
+#' @param options vector of possible answers: 2-10 strings 1-100
+#'     characters each
+#' @param chat_id Unique identifier for the target chat or username of
+#'     the target channel (required)
+sendPoll <- function(question = NULL,
+                     options = NULL,
+                     is_anonymous = TRUE,
+                     type = c('regular', 'quiz'),
+                     allows_multiple_answers = FALSE,
+                     correct_option_id = NULL,
+                     is_closed = FALSE,
+                     chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    question <- check_param(question, 'char')
+    options <- check_param(options, 'char', scalar = FALSE)
+    is_anonymous <- check_param(is_anonymous, 'log')
+    type <- match.arg(type)
+    allows_multiple_answers <- check_param(allows_multiple_answers, 'log')
+    ## correct options is required only for quiz polls
+    correct_option_id <- check_param(
+        correct_option_id, 'int', required = type %in% 'quiz')
+    is_closed <- check_param(is_closed, 'log')
+    
+    ## request body
+    body <- make_body('chat_id' = chat_id,
+                      'question' = question,
+                      'options' = jsonlite::toJSON(options),
+                      'is_anonymous' = is_anonymous,
+                      'type' = type,
+                      'allows_multiple_answers' = allows_multiple_answers,
+                      'correct_option_id' = correct_option_id,
+                      'is_closed' = is_closed
+                      )
+    ## request
+    r <- private$request('sendPoll', body = body)
+    ## response handling
+    invisible(r)
+}
+
+#' sendDice
+#'
+#' @param chat_id Unique identifier for the target chat or username of
+#'     the target channel (required)
+sendDice <- function(chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    body <- make_body('chat_id' = chat_id)
+    ## request
+    r <- private$request('sendDice', body = body)
+    ## response handling
+    invisible(r)
+}
+
+
+
+
+
+
 setWebhook <- function() not_implemented()
 
 
@@ -534,7 +606,9 @@ setWebhook <- function() not_implemented()
 #'     \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
 #'     \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
 #'     \item{\code{\link{sendVoice}}}{send ogg files encoded with
-#'     OPUS} }
+#'     OPUS} 
+#'     \item{\code{\link{sendPoll}}}{send a telegram poll}
+#' }
 #' @references \href{http://core.telegram.org/bots}{Bots: An
 #'     introduction for developers} and
 #'     \href{http://core.telegram.org/bots/api}{Telegram Bot API}
@@ -557,6 +631,25 @@ TGBot <- R6::R6Class("TGBot",
                          ## ---------------------
                          ## methods - TG api
                          ## ---------------------
+                         ## TODO asap
+                         ## ---------
+                         ## sendPoll
+                         ## stopPoll
+                         ## sendChatAction
+                         
+                         ## later or never
+                         ## --------------
+                         ## sendAnimation 
+                         ## sendVideoNote
+                         ## sendMediaGroup
+                         ## **LiveLocation
+                         ## sendVenue
+                         ## sendContact
+                         ## **Chat*
+                         ## answerCallbackQuery
+                         ## setMyCommands
+                         ## other **Sticker** stuff
+                         
                          forwardMessage       = forwardMessage,
                          getFile              = getFile,
                          getMe                = getMe,
@@ -564,14 +657,17 @@ TGBot <- R6::R6Class("TGBot",
                          getUserProfilePhotos = getUserProfilePhotos,
                          sendAudio            = sendAudio,
                          sendChatAction       = sendChatAction,
+                         sendDice             = sendDice,
                          sendDocument         = sendDocument,
                          sendLocation         = sendLocation,
                          sendMessage          = sendMessage,
                          sendPhoto            = sendPhoto,
+                         sendPoll             = sendPoll,
                          sendSticker          = sendSticker,
                          sendVideo            = sendVideo,
                          sendVoice            = sendVoice,
                          setWebhook           = setWebhook
+                         
                      ),
                      private = list(
                          ## ---------------------

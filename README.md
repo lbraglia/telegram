@@ -123,11 +123,6 @@ bot$sendPhoto('test.png', caption = 'This is my awesome graph')
 help(TGBot, help_type = 'pdf')
 bot$sendDocument('TGBot.pdf')
 
-## Forward a message
-bot$forwardMessage(from_chat_id = 123456,
-                   chat_id = 123456,
-                   message_id = 35)
-
 ## Send a location
 bot$sendLocation(44.699, 10.6297)
 
@@ -156,12 +151,19 @@ bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
 ## Send voice (opus encoded .ogg files)
 bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 
+## sendDice (animation of a random number between 1 and 6)
+bot$sendDice()
+
+## Forward a message
+bot$forwardMessage(from_chat_id = 123456,
+                   chat_id = 123456,
+                   message_id = 35)
+
 ## getUserProfilePhotos
 bot$getUserProfilePhotos(user_id('me')) # <- alternatively, message.from.id variable in getUpdates
 
-# getFile
+## getFile
 bot$getFile('asdasdasdqweqweqwe-UdYAAgI', # <- file_id from getUserProfilePhotos
             'me_small.png')
-
 
 ```
