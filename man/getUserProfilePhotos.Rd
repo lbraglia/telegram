@@ -4,12 +4,7 @@
 \alias{getUserProfilePhotos}
 \title{getUserProfilePhotos}
 \usage{
-getUserProfilePhotos(
-  user_id = NULL,
-  offset = NULL,
-  limit = NULL,
-  destfile = NULL
-)
+getUserProfilePhotos(user_id = NULL, offset = NULL, limit = NULL)
 }
 \arguments{
 \item{user_id}{Unique identifier of the target user (required)}
@@ -19,9 +14,6 @@ returned. By default, all photos are returned}
 
 \item{limit}{Limits the number of photos to be retrieved. Values
 between 1-100 are accepted. Defaults to 100}
-
-\item{destfile}{if a path is specified save the image (by default
-the bigger) in a local file}
 }
 \description{
 Get a list of profile pictures for a user

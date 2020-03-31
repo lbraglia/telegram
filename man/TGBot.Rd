@@ -151,12 +151,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{latex}{\out{\hypertarget{method-getUserProfilePhotos}{}}}
 \subsection{Method \code{getUserProfilePhotos()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$getUserProfilePhotos(
-  user_id = NULL,
-  offset = NULL,
-  limit = NULL,
-  destfile = NULL
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$getUserProfilePhotos(user_id = NULL, offset = NULL, limit = NULL)}\if{html}{\out{</div>}}
 }
 
 }
