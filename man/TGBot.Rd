@@ -28,6 +28,7 @@ Package main class (implementing the Telegram bot).
     \item{\code{\link{sendVoice}}}{send ogg files encoded with
     OPUS} 
     \item{\code{\link{sendPoll}}}{send a telegram poll}
+    \item{\code{\link{stopPoll}}}{stop a telegram poll and obtain results}
 }
 }
 
@@ -47,6 +48,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \item \href{#method-new}{\code{TGBot$new()}}
 \item \href{#method-set_token}{\code{TGBot$set_token()}}
 \item \href{#method-set_default_chat_id}{\code{TGBot$set_default_chat_id()}}
+\item \href{#method-req}{\code{TGBot$req()}}
 \item \href{#method-last_request}{\code{TGBot$last_request()}}
 \item \href{#method-print}{\code{TGBot$print()}}
 \item \href{#method-forwardMessage}{\code{TGBot$forwardMessage()}}
@@ -63,8 +65,9 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \item \href{#method-sendSticker}{\code{TGBot$sendSticker()}}
 \item \href{#method-sendVideo}{\code{TGBot$sendVideo()}}
 \item \href{#method-sendVoice}{\code{TGBot$sendVoice()}}
-\item \href{#method-sendPoll}{\code{TGBot$sendPoll()}}
 \item \href{#method-sendDice}{\code{TGBot$sendDice()}}
+\item \href{#method-sendPoll}{\code{TGBot$sendPoll()}}
+\item \href{#method-stopPoll}{\code{TGBot$stopPoll()}}
 \item \href{#method-setWebhook}{\code{TGBot$setWebhook()}}
 \item \href{#method-clone}{\code{TGBot$clone()}}
 }
@@ -93,6 +96,15 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \subsection{Method \code{set_default_chat_id()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$set_default_chat_id(chat_id)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-req"></a>}}
+\if{latex}{\out{\hypertarget{method-req}{}}}
+\subsection{Method \code{req()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$req(method = NULL, body = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -276,6 +288,15 @@ bot <- TGBot$new(token = bot_token('RBot'))
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-sendDice"></a>}}
+\if{latex}{\out{\hypertarget{method-sendDice}{}}}
+\subsection{Method \code{sendDice()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(chat_id = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendPoll"></a>}}
 \if{latex}{\out{\hypertarget{method-sendPoll}{}}}
 \subsection{Method \code{sendPoll()}}{
@@ -294,11 +315,11 @@ bot <- TGBot$new(token = bot_token('RBot'))
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendDice"></a>}}
-\if{latex}{\out{\hypertarget{method-sendDice}{}}}
-\subsection{Method \code{sendDice()}}{
+\if{html}{\out{<a id="method-stopPoll"></a>}}
+\if{latex}{\out{\hypertarget{method-stopPoll}{}}}
+\subsection{Method \code{stopPoll()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(chat_id = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$stopPoll(message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
 }
 
 }
