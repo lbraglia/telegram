@@ -89,6 +89,16 @@ you'll be able to use the `user_id` function, eg like this:
 ```r
 bot$set_default_chat_id(user_id('me'))
 ```
+Specularly if you need to interact frequently with a group, you may want 
+to add this to your `.Renviron` (group chat id are negative integers):
+```bash
+R_TELEGRAM_GROUP_fav_group=-123456789
+```
+you'll be able to use the `group_id` function, eg like this:
+```r
+bot$set_default_chat_id(group_id('fav_group'))
+```
+
 
 ## Examples of methods currently implemented
 Once you've followed the previous section, run the following commands
