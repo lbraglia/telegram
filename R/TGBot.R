@@ -517,6 +517,21 @@ sendVoice <- function(voice = NULL,
 }
 
 
+#' sendDice
+#'
+#' @param chat_id Unique identifier for the target chat or username of
+#'     the target channel (required)
+sendDice <- function(chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    body <- make_body('chat_id' = chat_id)
+    ## request
+    r <- private$request('sendDice', body = body)
+    ## response handling
+    invisible(r)
+}
+
 
 #' sendPoll
 #'
@@ -562,24 +577,27 @@ sendPoll <- function(question = NULL,
     invisible(r)
 }
 
-#' sendDice
+
+#' stopPoll
 #'
+#' @param message_id Identifier of the original message with the poll
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
-sendDice <- function(chat_id = NULL)
+stopPoll <- function(message_id = NULL,
+                     chat_id = NULL)
 {
     ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
-    body <- make_body('chat_id' = chat_id)
+    ## message_id <- check_param(message_id, 'int', required = TRUE)
+    
+    ## request body
+    body <- make_body('chat_id' = chat_id,
+                      'message_id' = message_id)
     ## request
-    r <- private$request('sendDice', body = body)
+    r <- private$request('stopPoll', body = body)
     ## response handling
     invisible(r)
 }
-
-
-
-
 
 
 setWebhook <- function() not_implemented()
@@ -608,6 +626,7 @@ setWebhook <- function() not_implemented()
 #'     \item{\code{\link{sendVoice}}}{send ogg files encoded with
 #'     OPUS} 
 #'     \item{\code{\link{sendPoll}}}{send a telegram poll}
+#'     \item{\code{\link{stopPoll}}}{stop a telegram poll and obtain results}
 #' }
 #' @references \href{http://core.telegram.org/bots}{Bots: An
 #'     introduction for developers} and
@@ -631,11 +650,6 @@ TGBot <- R6::R6Class("TGBot",
                          ## ---------------------
                          ## methods - TG api
                          ## ---------------------
-                         ## TODO asap
-                         ## ---------
-                         ## sendPoll
-                         ## stopPoll
-                         ## sendChatAction
                          
                          ## later or never
                          ## --------------
@@ -666,7 +680,8 @@ TGBot <- R6::R6Class("TGBot",
                          sendSticker          = sendSticker,
                          sendVideo            = sendVideo,
                          sendVoice            = sendVoice,
-                         setWebhook           = setWebhook
+                         setWebhook           = setWebhook,
+                         stopPoll             = stopPoll
                          
                      ),
                      private = list(
