@@ -26,7 +26,6 @@ get_telegram_envvar <- function(envvar_prefix){
     return(f)
 }
 
-
 #' bot_token
 #'
 #' Obtain token from system variables (in \code{Renviron}) set
@@ -52,6 +51,17 @@ bot_token <- get_telegram_envvar('R_TELEGRAM_BOT_')
 #'     proper token returned
 #' @examples \dontrun{ user_id('me') }
 #' @export
-
-#' @export
 user_id <- get_telegram_envvar('R_TELEGRAM_USER_')
+
+#' group_id
+#'
+#' Obtain telegram user id from system variables (in \code{Renviron}) set
+#' according to package naming conventions, that is
+#' \code{R_TELEGRAM_USER_X} where is the user's name .
+#'
+#' @param x character of length 1 with the name of the user; if
+#'     \code{NULL} a menu to choose between bot is displayed and the
+#'     proper token returned
+#' @examples \dontrun{ group_id('test_group') }
+#' @export
+group_id <- get_telegram_envvar('R_TELEGRAM_GROUP_')
