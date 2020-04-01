@@ -26,7 +26,9 @@ Package main class (implementing the Telegram bot).
     \item{\code{\link{sendSticker}}}{send \code{.webp} stickers}
     \item{\code{\link{sendVideo}}}{send \code{mp4} videos}
     \item{\code{\link{sendVoice}}}{send ogg files encoded with
-    OPUS} }
+    OPUS} 
+    \item{\code{\link{sendPoll}}}{send a telegram poll}
+}
 }
 
 \examples{
@@ -61,6 +63,8 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \item \href{#method-sendSticker}{\code{TGBot$sendSticker()}}
 \item \href{#method-sendVideo}{\code{TGBot$sendVideo()}}
 \item \href{#method-sendVoice}{\code{TGBot$sendVoice()}}
+\item \href{#method-sendPoll}{\code{TGBot$sendPoll()}}
+\item \href{#method-sendDice}{\code{TGBot$sendDice()}}
 \item \href{#method-setWebhook}{\code{TGBot$setWebhook()}}
 \item \href{#method-clone}{\code{TGBot$clone()}}
 }
@@ -268,6 +272,33 @@ bot <- TGBot$new(token = bot_token('RBot'))
   reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-sendPoll"></a>}}
+\if{latex}{\out{\hypertarget{method-sendPoll}{}}}
+\subsection{Method \code{sendPoll()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendPoll(
+  question = NULL,
+  options = NULL,
+  is_anonymous = TRUE,
+  type = c("regular", "quiz"),
+  allows_multiple_answers = FALSE,
+  correct_option_id = NULL,
+  is_closed = FALSE,
+  chat_id = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-sendDice"></a>}}
+\if{latex}{\out{\hypertarget{method-sendDice}{}}}
+\subsection{Method \code{sendDice()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(chat_id = NULL)}\if{html}{\out{</div>}}
 }
 
 }

@@ -2,6 +2,7 @@
 
 export(TGBot)
 export(bot_token)
+export(group_id)
 export(user_id)
 importFrom(R6,R6Class)
 importFrom(curl,curl_download)
@@ -10,4 +11,5 @@ importFrom(httr,content)
 importFrom(httr,upload_file)
 importFrom(httr,warn_for_status)
 importFrom(jsonlite,fromJSON)
+importFrom(jsonlite,toJSON)
 importFrom(utils,menu)

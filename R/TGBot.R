@@ -39,13 +39,12 @@ request <- function(method = NULL, body = NULL){
 }
 
 last_request <- function(){
-
     list('method'   = private$lr_method,
          'body'     = private$lr_body,
          'response' = private$lr_response)
-
 }
 
+## pretty printer for methods
 make_methods_string <- function(meth, incipit){
     wrap_at <- 72
     meth_string <- paste0(incipit, '\n',  paste(meth, collapse = ", "))
@@ -98,6 +97,12 @@ check_chat_id <- function(chat_id){
         return(chat_id)
 }
 
+## check for user insertion for a method
+## - param is the insertion
+## - type is data type
+## - required is if the parameter is required for the method
+## - if scalar is TRUE take only the first element (of the object, eg
+##   the vector)
 check_param <- function(param, type, required = FALSE, scalar = TRUE){
     char_name <- deparse(substitute(char))
     coerce <- c('char'      = as.character,
@@ -625,8 +630,10 @@ TGBot <- R6::R6Class("TGBot",
                          set_token = set_token,
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
-                         last_request = last_request, ## for debug only,
-                                                      ## comment on release!
+
+                         ## This is for development/debug only, comment on release!
+                         req = request,
+                         last_request = last_request,
 
                          ## ---------------------
                          ## methods - TG api
@@ -635,14 +642,14 @@ TGBot <- R6::R6Class("TGBot",
                          ## ---------
                          ## sendPoll
                          ## stopPoll
-                         ## sendChatAction
                          
                          ## later or never
                          ## --------------
                          ## sendAnimation 
-                         ## sendVideoNote
                          ## sendMediaGroup
+                         ## sendVideoNote
                          ## **LiveLocation
+                         ## sendChatAction
                          ## sendVenue
                          ## sendContact
                          ## **Chat*
