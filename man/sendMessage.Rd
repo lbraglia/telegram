@@ -8,6 +8,7 @@ sendMessage(
   text = NULL,
   parse_mode = NULL,
   disable_web_page_preview = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )
@@ -20,6 +21,9 @@ bold, italic and inline URLs in your bot's message}
 
 \item{disable_web_page_preview}{Disables link previews for links in
 this message}
+
+\item{disable_notification}{Sends the message silently. Users will
+receive a notification with no sound}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}

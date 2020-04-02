@@ -229,6 +229,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
   text = NULL,
   parse_mode = NULL,
   disable_web_page_preview = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}

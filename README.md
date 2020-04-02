@@ -105,41 +105,61 @@ Once you've followed the previous section, run the following commands
 and look at your phone.
 
 ```r
-## Send some messages..
-bot$sendMessage('This is text')
-## Markdown support for messages
-md1 <- "*bold* _italic_ [r-project](http://r-project.org) "
-md2 <- " try `x <- rnorm(100)` at the console ..."
-## below left spaces just for github displaying (not needed in the .R src)
-md3 <- "
+## ------------------
+## Send some messages
+## ------------------
+bot$sendMessage('This is plain text)
+
+## Markdown support (version 2 via parse_mode = 'markdownv2')
+md <- "
+*bold* _italic_ [r-project](http://r-project.org) 
+try `x <- rnorm(100)` at the console ...
 you can have
     ``` 
     x <- runif(100)
     mean(x)
     ```
 too
-" 
-bot$sendMessage(md1, parse_mode = 'markdown')
-bot$sendMessage(md2, parse_mode = 'markdown')
-bot$sendMessage(md3, parse_mode = 'markdown')
+"
+bot$sendMessage(md, parse_mode = 'markdown')
+## HTML support (eg)
+html_message <- "
+<b>bold</b>, <i>italic</i>, <u>underline</u>,
+<s>strikethrough</s>,
+<a href='http://www.example.com/'>inline URL</a>
+<a href='tg://user?id=123456789'>inline mention of a user</a>
+<code>inline fixed-width code</code>
+<pre>pre-formatted fixed-width code block</pre>
+"
+bot$sendMessage(html_message, parse_mode = 'html')
 
-## Send a image/photo
+## -------------------
+## Send an image/photo
+## -------------------
 png('test.png')
 plot(rnorm(100))
 dev.off()
 bot$sendPhoto('test.png', caption = 'This is my awesome graph')
 
+## ---------------------------------
 ## Send a document (can be any file)
+## ---------------------------------
 help(TGBot, help_type = 'pdf')
 bot$sendDocument('TGBot.pdf')
 
+## ---------------
 ## Send a location
+## ---------------
 bot$sendLocation(44.699, 10.6297)
 
+## --------------
 ## Send a sticker
+## --------------
 bot$sendSticker(system.file('r_logo.webp', package = 'telegram'))
 
+## ------------
 ## Send a video
+## ------------
 library(animation)
 saveVideo({
     set.seed(1)
@@ -154,25 +174,53 @@ saveVideo({
 }, video.name = 'animation.mp4')
 bot$sendVideo('animation.mp4')
 
+## --------------------
 ## Send mp3 audio files
+## --------------------
 bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
               performer = 'espeak (http://espeak.sf.net)')
 
+## ------------------------------------
 ## Send voice (opus encoded .ogg files)
+## ------------------------------------
 bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 
-## sendDice (animation of a random number between 1 and 6)
+## ----------------------------------------------------------
+## Roll a dice (animation of a random number between 1 and 6)
+## ----------------------------------------------------------
 bot$sendDice()
 
+## ------------
+## Start a poll
+## ------------
+bot$sendPoll(question = 'What is your gender?',
+             options = c('Female', 'Male'))
+bot$sendPoll(question = "What was the color of Napoleon's horse?",
+             options = c('black', 'yellow', 'white', 'green', 'pois'),
+             is_anonymous = FALSE,
+             type = 'quiz',
+             correct_option_id = 2) ## it's 0 based so 2 is the third
+                                    ## option (white)
+bot$sendPoll(question = "Which genres of music do you listen to the most?",
+             options = c('blues', 'rock', 'metal', 'rnb', 'jazz', 'pop'),
+             is_anonymous = FALSE,
+             allows_multiple_answers = TRUE)
+
+## -----------------
 ## Forward a message
+## -----------------
 bot$forwardMessage(from_chat_id = 123456,
                    chat_id = 123456,
                    message_id = 35)
 
-## getUserProfilePhotos
+## ---------------------------
+## Get info about user's photo
+## ---------------------------
 bot$getUserProfilePhotos(user_id('me')) # <- alternatively, message.from.id variable in getUpdates
 
-## getFile
+## ------------------------------------
+## Obtain files on the Telegram servers
+## ------------------------------------
 bot$getFile('asdasdasdqweqweqwe-UdYAAgI', # <- file_id from getUserProfilePhotos
             'me_small.png')
 
