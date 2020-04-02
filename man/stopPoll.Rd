@@ -13,5 +13,5 @@ stopPoll(message_id = NULL, chat_id = NULL)
 the target channel (required)}
 }
 \description{
-stopPoll
+Use this method to stop a poll which was sent by the bot.
 }

@@ -21,9 +21,24 @@ sendPoll(
 \item{options}{vector of possible answers: 2-10 strings 1-100
 characters each}
 
+\item{is_anonymous}{if TRUE (default) the poll needs to be
+anonymous}
+
+\item{type}{poll type, 'quiz' or 'regular', defaults to 'regular'}
+
+\item{allows_multiple_answers}{if TRUE the poll allows multiple
+answers (default to FALSE and ignored for polls in quiz mode)}
+
+\item{correct_option_id}{0-based identifier of the correct answer
+option, required for polls in quiz mode (eg 0 set the first
+answer as correct)}
+
+\item{is_closed}{if TRUE the poll needs to be immediately
+closed. This can be useful for poll preview. (default to FALSE)}
+
 \item{chat_id}{Unique identifier for the target chat or username of
 the target channel (required)}
 }
 \description{
-sendPoll
+Use this method to send a native poll.
 }

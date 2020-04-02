@@ -11,5 +11,6 @@ sendDice(chat_id = NULL)
 the target channel (required)}
 }
 \description{
-sendDice
+Use this method to send a dice, which will have a random value from
+1 to 6.
 }
