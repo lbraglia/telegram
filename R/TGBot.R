@@ -170,6 +170,7 @@ forwardMessage <- function(from_chat_id = NULL,
 #' getFile
 #'
 #' Get info about a file and download it
+#'
 #' @param file_id File identifier (required)
 #' @param destfile Destination path; if specified the file will be
 #'     downloaded
@@ -212,6 +213,7 @@ getMe <- function()
 #' getUpdates
 #'
 #' Receive incoming updates
+#' 
 #' @param offset Identifier of the first update to be returned
 #'     returned.
 #' @param limit Limits the number of updates to be retrieved. Values
@@ -237,6 +239,7 @@ getUpdates <- function(offset = NULL,
 #' getUserProfilePhotos
 #'
 #' Get a list of profile pictures for a user
+#' 
 #' @param user_id Unique identifier of the target user (required)
 #' @param offset Sequential number of the first photo to be
 #'     returned. By default, all photos are returned
@@ -268,6 +271,7 @@ getUserProfilePhotos <- function(user_id = NULL,
 #' sendAudio
 #'
 #' Send \code{mp3} files
+#' 
 #' @param audio path to audio file to send (required)
 #' @param duration duration of the audio in seconds
 #' @param performer performer
@@ -312,6 +316,7 @@ sendChatAction <- function() not_implemented()
 #' sendDocument
 #'
 #' Send general files
+#' 
 #' @param document path to the file to send (required)
 #' @param reply_to_message_id if the message is a reply, ID of the
 #'     original message
@@ -338,6 +343,7 @@ sendDocument <- function(document = NULL,
 #' sendLocation
 #'
 #' Send point on the map
+#' 
 #' @param latitude Latitude of location (required)
 #' @param longitude Longitude of location (required)
 #' @param reply_to_message_id If the message is a reply, ID of the
@@ -368,6 +374,7 @@ sendLocation <- function(latitude = NULL,
 #' sendMessage
 #'
 #' Send text messages
+#' 
 #' @param text Text of the message to be sent (required)
 #' @param parse_mode send 'Markdown' if you want Telegram apps to show
 #'     bold, italic and inline URLs in your bot's message
@@ -404,6 +411,7 @@ sendMessage <- function(text = NULL,
 #' sendPhoto
 #'
 #' Send image files
+#' 
 #' @param photo photo to send (required)
 #' @param caption photo caption
 #' @param reply_to_message_id If the message is a reply, ID of the
@@ -434,6 +442,7 @@ sendPhoto <- function(photo = NULL,
 #' sendSticker
 #'
 #' Send \code{.webp} stickers
+#' 
 #' @param sticker sticker to send (required)
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
@@ -460,6 +469,7 @@ sendSticker <- function(sticker = NULL,
 #' sendVideo
 #'
 #' Send \code{mp4} videos
+#' 
 #' @param video Video to send (required)
 #' @param duration Duration of sent video in seconds
 #' @param caption Video caption
@@ -494,6 +504,7 @@ sendVideo <- function(video = NULL,
 #' sendVoice
 #'
 #' Send \code{.ogg} files encoded with OPUS
+#' 
 #' @param voice Audio file to send (required)
 #' @param duration Duration of sent audio in seconds
 #' @param reply_to_message_id If the message is a reply, ID of the
@@ -524,6 +535,9 @@ sendVoice <- function(voice = NULL,
 
 #' sendDice
 #'
+#' Use this method to send a dice, which will have a random value from
+#' 1 to 6.
+#'
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendDice <- function(chat_id = NULL)
@@ -540,11 +554,24 @@ sendDice <- function(chat_id = NULL)
 
 #' sendPoll
 #'
+#' Use this method to send a native poll.
+#' 
 #' @param question Poll question, 1-255 characters
 #' @param options vector of possible answers: 2-10 strings 1-100
 #'     characters each
+#' @param is_anonymous if TRUE (default) the poll needs to be
+#'     anonymous
+#' @param type poll type, 'quiz' or 'regular', defaults to 'regular'
+#' @param allows_multiple_answers if TRUE the poll allows multiple
+#'     answers (default to FALSE and ignored for polls in quiz mode)
+#' @param correct_option_id 0-based identifier of the correct answer
+#'     option, required for polls in quiz mode (eg 0 set the first
+#'     answer as correct)
+#' @param is_closed if TRUE the poll needs to be immediately
+#'     closed. This can be useful for poll preview. (default to FALSE)
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
+#' 
 sendPoll <- function(question = NULL,
                      options = NULL,
                      is_anonymous = TRUE,
@@ -565,7 +592,6 @@ sendPoll <- function(question = NULL,
     correct_option_id <- check_param(
         correct_option_id, 'int', required = type %in% 'quiz')
     is_closed <- check_param(is_closed, 'log')
-    
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'question' = question,
@@ -585,6 +611,8 @@ sendPoll <- function(question = NULL,
 
 #' stopPoll
 #'
+#' Use this method to stop a poll which was sent by the bot.
+#' 
 #' @param message_id Identifier of the original message with the poll
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
