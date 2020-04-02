@@ -141,25 +141,37 @@ parsed_content <- function(x){
 ## TG API
 ## ------
 
+## DISABLE NOTIFICATION
+## #' @param disable_notification Sends the message silently. Users will
+## #'     receive a notification with no sound
+
+##     disable_notification <- check_param(disable_notification, 'log')
+## 'disable_notification' = disable_notification,
+
 #' forwardMessage
 #'
 #' Forward messages of any kind
 #' @param from_chat_id Unique identifier for the chat where the
 #'     original message was sent (required)
 #' @param message_id Unique message identifier (required)
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 forwardMessage <- function(from_chat_id = NULL,
                            message_id = NULL,
+                           disable_notification = NULL,
                            chat_id = NULL)
 {
     ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
     from_chat_id <- check_param(from_chat_id, 'char', required = TRUE)
     message_id <- check_param(message_id, 'char', required = TRUE)
+    disable_notification <- check_param(disable_notification, 'log')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'from_chat_id' = from_chat_id,
+                      'disable_notification' = disable_notification,
                       'message_id' = message_id)
     ## request
     r <- private$request('forwardMessage', body = body)
