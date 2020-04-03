@@ -4,10 +4,18 @@
 \alias{sendSticker}
 \title{sendSticker}
 \usage{
-sendSticker(sticker = NULL, reply_to_message_id = NULL, chat_id = NULL)
+sendSticker(
+  sticker = NULL,
+  disable_notification = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)
 }
 \arguments{
 \item{sticker}{sticker to send (required)}
+
+\item{disable_notification}{Sends the message silently. Users will
+receive a notification with no sound}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}

@@ -131,7 +131,12 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{latex}{\out{\hypertarget{method-forwardMessage}{}}}
 \subsection{Method \code{forwardMessage()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$forwardMessage(from_chat_id = NULL, message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$forwardMessage(
+  from_chat_id = NULL,
+  message_id = NULL,
+  disable_notification = NULL,
+  chat_id = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -182,6 +187,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
   duration = NULL,
   performer = NULL,
   title = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}
@@ -202,7 +208,12 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{latex}{\out{\hypertarget{method-sendDocument}{}}}
 \subsection{Method \code{sendDocument()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDocument(document = NULL, reply_to_message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDocument(
+  document = NULL,
+  disable_notification = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -214,6 +225,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendLocation(
   latitude = NULL,
   longitude = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}
@@ -244,6 +256,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendPhoto(
   photo = NULL,
   caption = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}
@@ -255,7 +268,12 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{latex}{\out{\hypertarget{method-sendSticker}{}}}
 \subsection{Method \code{sendSticker()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendSticker(sticker = NULL, reply_to_message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendSticker(
+  sticker = NULL,
+  disable_notification = NULL,
+  reply_to_message_id = NULL,
+  chat_id = NULL
+)}\if{html}{\out{</div>}}
 }
 
 }
@@ -282,6 +300,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendVoice(
   voice = NULL,
   duration = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}
@@ -293,7 +312,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \if{latex}{\out{\hypertarget{method-sendDice}{}}}
 \subsection{Method \code{sendDice()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(chat_id = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(disable_notification = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
 }
 
 }
@@ -310,6 +329,8 @@ bot <- TGBot$new(token = bot_token('RBot'))
   allows_multiple_answers = FALSE,
   correct_option_id = NULL,
   is_closed = FALSE,
+  disable_notification = NULL,
+  reply_to_message_id = NULL,
   chat_id = NULL
 )}\if{html}{\out{</div>}}
 }

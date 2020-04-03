@@ -141,16 +141,10 @@ parsed_content <- function(x){
 ## TG API
 ## ------
 
-## DISABLE NOTIFICATION
-## #' @param disable_notification Sends the message silently. Users will
-## #'     receive a notification with no sound
-
-##     disable_notification <- check_param(disable_notification, 'log')
-## 'disable_notification' = disable_notification,
-
 #' forwardMessage
 #'
 #' Forward messages of any kind
+#' 
 #' @param from_chat_id Unique identifier for the chat where the
 #'     original message was sent (required)
 #' @param message_id Unique message identifier (required)
@@ -280,6 +274,8 @@ getUserProfilePhotos <- function(user_id = NULL,
         invisible(NULL)
 }
 
+
+
 #' sendAudio
 #'
 #' Send \code{mp3} files
@@ -289,6 +285,8 @@ getUserProfilePhotos <- function(user_id = NULL,
 #' @param performer performer
 #' @param title track name
 #' @param caption audio caption
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
@@ -298,6 +296,7 @@ sendAudio <- function(audio = NULL,
                       duration = NULL,
                       performer = NULL,
                       title = NULL,
+                      disable_notification = NULL,
                       reply_to_message_id = NULL,
                       chat_id = NULL)
 {
@@ -308,6 +307,7 @@ sendAudio <- function(audio = NULL,
     duration <- check_param(duration, 'int')
     performer <- check_param(performer, 'char')
     title <- check_param(title, 'char')
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
@@ -316,6 +316,7 @@ sendAudio <- function(audio = NULL,
                       'duration' = duration,
                       'performer' = performer,
                       'title' = title,
+                      'disable_notification' = disable_notification,
                       'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendAudio', body = body)
@@ -330,21 +331,26 @@ sendChatAction <- function() not_implemented()
 #' Send general files
 #' 
 #' @param document path to the file to send (required)
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param reply_to_message_id if the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendDocument <- function(document = NULL,
+                         disable_notification = NULL,
                          reply_to_message_id = NULL,
                          chat_id = NULL)
 {
     ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
     document <- check_file(document, required = TRUE)
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'document' = httr::upload_file(document),
+                      'disable_notification' = disable_notification,
                       'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendDocument', body = body)
@@ -358,12 +364,15 @@ sendDocument <- function(document = NULL,
 #' 
 #' @param latitude Latitude of location (required)
 #' @param longitude Longitude of location (required)
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendLocation <- function(latitude = NULL,
                          longitude = NULL,
+                         disable_notification = NULL,
                          reply_to_message_id = NULL,
                          chat_id = NULL)
 {
@@ -371,11 +380,13 @@ sendLocation <- function(latitude = NULL,
     chat_id <- private$check_chat_id(chat_id = chat_id)
     latitude <- check_param(latitude, 'float', required = TRUE)
     longitude <- check_param(longitude, 'float', required = TRUE)
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'latitude' = latitude,
                       'longitude' = longitude,
+                      'disable_notification' = disable_notification,
                       'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendLocation', body = body)
@@ -431,12 +442,15 @@ sendMessage <- function(text = NULL,
 #' 
 #' @param photo photo to send (required)
 #' @param caption photo caption
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendPhoto <- function(photo = NULL,
                       caption = NULL,
+                      disable_notification = NULL,
                       reply_to_message_id = NULL,
                       chat_id = NULL)
 {
@@ -444,11 +458,13 @@ sendPhoto <- function(photo = NULL,
     chat_id <- private$check_chat_id(chat_id = chat_id)
     photo <- check_file(photo, required = TRUE)
     caption <- check_param(caption, 'char')
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'photo' = httr::upload_file(photo),
                       'caption' = caption,
+                      'disable_notification' = disable_notification,
                       'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendPhoto', body = body)
@@ -461,21 +477,26 @@ sendPhoto <- function(photo = NULL,
 #' Send \code{.webp} stickers
 #' 
 #' @param sticker sticker to send (required)
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendSticker <- function(sticker = NULL,
+                        disable_notification = NULL,
                         reply_to_message_id = NULL,
                         chat_id = NULL)
 {
     ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
     sticker <- check_file(sticker, required = TRUE)
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'sticker' = httr::upload_file(sticker),
+                      'disable_notification' = disable_notification,
                       'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendSticker', body = body)
@@ -524,12 +545,15 @@ sendVideo <- function(video = NULL,
 #' 
 #' @param voice Audio file to send (required)
 #' @param duration Duration of sent audio in seconds
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param reply_to_message_id If the message is a reply, ID of the
 #'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 sendVoice <- function(voice = NULL,
                       duration = NULL,
+                      disable_notification = NULL,
                       reply_to_message_id = NULL,
                       chat_id = NULL)
 {
@@ -537,11 +561,13 @@ sendVoice <- function(voice = NULL,
     chat_id <- private$check_chat_id(chat_id = chat_id)
     voice <- check_file(voice, required = TRUE)
     duration <- check_param(duration, 'int')
+    disable_notification <- check_param(disable_notification, 'log')
     reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'voice' = httr::upload_file(voice),
                       'duration' = duration,
+                      'disable_notification' = disable_notification,
                       'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendVoice', body = body)
@@ -549,25 +575,30 @@ sendVoice <- function(voice = NULL,
     invisible(r)
 }
 
-
 #' sendDice
 #'
 #' Use this method to send a dice, which will have a random value from
 #' 1 to 6.
 #'
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
-sendDice <- function(chat_id = NULL)
+sendDice <- function(disable_notification = NULL,
+                     chat_id = NULL)
 {
     ## params
     chat_id <- private$check_chat_id(chat_id = chat_id)
-    body <- make_body('chat_id' = chat_id)
+    disable_notification <- check_param(disable_notification, 'log')
+    ## request body
+    body <- make_body(
+        'chat_id' = chat_id,
+        'disable_notification' = disable_notification)
     ## request
     r <- private$request('sendDice', body = body)
     ## response handling
     invisible(r)
 }
-
 
 #' sendPoll
 #'
@@ -586,6 +617,10 @@ sendDice <- function(chat_id = NULL)
 #'     answer as correct)
 #' @param is_closed if TRUE the poll needs to be immediately
 #'     closed. This can be useful for poll preview. (default to FALSE)
+#' @param disable_notification Sends the message silently. Users will
+#'     receive a notification with no sound
+#' @param reply_to_message_id If the message is a reply, ID of the
+#'     original message
 #' @param chat_id Unique identifier for the target chat or username of
 #'     the target channel (required)
 #' 
@@ -596,6 +631,8 @@ sendPoll <- function(question = NULL,
                      allows_multiple_answers = FALSE,
                      correct_option_id = NULL,
                      is_closed = FALSE,
+                     disable_notification = NULL,
+                     reply_to_message_id = NULL,
                      chat_id = NULL)
 {
     ## params
@@ -609,6 +646,8 @@ sendPoll <- function(question = NULL,
     correct_option_id <- check_param(
         correct_option_id, 'int', required = type %in% 'quiz')
     is_closed <- check_param(is_closed, 'log')
+    disable_notification <- check_param(disable_notification, 'log')
+    reply_to_message_id <- check_param(reply_to_message_id, 'int')
     ## request body
     body <- make_body('chat_id' = chat_id,
                       'question' = question,
@@ -617,8 +656,9 @@ sendPoll <- function(question = NULL,
                       'type' = type,
                       'allows_multiple_answers' = allows_multiple_answers,
                       'correct_option_id' = correct_option_id,
-                      'is_closed' = is_closed
-                      )
+                      'disable_notification' = disable_notification,
+                      'is_closed' = is_closed,
+                      'reply_to_message_id' = reply_to_message_id)
     ## request
     r <- private$request('sendPoll', body = body)
     ## response handling

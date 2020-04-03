@@ -4,9 +4,12 @@
 \alias{sendDice}
 \title{sendDice}
 \usage{
-sendDice(chat_id = NULL)
+sendDice(disable_notification = NULL, chat_id = NULL)
 }
 \arguments{
+\item{disable_notification}{Sends the message silently. Users will
+receive a notification with no sound}
+
 \item{chat_id}{Unique identifier for the target chat or username of
 the target channel (required)}
 }

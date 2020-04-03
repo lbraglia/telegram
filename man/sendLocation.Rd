@@ -7,6 +7,7 @@
 sendLocation(
   latitude = NULL,
   longitude = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )
@@ -15,6 +16,9 @@ sendLocation(
 \item{latitude}{Latitude of location (required)}
 
 \item{longitude}{Longitude of location (required)}
+
+\item{disable_notification}{Sends the message silently. Users will
+receive a notification with no sound}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}

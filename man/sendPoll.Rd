@@ -12,6 +12,8 @@ sendPoll(
   allows_multiple_answers = FALSE,
   correct_option_id = NULL,
   is_closed = FALSE,
+  disable_notification = NULL,
+  reply_to_message_id = NULL,
   chat_id = NULL
 )
 }
@@ -35,6 +37,12 @@ answer as correct)}
 
 \item{is_closed}{if TRUE the poll needs to be immediately
 closed. This can be useful for poll preview. (default to FALSE)}
+
+\item{disable_notification}{Sends the message silently. Users will
+receive a notification with no sound}
+
+\item{reply_to_message_id}{If the message is a reply, ID of the
+original message}
 
 \item{chat_id}{Unique identifier for the target chat or username of
 the target channel (required)}

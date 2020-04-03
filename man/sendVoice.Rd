@@ -7,6 +7,7 @@
 sendVoice(
   voice = NULL,
   duration = NULL,
+  disable_notification = NULL,
   reply_to_message_id = NULL,
   chat_id = NULL
 )
@@ -15,6 +16,9 @@ sendVoice(
 \item{voice}{Audio file to send (required)}
 
 \item{duration}{Duration of sent audio in seconds}
+
+\item{disable_notification}{Sends the message silently. Users will
+receive a notification with no sound}
 
 \item{reply_to_message_id}{If the message is a reply, ID of the
 original message}
