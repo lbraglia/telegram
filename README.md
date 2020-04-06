@@ -108,7 +108,7 @@ and look at your phone.
 ## ------------------
 ## Send some messages
 ## ------------------
-bot$sendMessage('This is plain text)
+bot$sendMessage('This is plain text')
 
 ## Markdown support (version 2 via parse_mode = 'markdownv2')
 md <- "
