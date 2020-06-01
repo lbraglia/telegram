@@ -1,6 +1,8 @@
 Version 0.7
 -----------
 
+*  proxy setup using in TGBot call or using set_proxy method (both takes
+   a list of parameters passed to httr::use_proxy
 * `group_id` utility function (it work the same as `bot_token` or
   `user_id`, by using the `R_TELEGRAM_GROUP_` prefix);
 * `sendDice` method;

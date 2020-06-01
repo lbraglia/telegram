@@ -3,6 +3,7 @@
 export(TGBot)
 export(bot_token)
 export(group_id)
+export(proxy)
 export(user_id)
 importFrom(R6,R6Class)
 importFrom(curl,curl_download)

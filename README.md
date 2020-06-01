@@ -99,6 +99,59 @@ you'll be able to use the `group_id` function, eg like this:
 bot$set_default_chat_id(group_id('fav_group'))
 ```
 
+## How to connect using a proxy
+Proxy parameters are expected to be a named list (names as parameters
+passed to `httr::use_proxy`:
+
+```r
+
+## On initialization speci
+prx <- list('url' = '123.45.6.78',
+            'port' = 8080,
+            'username' = 'user',
+            'password' = 'password')
+bot <- TGBot$new(token = bot_token('RBot'), proxy = prx)
+
+##  .. or later (but before requests) ...
+bot <- TGBot$new(token = bot_token('RBot'))
+bot$set_proxy(proxy = prx)
+
+## if you want to save default proxy values in .Renviron using the following
+## schema
+##
+## R_TELEGRAM_PROXY_default_url=123.45.6.78
+## R_TELEGRAM_PROXY_default_port=8080
+## R_TELEGRAM_PROXY_default_username=user
+## R_TELEGRAM_PROXY_default_password=password
+## R_TELEGRAM_PROXY_default_auth=basic
+##
+## you can use the proxy utility function
+##
+
+proxy('default')
+
+## which should return
+## 
+## $auth
+## [1] "basic"
+## 
+## $password
+## [1] "password"
+## 
+## $port
+## [1] "8080"
+## 
+## $url
+## [1] "123.45.6.78"
+## 
+## $username
+## [1] "user"
+##
+##
+## therefore, for a handy one-liner:
+
+bot <- TGBot$new(token = bot_token('RBot'), proxy = proxy('default'))
+```
 
 ## Examples of methods currently implemented
 Once you've followed the previous section, run the following commands

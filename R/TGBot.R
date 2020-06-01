@@ -6,14 +6,35 @@ self    <- 'shut up R CMD CHECK'
 private <- 'shut up R CMD CHECK'
 not_implemented <- function() stop('Currently not implemented')
 
-initialize <- function(token) {
+initialize <- function(token, proxy) {
     self$set_token(token)
+    self$set_proxy(proxy)
 }
 
 set_token <- function(token){
     if (!missing(token))
         private$token <- token
 }
+
+set_proxy <- function(proxy){
+    if (!missing(proxy)){
+        if (is.list(proxy)){
+            private$proxy_url      <- as.character(proxy$url)
+            private$proxy_port     <- as.integer(proxy$port)
+            private$proxy_username <- as.character(proxy$username)
+            private$proxy_password <- as.character(proxy$password)
+            private$proxy_auth     <-
+                if ("auth" %in% names(proxy)) as.character(proxy$auth)
+                else 'basic'
+            private$proxy_set      <- TRUE
+        } else {
+            private$proxy_set <- FALSE
+        }
+    } else {
+        private$proxy_set <- FALSE
+    }
+}
+
 
 set_default_chat_id <- function(chat_id){
     if (!missing(chat_id))
@@ -33,7 +54,21 @@ request <- function(method = NULL, body = NULL){
                        method)
     private$lr_method <- method
     private$lr_body <- body
-    private$lr_response <- r <- httr::POST(url = api_url, body = body)
+    private$lr_response <- r <-
+        if (private$proxy_set) {
+            ## use proxy
+            httr::POST(url = api_url,
+                       body = body,
+                       httr::use_proxy(
+                                 url = private$proxy_url,
+                                 port = private$proxy_port,
+                                 username = private$proxy_username,
+                                 password = private$proxy_password,
+                                 auth = private$proxy_auth))
+        } else {
+            ## without proxy
+            httr::POST(url = api_url, body = body)
+        }
     httr::warn_for_status(r)
     r
 }
@@ -722,7 +757,20 @@ setWebhook <- function() not_implemented()
 #'     introduction for developers} and
 #'     \href{http://core.telegram.org/bots/api}{Telegram Bot API}
 #' @examples \dontrun{
+#' 
+#' ## Without proxy
 #' bot <- TGBot$new(token = bot_token('RBot'))
+#' 
+#' ## With a proxy ...
+#' prx <- list('url' = '123.45.6.78',
+#'             'port' = 8080,
+#'             'username' = 'user',
+#'             'password' = 'password')
+#' bot <- TGBot$new(token = bot_token('RBot'), proxy = prx)
+#' ##  .. or 
+#' bot <- TGBot$new(token = bot_token('RBot'))
+#' bot$set_proxy(proxy = prx)
+#' 
 #' }
 #' @export
 TGBot <- R6::R6Class("TGBot",
@@ -732,6 +780,7 @@ TGBot <- R6::R6Class("TGBot",
                          ## ---------------------
                          initialize = initialize,
                          set_token = set_token,
+                         set_proxy = set_proxy,
                          set_default_chat_id = set_default_chat_id,
                          print = tgprint,
 
@@ -785,9 +834,17 @@ TGBot <- R6::R6Class("TGBot",
                          default_chat_id = NULL,
                          bot_first_name = NULL,
                          bot_username = NULL,
-                         lr_method = NULL,    ## last requested method
-                         lr_body = NULL,      ## last request's body
-                         lr_response = NULL,  ## last request's response
+                         ## proxy data
+                         proxy_set      = NULL,
+                         proxy_url      = NULL,
+                         proxy_port     = NULL,
+                         proxy_username = NULL,
+                         proxy_password = NULL,
+                         proxy_auth     = NULL,
+                         ## last request (LR) infos
+                         lr_method = NULL,    ## method
+                         lr_body = NULL,      ## body
+                         lr_response = NULL,  ## response
                          ## ---------------------
                          ## methods
                          ## ---------------------

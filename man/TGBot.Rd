@@ -4,9 +4,7 @@
 \name{TGBot}
 \alias{TGBot}
 \title{TGBot}
-\format{
-An \code{\link{R6Class}} generator object.
-}
+\format{An \code{\link{R6Class}} generator object.}
 \description{
 Package main class (implementing the Telegram bot).
 }
@@ -34,7 +32,20 @@ Package main class (implementing the Telegram bot).
 
 \examples{
 \dontrun{
+
+## Without proxy
 bot <- TGBot$new(token = bot_token('RBot'))
+
+## With a proxy ...
+prx <- list('url' = '123.45.6.78',
+            'port' = 8080,
+            'username' = 'user',
+            'password' = 'password')
+bot <- TGBot$new(token = bot_token('RBot'), proxy = prx)
+##  .. or 
+bot <- TGBot$new(token = bot_token('RBot'))
+bot$set_proxy(proxy = prx)
+
 }
 }
 \references{
@@ -47,6 +58,7 @@ bot <- TGBot$new(token = bot_token('RBot'))
 \itemize{
 \item \href{#method-new}{\code{TGBot$new()}}
 \item \href{#method-set_token}{\code{TGBot$set_token()}}
+\item \href{#method-set_proxy}{\code{TGBot$set_proxy()}}
 \item \href{#method-set_default_chat_id}{\code{TGBot$set_default_chat_id()}}
 \item \href{#method-req}{\code{TGBot$req()}}
 \item \href{#method-last_request}{\code{TGBot$last_request()}}
@@ -74,16 +86,14 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$new(token)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$new(token, proxy)}\if{html}{\out{</div>}}
 }
 
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_token"></a>}}
-\if{latex}{\out{\hypertarget{method-set_token}{}}}
 \subsection{Method \code{set_token()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$set_token(token)}\if{html}{\out{</div>}}
@@ -91,8 +101,15 @@ bot <- TGBot$new(token = bot_token('RBot'))
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_proxy"></a>}}
+\subsection{Method \code{set_proxy()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TGBot$set_proxy(proxy)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_default_chat_id"></a>}}
-\if{latex}{\out{\hypertarget{method-set_default_chat_id}{}}}
 \subsection{Method \code{set_default_chat_id()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$set_default_chat_id(chat_id)}\if{html}{\out{</div>}}
@@ -101,7 +118,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-req"></a>}}
-\if{latex}{\out{\hypertarget{method-req}{}}}
 \subsection{Method \code{req()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$req(method = NULL, body = NULL)}\if{html}{\out{</div>}}
@@ -110,7 +126,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-last_request"></a>}}
-\if{latex}{\out{\hypertarget{method-last_request}{}}}
 \subsection{Method \code{last_request()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$last_request()}\if{html}{\out{</div>}}
@@ -119,7 +134,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$print()}\if{html}{\out{</div>}}
@@ -128,7 +142,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-forwardMessage"></a>}}
-\if{latex}{\out{\hypertarget{method-forwardMessage}{}}}
 \subsection{Method \code{forwardMessage()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$forwardMessage(
@@ -142,7 +155,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getFile"></a>}}
-\if{latex}{\out{\hypertarget{method-getFile}{}}}
 \subsection{Method \code{getFile()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getFile(file_id, destfile = NULL)}\if{html}{\out{</div>}}
@@ -151,7 +163,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getMe"></a>}}
-\if{latex}{\out{\hypertarget{method-getMe}{}}}
 \subsection{Method \code{getMe()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getMe()}\if{html}{\out{</div>}}
@@ -160,7 +171,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getUpdates"></a>}}
-\if{latex}{\out{\hypertarget{method-getUpdates}{}}}
 \subsection{Method \code{getUpdates()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getUpdates(offset = NULL, limit = NULL)}\if{html}{\out{</div>}}
@@ -169,7 +179,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-getUserProfilePhotos"></a>}}
-\if{latex}{\out{\hypertarget{method-getUserProfilePhotos}{}}}
 \subsection{Method \code{getUserProfilePhotos()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getUserProfilePhotos(user_id = NULL, offset = NULL, limit = NULL)}\if{html}{\out{</div>}}
@@ -178,7 +187,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendAudio"></a>}}
-\if{latex}{\out{\hypertarget{method-sendAudio}{}}}
 \subsection{Method \code{sendAudio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendAudio(
@@ -196,7 +204,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendChatAction"></a>}}
-\if{latex}{\out{\hypertarget{method-sendChatAction}{}}}
 \subsection{Method \code{sendChatAction()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendChatAction()}\if{html}{\out{</div>}}
@@ -205,7 +212,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendDocument"></a>}}
-\if{latex}{\out{\hypertarget{method-sendDocument}{}}}
 \subsection{Method \code{sendDocument()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDocument(
@@ -219,7 +225,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendLocation"></a>}}
-\if{latex}{\out{\hypertarget{method-sendLocation}{}}}
 \subsection{Method \code{sendLocation()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendLocation(
@@ -234,7 +239,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendMessage"></a>}}
-\if{latex}{\out{\hypertarget{method-sendMessage}{}}}
 \subsection{Method \code{sendMessage()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendMessage(
@@ -250,7 +254,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendPhoto"></a>}}
-\if{latex}{\out{\hypertarget{method-sendPhoto}{}}}
 \subsection{Method \code{sendPhoto()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendPhoto(
@@ -265,7 +268,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendSticker"></a>}}
-\if{latex}{\out{\hypertarget{method-sendSticker}{}}}
 \subsection{Method \code{sendSticker()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendSticker(
@@ -279,7 +281,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendVideo"></a>}}
-\if{latex}{\out{\hypertarget{method-sendVideo}{}}}
 \subsection{Method \code{sendVideo()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendVideo(
@@ -294,7 +295,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendVoice"></a>}}
-\if{latex}{\out{\hypertarget{method-sendVoice}{}}}
 \subsection{Method \code{sendVoice()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendVoice(
@@ -309,7 +309,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendDice"></a>}}
-\if{latex}{\out{\hypertarget{method-sendDice}{}}}
 \subsection{Method \code{sendDice()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(disable_notification = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
@@ -318,7 +317,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sendPoll"></a>}}
-\if{latex}{\out{\hypertarget{method-sendPoll}{}}}
 \subsection{Method \code{sendPoll()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendPoll(
@@ -338,7 +336,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-stopPoll"></a>}}
-\if{latex}{\out{\hypertarget{method-stopPoll}{}}}
 \subsection{Method \code{stopPoll()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$stopPoll(message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
@@ -347,7 +344,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-setWebhook"></a>}}
-\if{latex}{\out{\hypertarget{method-setWebhook}{}}}
 \subsection{Method \code{setWebhook()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$setWebhook()}\if{html}{\out{</div>}}
@@ -356,7 +352,6 @@ bot <- TGBot$new(token = bot_token('RBot'))
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

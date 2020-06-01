@@ -9,7 +9,7 @@ user_id(x)
 \arguments{
 \item{x}{character of length 1 with the name of the user; if
 \code{NULL} a menu to choose between bot is displayed and the
-proper token returned}
+proper value returned}
 }
 \description{
 Obtain telegram user id from system variables (in \code{Renviron}) set
