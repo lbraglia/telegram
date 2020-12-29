@@ -238,6 +238,20 @@ bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
 ## ------------------------------------
 bot$sendVoice(system.file('voice_test.ogg', package = 'telegram'))
 
+## -----------------------------------------------------------------
+## Tell the user what's happening on the bot's side (for long tasks)
+## -----------------------------------------------------------------
+bot$sendChatAction('typing')
+bot$sendChatAction('upload_photo')
+bot$sendChatAction('record_video')
+bot$sendChatAction('upload_video')
+bot$sendChatAction('record_voice')
+bot$sendChatAction('upload_voice')
+bot$sendChatAction('upload_document')
+bot$sendChatAction('find_location')
+bot$sendChatAction('record_video_note')
+bot$sendChatAction('upload_video_note')
+
 ## ----------------------------------------------------------
 ## Roll a dice (animation of a random number between 1 and 6)
 ## ----------------------------------------------------------

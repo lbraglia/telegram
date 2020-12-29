@@ -255,8 +255,7 @@ getMe <- function()
 #'
 #' Receive incoming updates
 #' 
-#' @param offset Identifier of the first update to be returned
-#'     returned.
+#' @param offset Identifier of the first update to be returned.
 #' @param limit Limits the number of updates to be retrieved. Values
 #'     between 1-100 are accepted. Defaults to 100
 getUpdates <- function(offset = NULL,
@@ -359,7 +358,32 @@ sendAudio <- function(audio = NULL,
     invisible(r)
 }
 
-sendChatAction <- function() not_implemented()
+#' sendChatAction
+#'
+#' Tell the user that something is happening on the bot's side
+#' @param action type of action to broadcast. Choose one, depending on
+#'     what the user is about to receive: "typing" for text messages,
+#'     "upload_photo" for photos, "record_video" or "upload_video" for
+#'     videos, "record_voice" or "upload_voice" for voice notes,
+#'     "upload_document" for general files, "find_location" for
+#'     location data, "record_video_note" or "upload_video_note" for
+#'     video notes.
+#' @param chat_id Unique identifier for the target chat or username of
+#'     the target channel (required)
+sendChatAction <- function(action = NULL,
+                           chat_id = NULL)
+{
+    ## params
+    chat_id <- private$check_chat_id(chat_id = chat_id)
+    action <- check_param(action, 'char')
+    ## request body
+    body <- make_body('chat_id' = chat_id,
+                      'action' = action)
+    ## request
+    r <- private$request('sendChatAction', body = body)
+    ## response handling
+    invisible(r)
+}
 
 #' sendDocument
 #'
