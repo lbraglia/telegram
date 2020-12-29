@@ -104,7 +104,7 @@ tgprint <- function(){
                      "sendChatAction",
                      "getUserProfilePhotos",
                      "getUpdates",
-                     "setWebhook",
+                     ## "setWebhook",
                      "getFile")
     dont_show <- c("clone", "initialize", "print")
     avail_methods <- sort(api_methods[api_methods %in% obj])
@@ -749,7 +749,7 @@ stopPoll <- function(message_id = NULL,
 }
 
 
-setWebhook <- function() not_implemented()
+## setWebhook <- function() not_implemented()
 
 
 #' TGBot
@@ -794,7 +794,6 @@ setWebhook <- function() not_implemented()
 #' ##  .. or 
 #' bot <- TGBot$new(token = bot_token('RBot'))
 #' bot$set_proxy(proxy = prx)
-#' 
 #' }
 #' @export
 TGBot <- R6::R6Class("TGBot",
@@ -846,7 +845,7 @@ TGBot <- R6::R6Class("TGBot",
                          sendSticker          = sendSticker,
                          sendVideo            = sendVideo,
                          sendVoice            = sendVoice,
-                         setWebhook           = setWebhook,
+                         ## setWebhook           = setWebhook,
                          stopPoll             = stopPoll
                          
                      ),

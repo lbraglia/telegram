@@ -7,4 +7,5 @@ Version 0.7
   `user_id`, by using the `R_TELEGRAM_GROUP_` prefix);
 * `sendDice` method;
 * `sendPoll` method;
+* `sendChatAction` method;
 * miscellaneous bugfixes.

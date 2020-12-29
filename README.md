@@ -5,7 +5,7 @@
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/telegram)](http://www.r-pkg.org/pkg/telegram)
 
 
-This package is an R wrapper around the
+This package is a simple R wrapper around the
 [Telegram](http://telegram.org/) [Bot
 API](http://core.telegram.org/bots/api).
 
@@ -15,6 +15,10 @@ your smartphone.
 More infos on telegram's bot api can be found
 [here](http://core.telegram.org/bots) and
 [here](http://core.telegram.org/bots/api).
+
+If you need something more advanced and full-featured, take a look at
+[telegram.bot package](https://cran.r-project.org/package=telegram.bot).
+
 
 ## How to install the package?
 For the stable version:

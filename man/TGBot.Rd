@@ -47,7 +47,6 @@ bot <- TGBot$new(token = bot_token('RBot'), proxy = prx)
 ##  .. or 
 bot <- TGBot$new(token = bot_token('RBot'))
 bot$set_proxy(proxy = prx)
-
 }
 }
 \references{
@@ -82,7 +81,6 @@ bot$set_proxy(proxy = prx)
 \item \href{#method-sendDice}{\code{TGBot$sendDice()}}
 \item \href{#method-sendPoll}{\code{TGBot$sendPoll()}}
 \item \href{#method-stopPoll}{\code{TGBot$stopPoll()}}
-\item \href{#method-setWebhook}{\code{TGBot$setWebhook()}}
 \item \href{#method-clone}{\code{TGBot$clone()}}
 }
 }
@@ -365,15 +363,6 @@ bot$set_proxy(proxy = prx)
 \subsection{Method \code{stopPoll()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$stopPoll(message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-setWebhook"></a>}}
-\if{latex}{\out{\hypertarget{method-setWebhook}{}}}
-\subsection{Method \code{setWebhook()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TGBot$setWebhook()}\if{html}{\out{</div>}}
 }
 
 }
