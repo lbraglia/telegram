@@ -9,5 +9,4 @@ Imports: R6, httr, jsonlite, curl, utils
 Depends:
     R (>= 3.2.3)
 License: GPL-3
-LazyData: true
 RoxygenNote: 7.1.1
