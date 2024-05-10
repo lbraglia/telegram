@@ -57,36 +57,36 @@ bot$set_proxy(proxy = prx)
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TGBot$new()}}
-\item \href{#method-set_token}{\code{TGBot$set_token()}}
-\item \href{#method-set_proxy}{\code{TGBot$set_proxy()}}
-\item \href{#method-set_default_chat_id}{\code{TGBot$set_default_chat_id()}}
-\item \href{#method-req}{\code{TGBot$req()}}
-\item \href{#method-last_request}{\code{TGBot$last_request()}}
-\item \href{#method-print}{\code{TGBot$print()}}
-\item \href{#method-forwardMessage}{\code{TGBot$forwardMessage()}}
-\item \href{#method-getFile}{\code{TGBot$getFile()}}
-\item \href{#method-getMe}{\code{TGBot$getMe()}}
-\item \href{#method-getUpdates}{\code{TGBot$getUpdates()}}
-\item \href{#method-getUserProfilePhotos}{\code{TGBot$getUserProfilePhotos()}}
-\item \href{#method-sendAudio}{\code{TGBot$sendAudio()}}
-\item \href{#method-sendChatAction}{\code{TGBot$sendChatAction()}}
-\item \href{#method-sendDocument}{\code{TGBot$sendDocument()}}
-\item \href{#method-sendLocation}{\code{TGBot$sendLocation()}}
-\item \href{#method-sendMessage}{\code{TGBot$sendMessage()}}
-\item \href{#method-sendPhoto}{\code{TGBot$sendPhoto()}}
-\item \href{#method-sendSticker}{\code{TGBot$sendSticker()}}
-\item \href{#method-sendVideo}{\code{TGBot$sendVideo()}}
-\item \href{#method-sendVoice}{\code{TGBot$sendVoice()}}
-\item \href{#method-sendDice}{\code{TGBot$sendDice()}}
-\item \href{#method-sendPoll}{\code{TGBot$sendPoll()}}
-\item \href{#method-stopPoll}{\code{TGBot$stopPoll()}}
-\item \href{#method-clone}{\code{TGBot$clone()}}
+\item \href{#method-TGBot-new}{\code{TGBot$new()}}
+\item \href{#method-TGBot-set_token}{\code{TGBot$set_token()}}
+\item \href{#method-TGBot-set_proxy}{\code{TGBot$set_proxy()}}
+\item \href{#method-TGBot-set_default_chat_id}{\code{TGBot$set_default_chat_id()}}
+\item \href{#method-TGBot-req}{\code{TGBot$req()}}
+\item \href{#method-TGBot-last_request}{\code{TGBot$last_request()}}
+\item \href{#method-TGBot-print}{\code{TGBot$print()}}
+\item \href{#method-TGBot-forwardMessage}{\code{TGBot$forwardMessage()}}
+\item \href{#method-TGBot-getFile}{\code{TGBot$getFile()}}
+\item \href{#method-TGBot-getMe}{\code{TGBot$getMe()}}
+\item \href{#method-TGBot-getUpdates}{\code{TGBot$getUpdates()}}
+\item \href{#method-TGBot-getUserProfilePhotos}{\code{TGBot$getUserProfilePhotos()}}
+\item \href{#method-TGBot-sendAudio}{\code{TGBot$sendAudio()}}
+\item \href{#method-TGBot-sendChatAction}{\code{TGBot$sendChatAction()}}
+\item \href{#method-TGBot-sendDocument}{\code{TGBot$sendDocument()}}
+\item \href{#method-TGBot-sendLocation}{\code{TGBot$sendLocation()}}
+\item \href{#method-TGBot-sendMessage}{\code{TGBot$sendMessage()}}
+\item \href{#method-TGBot-sendPhoto}{\code{TGBot$sendPhoto()}}
+\item \href{#method-TGBot-sendSticker}{\code{TGBot$sendSticker()}}
+\item \href{#method-TGBot-sendVideo}{\code{TGBot$sendVideo()}}
+\item \href{#method-TGBot-sendVoice}{\code{TGBot$sendVoice()}}
+\item \href{#method-TGBot-sendDice}{\code{TGBot$sendDice()}}
+\item \href{#method-TGBot-sendPoll}{\code{TGBot$sendPoll()}}
+\item \href{#method-TGBot-stopPoll}{\code{TGBot$stopPoll()}}
+\item \href{#method-TGBot-clone}{\code{TGBot$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TGBot-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$new(token, proxy)}\if{html}{\out{</div>}}
@@ -94,8 +94,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_token"></a>}}
-\if{latex}{\out{\hypertarget{method-set_token}{}}}
+\if{html}{\out{<a id="method-TGBot-set_token"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-set_token}{}}}
 \subsection{Method \code{set_token()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$set_token(token)}\if{html}{\out{</div>}}
@@ -103,8 +103,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_proxy"></a>}}
-\if{latex}{\out{\hypertarget{method-set_proxy}{}}}
+\if{html}{\out{<a id="method-TGBot-set_proxy"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-set_proxy}{}}}
 \subsection{Method \code{set_proxy()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$set_proxy(proxy)}\if{html}{\out{</div>}}
@@ -112,8 +112,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_default_chat_id"></a>}}
-\if{latex}{\out{\hypertarget{method-set_default_chat_id}{}}}
+\if{html}{\out{<a id="method-TGBot-set_default_chat_id"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-set_default_chat_id}{}}}
 \subsection{Method \code{set_default_chat_id()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$set_default_chat_id(chat_id)}\if{html}{\out{</div>}}
@@ -121,8 +121,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-req"></a>}}
-\if{latex}{\out{\hypertarget{method-req}{}}}
+\if{html}{\out{<a id="method-TGBot-req"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-req}{}}}
 \subsection{Method \code{req()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$req(method = NULL, body = NULL)}\if{html}{\out{</div>}}
@@ -130,8 +130,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-last_request"></a>}}
-\if{latex}{\out{\hypertarget{method-last_request}{}}}
+\if{html}{\out{<a id="method-TGBot-last_request"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-last_request}{}}}
 \subsection{Method \code{last_request()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$last_request()}\if{html}{\out{</div>}}
@@ -139,8 +139,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-TGBot-print"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-print}{}}}
 \subsection{Method \code{print()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$print()}\if{html}{\out{</div>}}
@@ -148,8 +148,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-forwardMessage"></a>}}
-\if{latex}{\out{\hypertarget{method-forwardMessage}{}}}
+\if{html}{\out{<a id="method-TGBot-forwardMessage"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-forwardMessage}{}}}
 \subsection{Method \code{forwardMessage()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$forwardMessage(
@@ -162,8 +162,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getFile"></a>}}
-\if{latex}{\out{\hypertarget{method-getFile}{}}}
+\if{html}{\out{<a id="method-TGBot-getFile"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-getFile}{}}}
 \subsection{Method \code{getFile()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getFile(file_id, destfile = NULL)}\if{html}{\out{</div>}}
@@ -171,8 +171,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getMe"></a>}}
-\if{latex}{\out{\hypertarget{method-getMe}{}}}
+\if{html}{\out{<a id="method-TGBot-getMe"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-getMe}{}}}
 \subsection{Method \code{getMe()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getMe()}\if{html}{\out{</div>}}
@@ -180,8 +180,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getUpdates"></a>}}
-\if{latex}{\out{\hypertarget{method-getUpdates}{}}}
+\if{html}{\out{<a id="method-TGBot-getUpdates"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-getUpdates}{}}}
 \subsection{Method \code{getUpdates()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getUpdates(offset = NULL, limit = NULL)}\if{html}{\out{</div>}}
@@ -189,8 +189,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getUserProfilePhotos"></a>}}
-\if{latex}{\out{\hypertarget{method-getUserProfilePhotos}{}}}
+\if{html}{\out{<a id="method-TGBot-getUserProfilePhotos"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-getUserProfilePhotos}{}}}
 \subsection{Method \code{getUserProfilePhotos()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$getUserProfilePhotos(user_id = NULL, offset = NULL, limit = NULL)}\if{html}{\out{</div>}}
@@ -198,8 +198,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendAudio"></a>}}
-\if{latex}{\out{\hypertarget{method-sendAudio}{}}}
+\if{html}{\out{<a id="method-TGBot-sendAudio"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendAudio}{}}}
 \subsection{Method \code{sendAudio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendAudio(
@@ -216,8 +216,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendChatAction"></a>}}
-\if{latex}{\out{\hypertarget{method-sendChatAction}{}}}
+\if{html}{\out{<a id="method-TGBot-sendChatAction"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendChatAction}{}}}
 \subsection{Method \code{sendChatAction()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendChatAction(action = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
@@ -225,8 +225,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendDocument"></a>}}
-\if{latex}{\out{\hypertarget{method-sendDocument}{}}}
+\if{html}{\out{<a id="method-TGBot-sendDocument"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendDocument}{}}}
 \subsection{Method \code{sendDocument()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDocument(
@@ -239,8 +239,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendLocation"></a>}}
-\if{latex}{\out{\hypertarget{method-sendLocation}{}}}
+\if{html}{\out{<a id="method-TGBot-sendLocation"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendLocation}{}}}
 \subsection{Method \code{sendLocation()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendLocation(
@@ -254,8 +254,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendMessage"></a>}}
-\if{latex}{\out{\hypertarget{method-sendMessage}{}}}
+\if{html}{\out{<a id="method-TGBot-sendMessage"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendMessage}{}}}
 \subsection{Method \code{sendMessage()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendMessage(
@@ -270,8 +270,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendPhoto"></a>}}
-\if{latex}{\out{\hypertarget{method-sendPhoto}{}}}
+\if{html}{\out{<a id="method-TGBot-sendPhoto"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendPhoto}{}}}
 \subsection{Method \code{sendPhoto()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendPhoto(
@@ -285,8 +285,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendSticker"></a>}}
-\if{latex}{\out{\hypertarget{method-sendSticker}{}}}
+\if{html}{\out{<a id="method-TGBot-sendSticker"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendSticker}{}}}
 \subsection{Method \code{sendSticker()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendSticker(
@@ -299,8 +299,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendVideo"></a>}}
-\if{latex}{\out{\hypertarget{method-sendVideo}{}}}
+\if{html}{\out{<a id="method-TGBot-sendVideo"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendVideo}{}}}
 \subsection{Method \code{sendVideo()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendVideo(
@@ -314,8 +314,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendVoice"></a>}}
-\if{latex}{\out{\hypertarget{method-sendVoice}{}}}
+\if{html}{\out{<a id="method-TGBot-sendVoice"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendVoice}{}}}
 \subsection{Method \code{sendVoice()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendVoice(
@@ -329,8 +329,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendDice"></a>}}
-\if{latex}{\out{\hypertarget{method-sendDice}{}}}
+\if{html}{\out{<a id="method-TGBot-sendDice"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendDice}{}}}
 \subsection{Method \code{sendDice()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendDice(disable_notification = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
@@ -338,8 +338,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sendPoll"></a>}}
-\if{latex}{\out{\hypertarget{method-sendPoll}{}}}
+\if{html}{\out{<a id="method-TGBot-sendPoll"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-sendPoll}{}}}
 \subsection{Method \code{sendPoll()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$sendPoll(
@@ -358,8 +358,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-stopPoll"></a>}}
-\if{latex}{\out{\hypertarget{method-stopPoll}{}}}
+\if{html}{\out{<a id="method-TGBot-stopPoll"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-stopPoll}{}}}
 \subsection{Method \code{stopPoll()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TGBot$stopPoll(message_id = NULL, chat_id = NULL)}\if{html}{\out{</div>}}
@@ -367,8 +367,8 @@ bot$set_proxy(proxy = prx)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TGBot-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TGBot-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

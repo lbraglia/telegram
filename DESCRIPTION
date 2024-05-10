@@ -9,4 +9,4 @@ Imports: R6, httr, jsonlite, curl, utils
 Depends:
     R (>= 3.2.3)
 License: GPL-3
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.1
