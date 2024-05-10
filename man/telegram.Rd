@@ -14,8 +14,8 @@ your smartphone)
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/lbraglia/telegram}
-  \item Report bugs at \url{http://github.com/lbraglia/telegram/issues}
+  \item \url{https://github.com/lbraglia/telegram}
+  \item Report bugs at \url{https://github.com/lbraglia/telegram/issues}
 }
 
 }

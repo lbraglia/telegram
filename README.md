@@ -160,7 +160,7 @@ bot$sendMessage('This is plain text')
 
 ## Markdown support (version 2 via parse_mode = 'markdownv2')
 md <- "
-*bold* _italic_ [r-project](http://r-project.org) 
+*bold* _italic_ [r-project](https://r-project.org) 
 try `x <- rnorm(100)` at the console ...
 you can have
     ``` 
@@ -174,7 +174,7 @@ bot$sendMessage(md, parse_mode = 'markdown')
 html_message <- "
 <b>bold</b>, <i>italic</i>, <u>underline</u>,
 <s>strikethrough</s>,
-<a href='http://www.example.com/'>inline URL</a>
+<a href='https://www.example.com/'>inline URL</a>
 <a href='tg://user?id=123456789'>inline mention of a user</a>
 <code>inline fixed-width code</code>
 <pre>pre-formatted fixed-width code block</pre>
@@ -226,7 +226,7 @@ bot$sendVideo('animation.mp4')
 ## Send mp3 audio files
 ## --------------------
 bot$sendAudio(system.file('audio_test.mp3', package = 'telegram'),
-              performer = 'espeak (http://espeak.sf.net)')
+              performer = 'espeak (https://espeak.sf.net)')
 
 ## ------------------------------------
 ## Send voice (opus encoded .ogg files)
