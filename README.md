@@ -1,15 +1,15 @@
 # telegram
 
 This package is a simple R wrapper around the
-[Telegram](http://telegram.org/) [Bot
-API](http://core.telegram.org/bots/api).
+[Telegram](https://telegram.org/) [Bot
+API](https://core.telegram.org/bots/api).
 
 It allows to send messages (text, Markdown, images, files) from R to
 your smartphone.
 
 More infos on telegram's bot api can be found
-[here](http://core.telegram.org/bots) and
-[here](http://core.telegram.org/bots/api).
+[here](https://core.telegram.org/bots) and
+[here](https://core.telegram.org/bots/api).
 
 ## How to install the package?
 For the stable version:
@@ -31,7 +31,7 @@ few questions regarding bot's name and you're ready to go.
 After you've done, the botfather returns a token (which has to be kept
 secret) that lets you handle your bot; we need this token when
 creating the bot object on the R side. Following [Hadley's API
-guidelines](http://github.com/hadley/httr/blob/master/vignettes/api-packages.Rmd#appendix-api-key-best-practices)
+guidelines](https://github.com/r-lib/httr/blob/master/vignettes/api-packages.Rmd#appendix-api-key-best-practices)
 it's unsafe to type the token just in the R script. It's better to use
 enviroment variables set in `.Renviron` file.
 
