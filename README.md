@@ -11,10 +11,6 @@ More infos on telegram's bot api can be found
 [here](http://core.telegram.org/bots) and
 [here](http://core.telegram.org/bots/api).
 
-If you need something more advanced and full-featured, take a look at
-[telegram.bot package](https://cran.r-project.org/package=telegram.bot).
-
-
 ## How to install the package?
 For the stable version:
 ```r
