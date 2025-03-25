@@ -757,7 +757,7 @@ stopPoll <- function(message_id = NULL,
 #' Package main class (implementing the Telegram bot).
 #' 
 #' @docType class
-#' @format An \code{\link{R6Class}} generator object.
+#' @format An \code{\link[R6]{R6Class}} generator object.
 #' @section API Methods: \describe{
 #'     \item{\code{\link{forwardMessage}}}{forward messages of any
 #'     kind} \item{\code{\link{getFile}}}{get info about a file and

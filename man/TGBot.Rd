@@ -5,7 +5,7 @@
 \alias{TGBot}
 \title{TGBot}
 \format{
-An \code{\link{R6Class}} generator object.
+An \code{\link[R6]{R6Class}} generator object.
 }
 \description{
 Package main class (implementing the Telegram bot).
